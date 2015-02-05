@@ -28,15 +28,15 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
-    first_name = models.CharField()
-    last_name = models.CharField
-    email = models.CharField()
+class User(AbstractBaseUser, PermissionsMixin):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    email = models.EmailField(unique=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    USERNAME_FIELD = email
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = UserManager()
