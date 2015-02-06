@@ -1,4 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
 {% for product in product_list %}
-   <h1>{{ product.name }}</h1>
+<div>
+   <img width="200px" height="200px" src="{{ MEDIA_URL }}{{ product.picture }}"/>
+   <p>{{ product.name }}</p>
    <p>{{ product.description }}</p>
+   <p>{{ product.price }}</p>
+   <button>Add to Cart</button>
+</div>
 {% endfor %}
+{% endblock content %}
