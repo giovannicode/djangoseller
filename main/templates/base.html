@@ -1,14 +1,21 @@
-{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
 <title>{% block title %}Seller{% endblock title %}</title>
 <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
 {% block head_tags %}
+<script src="{% static 'bower_components/jquery/dist/jquery.js' %}"/></script>
 {% endblock head_tags %}
 <meta charset="utf-8">
 </head>
 <body>
+   <ul>
+      <li><a href="{% url 'main:index' %}">Home</a></li>
+      <li><a href="{% url 'products:list' %}">Shop</a></li>
+      <li><a href="{% url 'carts:detail' pk=1%}">Cart</a></li>
+      <li><a href="{% url 'checkout:index' %}">Checkout</a></li>
+   </ul>
 {% block content %}
 {% endblock content %}
 </body>

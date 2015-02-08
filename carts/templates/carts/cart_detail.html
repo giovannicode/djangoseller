@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for item in cart.cartitem_set.all %}
+   <div>
+      <img width="75px" height="75px" src="{{ MEDIA_URL }}{{ item.product.picture }}"/>
+      <p>{{ item.product.name }}</p>
+      <p>{{ item.product.price }}</p>
+      <p>{{ item.qty }}</p>
+   </div>
+{% endfor %}
+{% endblock content %}

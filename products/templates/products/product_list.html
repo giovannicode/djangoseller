@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
 {% for product in product_list %}
 <div>
@@ -7,7 +6,25 @@
    <p>{{ product.name }}</p>
    <p>{{ product.description }}</p>
    <p>{{ product.price }}</p>
-   <button>Add to Cart</button>
+   <button class="cart_adder" data-product_id="{{ product.id }}">Add to Cart</button>
 </div>
 {% endfor %}
+
+<script>
+$('.cart_adder').click(function(event){
+   $.post(
+      "{% url 'carts:add' %}",
+      {
+         product_id: $(this).data('product_id'),
+         csrfmiddlewaretoken: '{{ csrf_token }}'
+      },
+      function(data){
+          alert(data);
+      }
+   )
+   .fail(function(){ 
+      alert("I'm sorry and error occured.");
+   });
+});
+</script>
 {% endblock content %}
