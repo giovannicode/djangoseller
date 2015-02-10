@@ -11,6 +11,14 @@ class Address(models.Model):
     state = models.CharField(max_length=2)
     zipcode = models.CharField(max_length=5) 
 
+    def __unicode__(self):
+        return "{street}, {city}, {state}, {zipcode}".format(
+            street=self.street,
+            city=self.city,
+            state=self.state,
+            zipcode=self.zipcode
+        )
+
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)

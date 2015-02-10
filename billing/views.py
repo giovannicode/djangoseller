@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 from django.core.mail import send_mail
 from django.views.generic import CreateView
 
-from orders.models import Address, Order
+from orders.models import Address, Order, OrderItem
 from payments.models import Payment
 
 stripe.api_key = "sk_test_w96KeQLCTh23810DSE2ykwIt"
@@ -16,26 +16,26 @@ stripe.api_key = "sk_test_w96KeQLCTh23810DSE2ykwIt"
 class BillingView(CreateView):
     model = Address 
     template_name = 'billing/index.html'
-    total = 0
 
     def get_context_data(self, **kwargs):
         context = super(BillingView, self).get_context_data(**kwargs)
         cart = self.request.user.cart
+        total = 0
         for item in cart.cartitem_set.all():
-            self.total += item.product.price 
-        context['total'] = str(self.total)
-        self.request['total'] = str(self.total)
+            total += item.product.price 
+        context['total'] = str(total)
+        self.request.session['total'] = str(total)
         return context
 
     def form_valid(self, form):
         try:
             with transaction.atomic():
 	        token = self.request.POST["stripeToken"]
-		self.total = 5
+		total = self.request.session['total']
 		
 		user = self.request.user
 		email = user.email
-		payment = Payment.objects.create(total=Decimal(self.total))
+		payment = Payment.objects.create(total=Decimal(total))
 		address = form.save()
 
 		order = Order.objects.create(
@@ -44,11 +44,22 @@ class BillingView(CreateView):
                             payment=payment, 
                             address=address
                         )
+   
+                cart = self.request.user.cart
+                for cartitem in cart.cartitem_set.all():
+                    orderitem = OrderItem.objects.create(
+                                    order=order,
+                                    product=cartitem.product,
+                                    title=cartitem.product.name,
+                                    price=cartitem.product.price,
+                                    qty=1
+                                )
+                cart.cartitem_set.all().delete()
        
 		charge = stripe.Charge.create(
 		# Stripe works in cents instead of dollars.
 		# Multiply price by 100 to convert to cents  
-		             amount = int(self.total*100),
+		             amount = int(Decimal(total)*100),
 		             currency="usd",
 		             card = token,
 		             description="New Order"
@@ -60,7 +71,7 @@ class BillingView(CreateView):
             messages.add_message(
                 self.request, 
                 messages.INFO, 
-                str(err) + str(int(self.total*100))
+                err
             )
             return redirect('billing:index') 
 
