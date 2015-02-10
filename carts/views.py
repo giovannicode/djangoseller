@@ -1,3 +1,4 @@
+from django.db.models import F
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
 from django.http import HttpResponse
@@ -11,7 +12,10 @@ class CartCreateRest(TemplateView):
     def post(self, request, *args, **kwargs):
         product = Product.objects.get(pk=request.POST.get('product_id'))
         cart = request.user.cart
-        cart.cartitem_set.create(cart=cart, product=product, qty=1)
+        if not cart.cartitem_set.filter(product=product).exists():
+            cart.cartitem_set.create(cart=cart, product=product, qty=1)
+        else:
+            cart.cartitem_set.filter(product=product).update(qty=F('qty')+1) 
         return HttpResponse('Item added')
         
 

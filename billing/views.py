@@ -22,7 +22,7 @@ class BillingView(CreateView):
         cart = self.request.user.cart
         total = 0
         for item in cart.cartitem_set.all():
-            total += item.product.price 
+            total += item.product.price * item.qty 
         context['total'] = str(total)
         self.request.session['total'] = str(total)
         return context
@@ -52,7 +52,7 @@ class BillingView(CreateView):
                                     product=cartitem.product,
                                     title=cartitem.product.name,
                                     price=cartitem.product.price,
-                                    qty=1
+                                    qty=cartitem.qty
                                 )
                 cart.cartitem_set.all().delete()
        

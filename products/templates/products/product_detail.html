@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.price }}</p>
+    <button class="cart_adder" data-product_id="{{ product.id }}">Add to Cart</button>    
+<script>
+$('.cart_adder').click(function(event){
+   $.post(
+      "/carts/add",
+      {
+         product_id: $(this).data('product_id'),
+         csrfmiddlewaretoken: 'F79VzEYnintZEPAVh4BRKfjocbn2hH0y'
+      },
+      function(data){
+          alert(data);
+      }
+   )
+   .fail(function(){ 
+      alert("I'm sorry and error occured.");
+   });
+});
+</script>
+{% endblock content %}

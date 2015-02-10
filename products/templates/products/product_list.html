@@ -2,7 +2,7 @@
 {% block content %}
 {% for product in product_list %}
 <div>
-   <img width="200px" height="200px" src="{{ MEDIA_URL }}{{ product.picture }}"/>
+   <a href="{{ product.get_absolute_url }}"><img width="200px" height="200px" src="{{ MEDIA_URL }}{{ product.picture }}"/></a>
    <p>{{ product.name }}</p>
    <p>{{ product.description }}</p>
    <p>{{ product.price }}</p>

@@ -23,9 +23,15 @@ class Address(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
     email = models.EmailField()
+    date = models.DateTimeField(auto_now_add=True)
     payment = models.OneToOneField(Payment)
     address = models.OneToOneField(Address)
+    shipped = models.BooleanField(default=False)
 
+    def __unicode__(self):
+        return "Order ID: {id}, Email: {email}, Shipped: {shipped}"\
+               .format(id=self.id, email=self.email, shipped=self.shipped)
+    
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order)
