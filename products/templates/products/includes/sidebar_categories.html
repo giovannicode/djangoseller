@@ -1,0 +1,16 @@
+<div ng-app="productsApp">
+<div ng-controller="productsController">
+<ul>
+{% for category in category_list %}
+   <li ng-click="getproducts({{ category.id }})">{{ category.name }}</li>
+{% endfor %}
+</ul>
+<div ng-repeat="product in data track by $index">
+   <img width="200px" height="200px" id="{[{product.pk}]}" src="/media/{[{product.fields.picture}]}"/>
+   <p>{[{ product.fields.name }]}</p>
+   <p>{[{ product.fields.description }]}</p>
+   <p>{[{ product.fields.price }]}</p>
+   <button class="cart_adder" data-product_id="{[{ product.id }]}">Add to Cart</button>
+</div>
+</div>
+</div>

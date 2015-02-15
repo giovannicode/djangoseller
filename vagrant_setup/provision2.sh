@@ -12,5 +12,3 @@ sudo supervisorctl update
 
 # Install frontend frameworks
 sudo npm install -g bower
-
-

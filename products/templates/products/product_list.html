@@ -1,5 +1,20 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+{% block head_tags %}
+<script src="{% static 'products/js/ctrl.js' %}"></script>
+{% endblock head_tags %}
 {% block content %}
+{% include 'products/includes/sidebar_categories.html' %}
+<div>
+   <form>
+      <label for="q">Sort By</label>
+      <select name="q">
+         <option value="asc">Low to High</option>
+         <option value="dsc">High to Low</option>
+      </select>
+      <button type="submit">Sort</button>
+   </form>
+</div>
 {% for product in product_list %}
 <div>
    <a href="{{ product.get_absolute_url }}"><img width="200px" height="200px" src="{{ MEDIA_URL }}{{ product.picture }}"/></a>
@@ -9,7 +24,6 @@
    <button class="cart_adder" data-product_id="{{ product.id }}">Add to Cart</button>
 </div>
 {% endfor %}
-
 <script>
 $('.cart_adder').click(function(event){
    $.post(
