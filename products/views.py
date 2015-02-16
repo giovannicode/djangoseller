@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 
@@ -10,6 +10,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 from django.core import serializers
 from django.http import JsonResponse
+
+from .serializers import ProductSerializer
+from rest_framework import generics
 
 class ProductListView(ListView):
     model = Product
@@ -43,4 +46,10 @@ class ProductListView(ListView):
 class ProductDetailView(DetailView):
     model = Product
 
-    
+
+class ProductList(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_fields = ('name', 'price')
+    #renderer_classes = [JSONRenderer]
+
