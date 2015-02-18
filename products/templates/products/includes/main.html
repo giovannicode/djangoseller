@@ -1,0 +1,8 @@
+<div ng-repeat="product in data track by $index">
+   <div style="height:200px; width:200px; background-color: {[{product.color}]}"></div>
+   <!--<img width="200px" height="200px" id="{[{product.pk}]}" src="/media/{[{product.picture}]}"/>-->
+   <p>{[{ product.name }]}</p>
+   <p>{[{ product.description }]}</p>
+   <p>{[{ product.price }]}</p>
+   <button class="cart_adder" data-product_id="{[{ product.id }]}">Add to Cart</button>
+</div>

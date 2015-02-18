@@ -1,27 +1,44 @@
 angular.module('productsApp', [])
-  .controller('productsController', function($scope, $http){
+  .controller('productsController', function($scope, $http, $location){
+    angular.element(document).ready(function(){
+      $scope.getproducts(0);
+    })
     $scope.data = {};
-    $scope.alert = function(id){
-      alert("ID: " + id);
-    }
     $scope.getproducts = function(category_id){
-      
-      var responsePromise = $http.post(
-          "/products/list", 
-          $.param({category_id: category_id}),
-          { headers: {'Content-Type': 'application/x-www-form-urlencoded'}} 
+      url = "/products/api/list?format=json";
+      if(!category_id)
+      {
+      }
+      else
+      {
+        get_param = "categories=" + category_id;
+        url += "&" + get_param;
+      }
+      var responsePromise = $http.get(url);
 
-      );
 
       responsePromise.success(function(data, status, headers, config){
-        $scope.data = JSON.parse(data);
+        $scope.data = data;
+        client_url = "/products/list";
+        if(!category_id)
+        {
+          $location.path(client_url);
+        } 
+        else
+        {
+          $location.path(client_url + '?' + get_param);
+        }
       });
       responsePromise.error(function(data, status, headers, config){
         alert("Ajax failed!"); 
       });
     }
   })
-  .config(function($interpolateProvider){
+  .config(function($interpolateProvider, $locationProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    })
   })
 ;

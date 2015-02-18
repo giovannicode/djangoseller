@@ -9,6 +9,22 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=14, decimal_places=2)
     qty = models.PositiveIntegerField()
 
+    COLOR_CHOICES = (
+        ('red', 'red'),
+        ('orange', 'orange'),
+        ('yellow', 'yellow'),
+        ('green', 'green'),
+        ('cyan', 'cyan'),
+        ('blue', 'blue'), 
+        ('purple', 'purple'),
+        ('pink', 'pink'),
+        ('brown', 'brown'),
+        ('gold', 'gold'),
+        ('black', 'black'),
+        ('gray', 'gray'),
+        ('white', 'white')
+    )
+    color = models.CharField(max_length=30, choices=COLOR_CHOICES) 
     categories = models.ManyToManyField(Category)
    
     class Meta:

@@ -4,7 +4,9 @@
 <script src="{% static 'products/js/ctrl.js' %}"></script>
 {% endblock head_tags %}
 {% block content %}
-{% include 'products/includes/sidebar_categories.html' %}
+<div ng-app="productsApp">
+<div ng-controller="productsController">
+   {% include 'products/includes/sidebar_categories.html' %}
 <div>
    <form>
       <label for="q">Sort By</label>
@@ -14,16 +16,11 @@
       </select>
       <button type="submit">Sort</button>
    </form>
+   {{ filter_form.as_p }}
 </div>
-{% for product in product_list %}
-<div>
-   <a href="{{ product.get_absolute_url }}"><img width="200px" height="200px" src="{{ MEDIA_URL }}{{ product.picture }}"/></a>
-   <p>{{ product.name }}</p>
-   <p>{{ product.description }}</p>
-   <p>{{ product.price }}</p>
-   <button class="cart_adder" data-product_id="{{ product.id }}">Add to Cart</button>
+   {% include 'products/includes/main.html' %}
 </div>
-{% endfor %}
+</div>
 <script>
 $('.cart_adder').click(function(event){
    $.post(
