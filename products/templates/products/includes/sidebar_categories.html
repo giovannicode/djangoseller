@@ -1,5 +1,6 @@
 <ul>
 {% for category in category_list %}
-   <li ng-click="getproducts({{ category.id }})">{{ category.name }}</li>
+   <li ng-click="update_url({{ category.id }})">{{ category.name }}</li>
+   <button ng-click="update_filterurl('color', 'blue')">red</button>
 {% endfor %}
 </ul>

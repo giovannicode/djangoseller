@@ -5,18 +5,29 @@
 {% endblock head_tags %}
 {% block content %}
 <div ng-app="productsApp">
-<div ng-controller="productsController">
+<div id="productsController" ng-controller="productsController">
    {% include 'products/includes/sidebar_categories.html' %}
 <div>
    <form>
       <label for="q">Sort By</label>
-      <select name="q">
-         <option value="asc">Low to High</option>
-         <option value="dsc">High to Low</option>
+      <select id="id_ordering" name="ordering">
+         <option value="price">Low to High</option>
+         <option value="-price">High to Low</option>
       </select>
       <button type="submit">Sort</button>
    </form>
+ 
    {{ filter_form.as_p }}
+   <script>
+   window.onload = function(){
+     $('#id_color').change(function(){
+       angular.element('#productsController').scope().update_filterurl($(this).attr('name'), $(this).val());
+     })
+     $('#id_ordering').change(function(){
+       angular.element('#productsController').scope().update_filterurl($(this).attr('name'), $(this).val());
+     })
+   }
+   </script>
 </div>
    {% include 'products/includes/main.html' %}
 </div>
