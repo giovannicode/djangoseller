@@ -14,7 +14,7 @@ class UserCreateView(CreateView):
     model = User
     form_class = UserCreateForm
     template_name = 'account/user_form.html'
-    self.success_url = 'profiles:index'
+    success_url = 'profiles:index'
 
     def form_valid(self, form): 
         try:
