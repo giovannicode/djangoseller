@@ -2,14 +2,16 @@ from django import forms
 from django.db import transaction, IntegrityError
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import CreateView
-from django.views.generic import edit
+from django.views.generic.edit import FormView
+from django.contrib import messages
 
+from braces.views import AnonymousRequiredMixin
 from users.models import User
 from users.forms import UserCreateForm
 from carts.models import Cart
 
-from django.contrib import messages
 
 class UserCreateView(CreateView):
     model = User
@@ -37,10 +39,11 @@ class UserCreateView(CreateView):
         return reverse('main:index')
 
 
-class UserLoginView(FormView):
+class UserLoginView(AnonymousRequiredMixin, FormView):
+    authenticated_redirect_url = u"/"
     template_name = 'users/login.html'
-    form_class = AuthenticationForm()
+    form_class = AuthenticationForm
   
     def form_valid(self, form):
-        login(request, form.get_user())
+        login(self.request, form.get_user())
         return redirect('main:index')
