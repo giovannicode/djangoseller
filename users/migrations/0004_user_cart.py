@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='cart',
-            field=models.OneToOneField(default=1, to='carts.Cart'),
-            preserve_default=False,
+            field=models.OneToOneField(null=True, to='carts.Cart'),
+            preserve_default=True,
         ),
     ]
