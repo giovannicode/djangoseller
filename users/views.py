@@ -21,8 +21,10 @@ class UserCreateView(CreateView):
     def form_valid(self, form): 
         try:
             with transaction.atomic():
-                user = form.save()
-                cart = Cart.objects.create(user=user)
+                cart = Cart.objects.create()
+                user = form.save(commit=false)
+                user.cart = cart
+                user.save()
                 user = authenticate(
                     username=form.cleaned_data.get('email'),
                     password=form.cleaned_data.get('password')
