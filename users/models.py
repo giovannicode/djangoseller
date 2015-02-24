@@ -34,8 +34,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=30)
     email = models.EmailField(unique=True)
 
-    cart = models.OneToOneField(Cart)
-
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
