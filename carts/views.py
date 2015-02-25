@@ -9,8 +9,8 @@ from products.models import Product
 class CartCreateRest(TemplateView):
     template_name = 'notemplate'
 
-    def post(self, request, *args, **kwargs):
-        product = Product.objects.get(pk=request.POST.get('product_id'))
+    def get(self, request, *args, **kwargs):
+        product = Product.objects.get(pk=request.GET.get('product_id'))
         cart = request.user.cart
         if not cart.cartitem_set.filter(product=product).exists():
             cart.cartitem_set.create(cart=cart, product=product, qty=1)

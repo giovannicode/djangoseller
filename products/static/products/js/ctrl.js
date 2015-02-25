@@ -58,12 +58,28 @@ angular.module('productsApp', [])
         alert("Ajax failed!"); 
       });
     }
+
+    $scope.add_to_cart = function(product_id, csrf_token){
+      var responsePromise = $http.get(
+        "/carts/add?product_id=" + product_id
+      )
+ 
+      responsePromise.success(function(data, status, headers, config){
+        alert('The item was added to your cart');
+      });
+
+      responsePromise.error(function(data, status, headers, config){
+        alert('ajax has failed');
+      });
+    }
+        
   })
-  .config(function($interpolateProvider, $locationProvider){
+  .config(function($interpolateProvider, $locationProvider, $httpProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     $locationProvider.html5Mode({
       enabled: true,
       requireBase: false
     })
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
   })
 ;
