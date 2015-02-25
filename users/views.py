@@ -1,7 +1,7 @@
 from django import forms
 from django.db import transaction, IntegrityError
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import CreateView
 from django.views.generic.edit import FormView
@@ -49,3 +49,7 @@ class UserLoginView(AnonymousRequiredMixin, FormView):
     def form_valid(self, form):
         login(self.request, form.get_user())
         return redirect('main:index')
+
+def signout(request):
+    logout(request)
+    return redirect('main:index')
