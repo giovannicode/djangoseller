@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     url(r'^products/', include('products.urls', namespace='products')),
     url(r'^carts/', include('carts.urls', namespace='carts')),
     url(r'^checkout/', include('billing.urls', namespace='billing')),
-    url(r'^users/', include('users.urls', namespace='users'))
+    url(r'^users/', include('users.urls', namespace='users')),
+    url(r'^account/', include('account.urls', namespace='account'))
 )
