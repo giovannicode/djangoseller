@@ -76,7 +76,7 @@ class BillingView(CreateView):
             return redirect('billing:index') 
 
         html_mssg = render_to_string(
-            'emails/order_confirmation', 
+            'emails/order_confirmation.html', 
             { 
                 'order_id': order.id,
                 'order_total': order.payment.total
