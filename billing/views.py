@@ -91,8 +91,9 @@ class BillingView(CreateView):
 	    'Order Information',
 	    html_mssg,
 	    'support@seller.org',
-	    ['***REMOVED***'],
-	    fail_silently=False
+	    recipient_list=['***REMOVED***'],
+	    fail_silently=False,
+            html_message=html_mssg
 	)
 	messages.add_message(
 	    self.request, 
