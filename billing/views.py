@@ -6,6 +6,7 @@ from django.db import transaction, IntegrityError
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from django.views.generic import CreateView
 
 from orders.models import Address, Order, OrderItem
