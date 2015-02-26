@@ -91,5 +91,5 @@ class BillingView(CreateView):
 	    'Your Payment was processed successfully. A confirmation email has been sent to \
             ***REMOVED***'
         )
- 
+
         return redirect('main:index')
