@@ -75,12 +75,20 @@ class BillingView(CreateView):
             )
             return redirect('billing:index') 
 
-	mssg = "Order ID: " + str(order.id) + "\n"
-	mssg += "Total Charges: " + str(order.payment.total) 
+        html_mssg = render_to_string(
+            'emails/order_confirmation', 
+            { 
+                'order_id': order.id,
+                'order_total': order.payment.total
+            }
+        )
+
+	#mssg = "Order ID: " + str(order.id) + "\n"
+	#mssg += "Total Charges: " + str(order.payment.total) 
 
 	send_mail(
 	    'Order Information',
-	    mssg,
+	    html_mssg,
 	    'support@seller.org',
 	    ['***REMOVED***'],
 	    fail_silently=False
