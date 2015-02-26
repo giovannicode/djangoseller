@@ -79,8 +79,8 @@ class BillingView(CreateView):
         html_mssg = render_to_string(
             'emails/order_confirmation.html', 
             { 
-                'order_id': order.id,
-                'order_total': order.payment.total
+                'name': self.request.user.first_name + " " + self.request.user.last_name,
+                'order': order,
             }
         )
 
