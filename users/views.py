@@ -1,6 +1,6 @@
 from django import forms
 from django.db import transaction, IntegrityError
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import CreateView
@@ -22,15 +22,9 @@ class UserCreateView(CreateView):
         try:
             with transaction.atomic():
                 cart = Cart.objects.create()
-                user = form.save(commit=false)
+                user = form.save(commit=False)
                 user.cart = cart
                 user.save()
-                user = authenticate(
-                    username=form.cleaned_data.get('email'),
-                    password=form.cleaned_data.get('password')
-                )
-                login(self.request, user)
-                return redirect(self.success_url)
                
         except IntegrityError:
             messages.add_message(
@@ -38,7 +32,13 @@ class UserCreateView(CreateView):
                 messages.INFO,
                 'I\'m sorry an unkown error occured'
             )
-        return reverse('main:index')
+   
+        user = authenticate(
+            username=form.cleaned_data.get('email'),
+            password=form.cleaned_data.get('password1')
+        )
+        login(self.request, user)
+        return redirect('main:index')
 
 
 class UserLoginView(AnonymousRequiredMixin, FormView):
@@ -49,6 +49,7 @@ class UserLoginView(AnonymousRequiredMixin, FormView):
     def form_valid(self, form):
         login(self.request, form.get_user())
         return redirect('main:index')
+
 
 def signout(request):
     logout(request)

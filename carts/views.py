@@ -22,3 +22,6 @@ class CartCreateRest(TemplateView):
 class CartDetailView(DetailView):
     model = Cart
 
+    def get_object(self): 
+        return Cart.objects.get(pk=self.request.user.cart.id)
+
