@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.core.mail import send_mail
 
 from products.models import Product
 from payments.models import Payment
@@ -31,6 +32,19 @@ class Order(models.Model):
     def __unicode__(self):
         return "Order ID: {id}, Email: {email}, Shipped: {shipped}"\
                .format(id=self.id, email=self.email, shipped=self.shipped)
+
+    def save(self, *args,**kwargs):
+        if self.pk is not None:
+           orig = Order.objects.get(pk=self.pk)
+           if orig.shipped == False and self.shipped == True:
+               send_mail(
+                   'your stuff has been shipped',
+                   'Hi Dude, we though you\'d like to know that you order has been shipped',
+                   ['***REMOVED***'],
+                   fail_silently=False
+               )
+        super(Order, self).save(*args, **kwargs)
+                    
     
 
 class OrderItem(models.Model):

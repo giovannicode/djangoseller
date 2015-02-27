@@ -2,7 +2,10 @@
 
 {% block content %}
     {% for order in orders %}
-        {{ order.date }}
+        <div>
+            <p>{{ order.id }}</p>
+            <p>{{ order.date }}</p>
+            <p>{{ order.payment.total }}</p>
+        </div>
     {% endfor %}
 {% endblock content %}
-
