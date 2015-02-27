@@ -51,6 +51,11 @@ class UserLoginView(AnonymousRequiredMixin, FormView):
         return redirect('main:index')
 
 
+class ForgotPasswordView(FormView):
+    template_name = 'users/forgot_password.html'
+    form_class = PassordResetForm
+
+
 def signout(request):
     logout(request)
     return redirect('main:index')
