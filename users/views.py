@@ -2,7 +2,7 @@ from django import forms
 from django.db import transaction, IntegrityError
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
 from django.views.generic import CreateView
 from django.views.generic.edit import FormView
 from django.contrib import messages
@@ -53,7 +53,14 @@ class UserLoginView(AnonymousRequiredMixin, FormView):
 
 class ForgotPasswordView(FormView):
     template_name = 'users/forgot_password.html'
-    form_class = PassordResetForm
+    form_class = PasswordResetForm
+    success_url = '/users/signin'
+
+    def form_valid(self, form):
+        email_template_name='emails/reset_password_link.html'
+        from_email='gio@seller.org'
+        form.save(request=self.request, email_template_name=email_template_name)
+        super(ForgotPasswordView, self).form_valid(form)
 
 
 def signout(request):
