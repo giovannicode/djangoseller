@@ -78,7 +78,7 @@ def password_reset_confirm(request, uidb64=None, token=None,
                            template_name='users/reset_password.html',
                            token_generator=default_token_generator,
                            set_password_form=SetPasswordForm,
-                           post_reset_redirect='main:index',
+                           post_reset_redirect=None,
                            current_app=None, extra_context=None):
     """
     View that checks the hash in a password reset link and presents a
