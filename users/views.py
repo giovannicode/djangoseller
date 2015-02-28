@@ -69,7 +69,7 @@ class ForgotPasswordView(FormView):
         email_template_name='emails/reset_password_link.html'
         from_email='gio@seller.org'
         form.save(request=self.request, email_template_name=email_template_name)
-        super(ForgotPasswordView, self).form_valid(form)
+        return super(ForgotPasswordView, self).form_valid(form)
 
 # In future add decorators (sensitive_post_parameters, never_cache)
 class ResetPasswordView(FormView):
