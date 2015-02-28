@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'forgot-password', views.ForgotPasswordView.as_view(), name='forgot-password'),
     url(
         r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        views.password_reset_confirm,
+        views.ResetPasswordView.as_view(),
         name='password_reset_confirm'
     ),
 )
