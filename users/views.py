@@ -80,6 +80,7 @@ class ResetPasswordView(FormView):
         uidb64 = self.kwargs['uidb64'] 
         token = self.kwargs['token']
         UserModel = get_user_model()
+        token_generator=default_token_generator
         
         assert uidb64 is not None and token is not None #checked by URLFconf
         try:
