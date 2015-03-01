@@ -76,6 +76,20 @@ class ResetPasswordView(FormView):
     template_name = 'users/reset_password.html'
     form_class = SetPasswordForm
 
+    def get_form(self, form_class):
+        uidb64 = self.kwargs['uidb64'] 
+        token = self.kwargs['token']
+        UserModel = get_user_model()
+        
+        assert uidb64 is not None and token is not None #checked by URLFconf
+        try:
+            uid = urlsafe_base64_decode(uidb64)
+            user = UserModel._default_manager.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, UserModel.DoestNotExist):
+            user = None
+        if user is not None and token_generator.check_token(user, token):
+            return form_class(user, **self.get_form_kwargs())
+
     def form_valid(self, form):
         UserModel = get_user_model()
         assert uidb64 is not None and token is not None #checked by URLFconf
@@ -88,8 +102,9 @@ class ResetPasswordView(FormView):
         if user is not None and token_generator.check_token(user, token):
             form.save()    
             return reverse('main:index')
-        else
+        else:
             return reverse('users:signin')
+
 
 @sensitive_post_parameters()
 @never_cache
