@@ -22,7 +22,8 @@ from django.utils.translation import ugettext as _
 from django.template.response import TemplateResponse
 
 
-class UserCreateView(CreateView):
+class UserCreateView(AnonymousRequiredMixin, CreateView):
+    authenticated_redirect_url = u"/"
     model = User
     form_class = UserCreateForm
     success_url = 'main:index'
