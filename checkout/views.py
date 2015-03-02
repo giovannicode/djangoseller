@@ -2,7 +2,7 @@ from decimal import Decimal
 
 import stripe
 
-from django.db import transaction, IntegrityError
+from django.db import transaction,
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.core.mail import send_mail
@@ -40,31 +40,31 @@ class BillingView(CreateView):
 		address = form.save()
 
 		order = Order.objects.create(
-                            user=user, 
-                            email=user.email, 
-                            payment=payment, 
-                            address=address
-                        )
+                    user=user, 
+                    email=user.email, 
+                    payment=payment, 
+                    address=address
+                )
    
                 cart = self.request.user.cart
                 for cartitem in cart.cartitem_set.all():
                     orderitem = OrderItem.objects.create(
-                                    order=order,
-                                    product=cartitem.product,
-                                    title=cartitem.product.name,
-                                    price=cartitem.product.price,
-                                    qty=cartitem.qty
-                                )
+                        order=order,
+                        product=cartitem.product,
+                        title=cartitem.product.name,
+                        price=cartitem.product.price,
+                        qty=cartitem.qty
+                    )
                 cart.cartitem_set.all().delete()
        
 		charge = stripe.Charge.create(
 		# Stripe works in cents instead of dollars.
 		# Multiply price by 100 to convert to cents  
-		             amount = int(Decimal(total)*100),
-		             currency="usd",
-		             card = token,
-		             description="New Order"
-		         )             
+		    amount = int(Decimal(total)*100),
+		    currency="usd",
+		    card = token,
+		    description="New Order"
+		)             
         
         except stripe.error.StripeError, e:            
             body = e.json_body
@@ -83,9 +83,6 @@ class BillingView(CreateView):
                 'order': order,
             }
         )
-
-	#mssg = "Order ID: " + str(order.id) + "\n"
-	#mssg += "Total Charges: " + str(order.payment.total) 
 
 	send_mail(
 	    'Order Information',
