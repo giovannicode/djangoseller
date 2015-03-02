@@ -1,4 +1,5 @@
-from django.db.models import IntegrityError, F, transaction
+from django.db import IntegrityError, transaction
+from django.db.models import F
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
 from django.http import HttpResponse
@@ -24,8 +25,8 @@ class CartCreateRest(TemplateView):
                 with transaction.atomic():
                     cart.cartitem_set.filter(product=product).update(qty=F('qty')+1) 
                     Products.objects.filter(product=product).update(qty=F('qty')-1)
-                except IntegrityError:
-                    raise IntegrityError
+            except IntegrityError:
+                raise IntegrityError
         return HttpResponse('Item added')
         
 
