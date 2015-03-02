@@ -2,7 +2,7 @@ from decimal import Decimal
 
 import stripe
 
-from django.db import transaction,
+from django.db import transaction
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.core.mail import send_mail
@@ -14,12 +14,12 @@ from payments.models import Payment
 
 stripe.api_key = "sk_test_w96KeQLCTh23810DSE2ykwIt"
 
-class BillingView(CreateView):
+class CheckoutView(CreateView):
     model = Address 
-    template_name = 'billing/index.html'
+    template_name = 'checkout/index.html'
 
     def get_context_data(self, **kwargs):
-        context = super(BillingView, self).get_context_data(**kwargs)
+        context = super(CheckoutView, self).get_context_data(**kwargs)
         cart = self.request.user.cart
         total = 0
         for item in cart.cartitem_set.all():
