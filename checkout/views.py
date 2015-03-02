@@ -1,23 +1,3 @@
-"""import json
-
-from django.shortcuts import render, redirect
-from django.views.generic import CreateView, TemplateView
-
-from orders.models import Address
-
-class CheckoutView(CreateView):
-    model = Address
-    template_name = 'checkout/index.html'
-
-    def form_valid(self, form):
-        address = form.save(commit=False)
-        self.request.session['shipping_address'] = []
-        json_address = self.request.session['shipping_address']
-        json_address['street'] = address.street
-        json_address['city'] = address.city
-        json_address['state'] = address.state
-        json_address['zip'] = address.zipcode  
-        return redirect('main:index')"""
 from decimal import Decimal
 
 import stripe
@@ -26,18 +6,17 @@ from django.db import transaction, IntegrityError
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from django.views.generic import CreateView
 
 from orders.models import Address, Order, OrderItem
 from payments.models import Payment
 
-from .forms import CheckoutForm
-
 stripe.api_key = "sk_test_w96KeQLCTh23810DSE2ykwIt"
 
-class CheckoutView(FormView):
-    template_name = 'checkout/index.html'
-    form_class = CheckoutForm
+class BillingView(CreateView):
+    model = Address 
+    template_name = 'billing/index.html'
 
     def get_context_data(self, **kwargs):
         context = super(BillingView, self).get_context_data(**kwargs)
@@ -97,15 +76,24 @@ class CheckoutView(FormView):
             )
             return redirect('billing:index') 
 
-	mssg = "Order ID: " + str(order.id) + "\n"
-	mssg += "Total Charges: " + str(order.payment.total) 
+        html_mssg = render_to_string(
+            'emails/order_confirmation.html', 
+            { 
+                'name': self.request.user.first_name + " " + self.request.user.last_name,
+                'order': order,
+            }
+        )
+
+	#mssg = "Order ID: " + str(order.id) + "\n"
+	#mssg += "Total Charges: " + str(order.payment.total) 
 
 	send_mail(
 	    'Order Information',
-	    mssg,
+	    html_mssg,
 	    'support@seller.org',
-	    ['***REMOVED***'],
-	    fail_silently=False
+	    recipient_list=['***REMOVED***'],
+	    fail_silently=False,
+            html_message=html_mssg
 	)
 	messages.add_message(
 	    self.request, 
@@ -113,5 +101,5 @@ class CheckoutView(FormView):
 	    'Your Payment was processed successfully. A confirmation email has been sent to \
             ***REMOVED***'
         )
- 
-        return redirect('main:index') 
+
+        return redirect('main:index')

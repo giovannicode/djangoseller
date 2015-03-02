@@ -17,14 +17,14 @@ class CartCreateRest(TemplateView):
             try:
                 with transaction.atomic():
                     cart.cartitem_set.create(cart=cart, product=product, qty=1)
-                    Product.objects.filter(product=product).update(qty=F('qty')-1)
+                    Product.objects.filter(id=product.id).update(qty=F('qty')-1)
             except IntegrityError:
                 raise IntegrityError 
         else:
             try:
                 with transaction.atomic():
                     cart.cartitem_set.filter(product=product).update(qty=F('qty')+1) 
-                    Product.objects.filter(product=product).update(qty=F('qty')-1)
+                    Product.objects.filter(id=product.id).update(qty=F('qty')-1)
             except IntegrityError:
                 raise IntegrityError
         return HttpResponse('Item added')
