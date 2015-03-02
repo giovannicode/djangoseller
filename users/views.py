@@ -93,7 +93,7 @@ class ResetPasswordView(FormView):
 
     def form_valid(self, form):
         form.save()    
-        return reverse('users:signin')
+	return redirect('users:signin')
 
 
 @sensitive_post_parameters()
