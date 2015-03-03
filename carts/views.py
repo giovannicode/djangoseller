@@ -15,7 +15,7 @@ class CartCreateRest(TemplateView):
         if request.user.is_authenticated():
             return self.foo(request)
         else:
-            return self.foo2()
+            return self.foo2(request)
 
     def foo(self, request): 
         cart = request.user.cart
