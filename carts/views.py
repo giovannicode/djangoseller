@@ -1,4 +1,3 @@
-from django.core.execption import DoesNotExist
 from django.db import IntegrityError, transaction
 from django.db.models import F
 from django.shortcuts import render
@@ -41,7 +40,7 @@ class CartCreateRest(TemplateView):
         try: 
             Cart.objects.get(session_key=request.session.session_key)
             return HttpResponse('Old Card has been found')
-        except DoesNotExist:
+        except Cart.DoesNotExist:
             cart = Cart.objects.create(session_key=request.session.session_key)
             return HttpResponse('New Cart Created')
 
