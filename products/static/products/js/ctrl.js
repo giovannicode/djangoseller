@@ -65,7 +65,7 @@ angular.module('productsApp', [])
       )
  
       responsePromise.success(function(data, status, headers, config){
-        alert('The item was added to your cart');
+        alert(data);
       });
 
       responsePromise.error(function(data, status, headers, config){
