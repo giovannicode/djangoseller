@@ -12,6 +12,12 @@ class CartCreateRest(TemplateView):
 
     def get(self, request, *args, **kwargs):
         product = Product.objects.get(pk=request.GET.get('product_id'))
+        if request.user is not None:
+            return self.foo(request):
+        else:
+            return self.foo2()
+
+    def foo(self, request): 
         cart = request.user.cart
         if not cart.cartitem_set.filter(product=product).exists():
             try:
@@ -28,11 +34,12 @@ class CartCreateRest(TemplateView):
             except IntegrityError:
                 raise IntegrityError
         return HttpResponse('Item added')
-        
+
+    def foo2(self, request):
+        return HttpResponse('Item not added')
 
 class CartDetailView(DetailView):
     model = Cart
 
     def get_object(self): 
         return Cart.objects.get(pk=self.request.user.cart.id)
-
