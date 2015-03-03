@@ -1,3 +1,4 @@
+from django.core.execption import DoesNotExist
 from django.db import IntegrityError, transaction
 from django.db.models import F
 from django.shortcuts import render
@@ -36,7 +37,13 @@ class CartCreateRest(TemplateView):
         return HttpResponse('Item added')
 
     def foo2(self, request):
-        return HttpResponse('Item not added')
+        # May update and  try-catch later, as I will it is ugly implementation
+        try: 
+            Cart.objects.get(session_key=request.session.session_key)
+            return HttpResponse('Old Card has been found')
+        except DoesNotExist:
+            cart = Cart.objects.create(session_key=request.session.session_key)
+            return HttpResponse('New Cart Created')
 
 class CartDetailView(DetailView):
     model = Cart
