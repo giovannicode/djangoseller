@@ -12,8 +12,8 @@ class CartCreateRest(TemplateView):
 
     def get(self, request, *args, **kwargs):
         product = Product.objects.get(pk=request.GET.get('product_id'))
-        if request.user is not None:
-            return self.foo(request):
+        if request.user.is_authenticated():
+            return self.foo(request)
         else:
             return self.foo2()
 
