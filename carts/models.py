@@ -4,6 +4,7 @@ from django.conf import settings
 from products.models import Product
 
 class Cart(models.Model):
+    session_key = models.CharField(max_length=40, null=True)
 
     def __unicode__(self):
         return str(self.id)
