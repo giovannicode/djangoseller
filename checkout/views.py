@@ -7,17 +7,18 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
-from django.views.generic import CreateView
+from django.views.generic import FormView
 
 from carts.models import Cart
 from orders.models import Address, Order, OrderItem
 from payments.models import Payment
+from .forms import CheckoutForm
 
 stripe.api_key = "sk_test_w96KeQLCTh23810DSE2ykwIt"
 
-class CheckoutView(CreateView):
-    model = Address 
+class CheckoutView(FormView):
     template_name = 'checkout/index.html'
+    form_class = CheckoutForm
 
     def get_form(self, form_class):
         return form_class(self.request.user, **self.get_form_kwargs())
@@ -41,8 +42,13 @@ class CheckoutView(CreateView):
 	        token = self.request.POST["stripeToken"]
 		total = self.request.session['total']
 		
-		user = self.request.user
-		email = user.email
+                if self.request.user.is_authenticated():
+		    user = self.request.user
+		    email = user.email
+                else:
+                    user = None
+                    email = self.cleaned_data.get('email')
+          
 		payment = Payment.objects.create(total=Decimal(total))
 		address = form.save()
 
