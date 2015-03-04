@@ -38,6 +38,8 @@ class CartCreateRest(TemplateView):
     def foo2(self, request):
         # May update and  try-catch later, as I will it is ugly implementation
         try: 
+            request.session.modified = True
+            return HttpResponse(str(request.session.session_key))
             Cart.objects.get(session_key=request.session.session_key)
             return HttpResponse('Old Card has been found')
         except Cart.DoesNotExist:
