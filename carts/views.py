@@ -7,7 +7,6 @@ from django.http import HttpResponse
 from .models import Cart
 from products.models import Product
 
-
 class CartCreateRest(TemplateView):
     template_name = 'notemplate'
 
@@ -41,11 +40,11 @@ class CartCreateRest(TemplateView):
         try: 
             # Setting modified to True will make sure that session_key is not None
             request.session.modified = True
-            Cart.objects.get(session_key=request.session.session_key)
+            cart = Cart.objects.get(session_key=request.session.session_key)
         except Cart.DoesNotExist:
             cart = Cart.objects.create(session_key=request.session.session_key)
 
-         if not cart.cartitem_set.filter(product=product).exists():
+        if not cart.cartitem_set.filter(product=product).exists():
             try:
                 with transaction.atomic():
                     cart.cartitem_set.create(cart=cart, product=product, qty=1)
@@ -62,10 +61,11 @@ class CartCreateRest(TemplateView):
         return HttpResponse('Item added')       
 
 
-
-
 class CartDetailView(DetailView):
     model = Cart
 
     def get_object(self): 
-        return Cart.objects.get(pk=self.request.user.cart.id)
+        if self.request.user.is_authenticated():
+            return Cart.objects.get(pk=self.request.user.cart.id)
+        else: 
+            return Cart.objects.get(session_key=self.request.session.session_key)

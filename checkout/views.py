@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.views.generic import CreateView
 
+from carts.models import Cart
 from orders.models import Address, Order, OrderItem
 from payments.models import Payment
 
@@ -20,7 +21,10 @@ class CheckoutView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(CheckoutView, self).get_context_data(**kwargs)
-        cart = self.request.user.cart
+        if self.request.user.is_authenticated():
+            cart = self.request.user.cart
+        else:
+           cart = Cart.objects.get(session_key=self.request.session.session_key) 
         total = 0
         for item in cart.cartitem_set.all():
             total += item.product.price * item.qty 
