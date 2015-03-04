@@ -7,17 +7,18 @@ from django.http import HttpResponse
 from .models import Cart
 from products.models import Product
 
+
 class CartCreateRest(TemplateView):
     template_name = 'notemplate'
 
     def get(self, request, *args, **kwargs):
         product = Product.objects.get(pk=request.GET.get('product_id'))
         if request.user.is_authenticated():
-            return self.foo(request)
+            return self.auth_cart_add(request, product)
         else:
-            return self.foo2(request)
+            return self.anom_cart_add(request, product)
 
-    def foo(self, request): 
+    def auth_cart_add(self, request, product): 
         cart = request.user.cart
         if not cart.cartitem_set.filter(product=product).exists():
             try:
@@ -35,16 +36,33 @@ class CartCreateRest(TemplateView):
                 raise IntegrityError
         return HttpResponse('Item added')
 
-    def foo2(self, request):
-        # May update and  try-catch later, as I will it is ugly implementation
+    def anom_cart_add(self, request, product):
+        # May update try-catch later, as I think it is an ugly implementation
         try: 
             # Setting modified to True will make sure that session_key is not None
             request.session.modified = True
             Cart.objects.get(session_key=request.session.session_key)
-            return HttpResponse('Old Card has been found')
         except Cart.DoesNotExist:
             cart = Cart.objects.create(session_key=request.session.session_key)
-            return HttpResponse('New Cart Created')
+
+         if not cart.cartitem_set.filter(product=product).exists():
+            try:
+                with transaction.atomic():
+                    cart.cartitem_set.create(cart=cart, product=product, qty=1)
+                    Product.objects.filter(id=product.id).update(qty=F('qty')-1)
+            except IntegrityError:
+                raise IntegrityError 
+        else:
+            try:
+                with transaction.atomic():
+                    cart.cartitem_set.filter(product=product).update(qty=F('qty')+1) 
+                    Product.objects.filter(id=product.id).update(qty=F('qty')-1)
+            except IntegrityError:
+                raise IntegrityError
+        return HttpResponse('Item added')       
+
+
+
 
 class CartDetailView(DetailView):
     model = Cart
