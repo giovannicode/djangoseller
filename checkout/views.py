@@ -47,19 +47,21 @@ class CheckoutView(FormView):
 		    email = user.email
                 else:
                     user = None
-                    email = self.cleaned_data.get('email')
+                    email = form.cleaned_data.get('email')
           
 		payment = Payment.objects.create(total=Decimal(total))
 		address = form.save()
 
 		order = Order.objects.create(
                     user=user, 
-                    email=user.email, 
+                    email=email, 
                     payment=payment, 
                     address=address
                 )
-   
-                cart = self.request.user.cart
+                if user.is_authenticated(): 
+                    cart = self.request.user.cart
+                else:
+                    cart = Cart.objects.get(session_key=self.request.session_key)
                 for cartitem in cart.cartitem_set.all():
                     orderitem = OrderItem.objects.create(
                         order=order,

@@ -1,5 +1,7 @@
 from django import forms
 
+from orders.models import Address
+
 class CheckoutForm(forms.Form):
     
     # These fields correspond to the address model
@@ -8,7 +10,7 @@ class CheckoutForm(forms.Form):
     state = forms.CharField(max_length=2)
     zipcode = forms.CharField(max_length=5)
 
-    def __init_(self, user, *args, **kwargs): 
+    def __init__(self, user, *args, **kwargs): 
         super(CheckoutForm, self).__init__(*args, **kwargs)
         # The email field will be conditional. It will depend on whether or not the user is logged in.
         if not user.is_authenticated():
