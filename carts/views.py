@@ -79,6 +79,10 @@ class CartItemDeleteView(DeleteView):
         except:
             pass
         return HttpResponseRedirect(success_url)
+  
+    # Add get method to make it easier to work with angular
+    def get(self,request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
 
 
 class CartDetailView(DetailView):
