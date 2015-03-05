@@ -61,6 +61,14 @@ class CartCreateRest(TemplateView):
         return HttpResponse('Item added')       
 
 
+class CartItemDeleteView(DeleteView):
+    model = CartItem
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        succes_url
+
+
 class CartDetailView(DetailView):
     model = Cart
 

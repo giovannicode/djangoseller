@@ -30,9 +30,9 @@ class CheckoutView(UserPassesTestMixin, FormView):
             try:
                 self.request.session.modified = True
                 cart = Cart.objects.get(session_key=self.request.session.session_key)
-             except Cart.DoesNotExist:
-                 cart = Cart.objects.create(session_key=self.request.session.session_key)
-             return cart.cartitem_set.exists()       
+            except Cart.DoesNotExist:
+                cart = Cart.objects.create(session_key=self.request.session.session_key)
+            return cart.cartitem_set.exists()       
 
     def get_form(self, form_class):
         return form_class(self.request.user, **self.get_form_kwargs())

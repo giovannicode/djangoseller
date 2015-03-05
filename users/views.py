@@ -148,5 +148,6 @@ def password_reset_confirm(request, uidb64=None, token=None,
 
 
 def signout(request):
-    logout(request)
+    if request.user.is_authenticated(): 
+        logout(request)
     return redirect('main:index')
