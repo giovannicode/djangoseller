@@ -41,13 +41,18 @@ class CheckoutView(FormView):
             with transaction.atomic():
 	        token = self.request.POST["stripeToken"]
 		total = self.request.session['total']
-		
-                if self.request.user.is_authenticated():
-		    user = self.request.user
+		user = self.request.user
+
+                if user.is_authenticated():
 		    email = user.email
+                    first_name = user.first_name
+                    last_name = user.last_name
+                    cart = user.cart
                 else:
                     user = None
                     email = form.cleaned_data.get('email')
+                    first_name = form.cleaned_data.get('first_name')
+                    last_name = form.cleaned_data.get('last_name')
           
 		payment = Payment.objects.create(total=Decimal(total))
 		address = form.save()
@@ -115,3 +120,5 @@ class CheckoutView(FormView):
         )
 
         return redirect('main:index')
+
+    def auth_payment(self, form)
