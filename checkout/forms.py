@@ -15,6 +15,8 @@ class CheckoutForm(forms.Form):
         # The email field will be conditional. It will depend on whether or not the user is logged in.
         if not user.is_authenticated():
             self.fields['email'] = forms.EmailField()
+            self.fields['first_name'] = forms.CharField(max_length=30)
+            self.fields['last_name'] = forms.CharField(max_length=30)
 
     def save(self):
         street = self.cleaned_data.get('street') 

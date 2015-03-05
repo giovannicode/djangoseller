@@ -58,10 +58,10 @@ class CheckoutView(FormView):
                     payment=payment, 
                     address=address
                 )
-                if user.is_authenticated(): 
+                if self.request.user.is_authenticated(): 
                     cart = self.request.user.cart
                 else:
-                    cart = Cart.objects.get(session_key=self.request.session_key)
+                    cart = Cart.objects.get(session_key=self.request.session.session_key)
                 for cartitem in cart.cartitem_set.all():
                     orderitem = OrderItem.objects.create(
                         order=order,
