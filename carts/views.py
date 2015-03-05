@@ -68,4 +68,11 @@ class CartDetailView(DetailView):
         if self.request.user.is_authenticated():
             return Cart.objects.get(pk=self.request.user.cart.id)
         else: 
-            return Cart.objects.get(session_key=self.request.session.session_key)
+            # May update try-catch later, as I think it is an ugly implementation
+            try: 
+                # Setting modified to True will make sure that session_key is not None
+		request.session.modified = True
+		cart = Cart.objects.get(session_key=request.session.session_key)
+	    except Cart.DoesNotExist:
+		cart = Cart.objects.create(session_key=request.session.session_key)
+		return Cart.objects.get(session_key=self.request.session.session_key)
