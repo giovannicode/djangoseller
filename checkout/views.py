@@ -99,7 +99,7 @@ class CheckoutView(FormView):
         html_mssg = render_to_string(
             'emails/order_confirmation.html', 
             { 
-                'name': self.request.user.first_name + " " + self.request.user.last_name,
+                'name': first_name + " " + last_name,
                 'order': order,
             }
         )
@@ -120,5 +120,3 @@ class CheckoutView(FormView):
         )
 
         return redirect('main:index')
-
-    def auth_payment(self, form)
