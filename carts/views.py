@@ -71,7 +71,7 @@ class CartDetailView(DetailView):
             # May update try-catch later, as I think it is an ugly implementation
             try: 
                 # Setting modified to True will make sure that session_key is not None
-		request.session.modified = True
+		self.request.session.modified = True
 		cart = Cart.objects.get(session_key=self.request.session.session_key)
 	    except Cart.DoesNotExist:
 		cart = Cart.objects.create(session_key=self.request.session.session_key)
