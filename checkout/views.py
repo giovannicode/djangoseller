@@ -16,9 +16,12 @@ from .forms import CheckoutForm
 
 stripe.api_key = "sk_test_w96KeQLCTh23810DSE2ykwIt"
 
-class CheckoutView(FormView):
+class CheckoutView(UserPassesTestMixin, FormView):
     template_name = 'checkout/index.html'
     form_class = CheckoutForm
+     
+    def test_func(self, self.request.user):
+        return user.is_authenticated()
 
     def get_form(self, form_class):
         return form_class(self.request.user, **self.get_form_kwargs())
