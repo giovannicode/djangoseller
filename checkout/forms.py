@@ -8,9 +8,10 @@ class CheckoutForm(forms.Form):
     state = forms.CharField(max_length=2)
     zipcode = forms.CharField(max_length=5)
 
-    def __init_(self, user): 
-        if not user.is_authenticated():
+    def __init_(self, user, *args, **kwargs): 
+        super(CheckoutForm, self).__init__(*args, **kwargs)
         # The email field will be conditional. It will depend on whether or not the user is logged in.
+        if not user.is_authenticated():
             self.fields['email'] = forms.EmailField()
 
     def save(self):
