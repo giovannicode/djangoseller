@@ -63,6 +63,7 @@ class CartCreateRest(TemplateView):
 
 class CartItemDeleteView(DeleteView):
     model = CartItem
+    success_url = None
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -77,6 +78,8 @@ class CartItemDeleteView(DeleteView):
                 cart_item.delete()
         except:
             pass
+        return HttpResponseRedirect(success_url)
+
 
 class CartDetailView(DetailView):
     model = Cart
