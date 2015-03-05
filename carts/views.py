@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
 from django.http import HttpResponse
 
-from .models import Cart
+from .models import Cart, CartItem
 from products.models import Product
 
 class CartCreateRest(TemplateView):
@@ -66,8 +66,17 @@ class CartItemDeleteView(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        succes_url
-
+        try:
+            with transaction.atomic():
+                if self.request.user.is_authenticated(): 
+                    cart = self.request.user.cart
+                else:
+                    cart = Cart.objects.get(session_key=self.request.session.session_key)
+                cart_item = cart.cartitem_set.get(id=self.object.id)
+                Product.objects.filter(id=cart.product.id).update(qty=F('qty')+cart_item.qty)
+                cart_item.delete()
+        except:
+            pass
 
 class CartDetailView(DetailView):
     model = Cart
