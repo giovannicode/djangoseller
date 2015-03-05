@@ -1,7 +1,7 @@
 from django.db import IntegrityError, transaction
 from django.db.models import F
 from django.shortcuts import render
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, DeleteView
 from django.http import HttpResponse
 
 from .models import Cart, CartItem
