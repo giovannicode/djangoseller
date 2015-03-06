@@ -6,15 +6,6 @@
 {% endblock head_tags %}
 
 {% block content %}
-{% for item in cart.cartitem_set.all %}
-   <div>
-      <img width="75px" height="75px" src="{{ MEDIA_URL }}{{ item.product.picture }}"/>
-      <p>{{ item.product.name }}</p>
-      <p>{{ item.product.price }}</p>
-      <p>{{ item.qty }}</p>
-      <button class="cart_remover" data-product_id="{{ item.id }}">Delete from cart</button>
-   </div>
-{% endfor %}
 <div ng-app="cartitemsApp">
     <div ng-init="init()" ng-controller="cartitemsController">
         <div ng-repeat="cartitem in data">
