@@ -9,6 +9,16 @@
       <button class="cart_remover" data-product_id="{{ item.id }}">Delete from cart</button>
    </div>
 {% endfor %}
+<div ng-app="cartsApp">
+    <div ng-controller="cartitemsController">
+        <div ng-repeat"cartitem in data">
+            <p>{[{ cartitem.product.name }]}</p>
+            <p>{[{ cartitem.product.price }]}</p>
+            <p>{[{ cartitem.product.qty }]}</p>
+            <button
+        </div>
+    </div>
+</div>
 <script>
 $('.cart_remover').click(function(event){
    $.get(
