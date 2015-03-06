@@ -15,7 +15,7 @@
             <p>{[{ cartitem.product.name }]}</p>
             <p>{[{ cartitem.product.price }]}</p>
             <p>{[{ cartitem.product.qty }]}</p>
-            <button
+            <button ng-click="removeitem(cartitem.id)">Remove</button>
         </div>
     </div>
 </div>

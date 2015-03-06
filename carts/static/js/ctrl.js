@@ -28,6 +28,7 @@ angular.module('cartitemsApp', [])
             responsePromise.error(function(data, status, headers, config){
                 alert("Ajax failed!")
              });
+        }
     })
     .config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
