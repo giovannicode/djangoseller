@@ -10,6 +10,8 @@ from rest_framework import generics
 from .models import Cart, CartItem
 from products.models import Product
 
+from .serializers import CartItemSerializer
+
 class CartCreateRest(TemplateView):
     template_name = 'notemplate'
 
