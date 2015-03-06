@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView, DeleteView
 from django.http import HttpResponse
 
+from rest_framework import generics
+
 from .models import Cart, CartItem
 from products.models import Product
 
@@ -101,3 +103,14 @@ class CartDetailView(DetailView):
 	    except Cart.DoesNotExist:
 		cart = Cart.objects.create(session_key=self.request.session.session_key)
             return cart
+
+class CartItemListAPI(generics.ListAPIView):  
+    serializer_class = CartItemSerializer
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated():
+            cart = self.request.user.cart
+        else:
+           cart = Cart.objects.get(session_key=self.request.session.session_key) 
+        self.queryset = cart.cartitem_set.all()
+        return super(CartItemListAPI, self).get_queryset()
