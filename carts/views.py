@@ -104,6 +104,7 @@ class CartDetailView(DetailView):
 		cart = Cart.objects.create(session_key=self.request.session.session_key)
             return cart
 
+
 class CartItemListAPI(generics.ListAPIView):  
     serializer_class = CartItemSerializer
 
