@@ -6,6 +6,20 @@
       <p>{{ item.product.name }}</p>
       <p>{{ item.product.price }}</p>
       <p>{{ item.qty }}</p>
+      <button class="cart_remover" data-product_id="{{ item.id }}">Delete from cart</button>
    </div>
 {% endfor %}
+<script>
+$('.cart_remover').click(function(event){
+   $.get(
+      "/carts/delete/" + $(this).data('product_id'),
+      function(data){
+          alert(data);
+      }
+   )
+   .fail(function(){ 
+      alert("I'm sorry and error occured.");
+   });
+});
+</script>
 {% endblock content %}

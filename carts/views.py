@@ -1,5 +1,6 @@
 from django.db import IntegrityError, transaction
 from django.db.models import F
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView, DeleteView
 from django.http import HttpResponse
@@ -63,7 +64,7 @@ class CartCreateRest(TemplateView):
 
 class CartItemDeleteView(DeleteView):
     model = CartItem
-    success_url = None
+    success_url = '/carts/detail'
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -74,11 +75,11 @@ class CartItemDeleteView(DeleteView):
                 else:
                     cart = Cart.objects.get(session_key=self.request.session.session_key)
                 cart_item = cart.cartitem_set.get(id=self.object.id)
-                Product.objects.filter(id=cart.product.id).update(qty=F('qty')+cart_item.qty)
+                Product.objects.filter(id=cart_item.product.id).update(qty=F('qty')+cart_item.qty)
                 cart_item.delete()
         except:
-            pass
-        return HttpResponseRedirect(success_url)
+            raise
+        return HttpResponse('item removed from cart')
   
     # Add get method to make it easier to work with angular
     def get(self,request, *args, **kwargs):
