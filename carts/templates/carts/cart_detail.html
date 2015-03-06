@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head_tags %}
+<script src="{% static 'carts/js/ctrl.js' %}"></script>
+{% endblock head_tags %}
+
 {% block content %}
 {% for item in cart.cartitem_set.all %}
    <div>
@@ -9,9 +15,9 @@
       <button class="cart_remover" data-product_id="{{ item.id }}">Delete from cart</button>
    </div>
 {% endfor %}
-<div ng-app="cartsApp">
-    <div ng-controller="cartitemsController">
-        <div ng-repeat"cartitem in data">
+<div ng-app="cartitemsApp">
+    <div ng-init="init()" ng-controller="cartitemsController">
+        <div ng-repeat="cartitem in data">
             <p>{[{ cartitem.product.name }]}</p>
             <p>{[{ cartitem.product.price }]}</p>
             <p>{[{ cartitem.product.qty }]}</p>

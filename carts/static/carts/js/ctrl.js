@@ -5,13 +5,19 @@ angular.module('cartitemsApp', [])
         $scope.alert = function(mssg){
             alert(mssg);
         };
+       
+        $scope.init = function(){
+            $scope.getcartitems();
+        };
 
         $scope.getcartitems = function(){
-            url = '/carts/api/list'
+            url = '/carts/api/list?format=json'
             var responsePromise = $http.get(url);
               
             responsePromise.success(function(data, status, headers, config){
                 $scope.data = data;
+                alert($scope.data);
+            }); 
       
             responsePromise.error(function(data, status, headers, config){
                 alert("Ajax failed!")
@@ -23,7 +29,7 @@ angular.module('cartitemsApp', [])
 
             responsePromise.success(function(data, status, headers, config){
                 $scope.data = $scope.getcartitems();
-            }
+            });
 
             responsePromise.error(function(data, status, headers, config){
                 alert("Ajax failed!")
