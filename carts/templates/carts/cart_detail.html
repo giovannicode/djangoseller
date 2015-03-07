@@ -12,10 +12,25 @@
             <p>{[{ cartitem.product.name }]}</p>
             <p>{[{ cartitem.product.price }]}</p>
             <p>{[{ cartitem.qty }]}</p>
+            <button class="rest_test">Make it Ten</button>
             <button ng-click="removeitem(cartitem.id)">Remove</button>
         </div>
     </div>
 </div>
+<script>
+$('.rest_test').click(function(event){
+   $.post(
+      "/carts/update/" + $(this).data('product_id'),
+      { qty: 3}, 
+      function(data){
+          alert(data);
+      }
+   )
+   .fail(function(){ 
+      alert("I'm sorry and error occured.");
+   });
+});
+</script>
 <script>
 $('.cart_remover').click(function(event){
    $.get(

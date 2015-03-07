@@ -118,3 +118,8 @@ class CartItemListAPI(generics.ListAPIView):
         self.queryset = cart.cartitem_set.all()
         return super(CartItemListAPI, self).get_queryset()
 
+class CartItemUpdateAPI(generics.UpdateAPIView):
+    serializer_class = CartItemSerializer
+
+    def post(self, request, *args, **kwargs):    
+        return self.patch(request, *args, **kwargs)
