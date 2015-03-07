@@ -121,5 +121,5 @@ class CartItemListAPI(generics.ListAPIView):
 class CartItemUpdateAPI(generics.UpdateAPIView):
     serializer_class = CartItemSerializer
 
-    def post(self, request, *args, **kwargs):    
-        return self.patch(request, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        return self.patch(reequest, *args, **kwargs)

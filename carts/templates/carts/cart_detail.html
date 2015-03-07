@@ -21,7 +21,7 @@
 <script>
 $('.rest_test').click(function(event){
    $.post(
-      "/carts/update/79",
+      "/carts/api/update/79/",
       { qty: 3}, 
       function(data){
           alert(data);
