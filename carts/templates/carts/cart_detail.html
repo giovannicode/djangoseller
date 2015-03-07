@@ -12,15 +12,16 @@
             <p>{[{ cartitem.product.name }]}</p>
             <p>{[{ cartitem.product.price }]}</p>
             <p>{[{ cartitem.qty }]}</p>
-            <button class="rest_test">Make it Ten</button>
             <button ng-click="removeitem(cartitem.id)">Remove</button>
         </div>
     </div>
 </div>
+
+<button class="rest_test">Make it Ten</button>
 <script>
 $('.rest_test').click(function(event){
    $.post(
-      "/carts/update/" + $(this).data('product_id'),
+      "/carts/update/79",
       { qty: 3}, 
       function(data){
           alert(data);
@@ -31,6 +32,7 @@ $('.rest_test').click(function(event){
    });
 });
 </script>
+
 <script>
 $('.cart_remover').click(function(event){
    $.get(
