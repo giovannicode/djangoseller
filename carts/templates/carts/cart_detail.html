@@ -11,7 +11,7 @@
         <div ng-repeat="cartitem in data">
             <p>{[{ cartitem.product.name }]}</p>
             <p>{[{ cartitem.product.price }]}</p>
-            <p>{[{ cartitem.product.qty }]}</p>
+            <p>{[{ cartitem.qty }]}</p>
             <button ng-click="removeitem(cartitem.id)">Remove</button>
         </div>
     </div>

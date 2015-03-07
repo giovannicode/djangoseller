@@ -117,3 +117,4 @@ class CartItemListAPI(generics.ListAPIView):
            cart = Cart.objects.get(session_key=self.request.session.session_key) 
         self.queryset = cart.cartitem_set.all()
         return super(CartItemListAPI, self).get_queryset()
+
