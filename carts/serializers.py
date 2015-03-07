@@ -4,7 +4,7 @@ from .models import CartItem
 from products.serializers import ProductSerializer
 
 class CartItemSerializer(serializers.ModelSerializer):
-    product = ProductSerializer()
+    product = ProductSerializer(read_only=True)
 
     class Meta:
         model = CartItem

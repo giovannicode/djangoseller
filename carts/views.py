@@ -118,8 +118,36 @@ class CartItemListAPI(generics.ListAPIView):
         self.queryset = cart.cartitem_set.all()
         return super(CartItemListAPI, self).get_queryset()
 
+
 class CartItemUpdateAPI(generics.UpdateAPIView):
     serializer_class = CartItemSerializer
 
+    def update(self, request, *args, *kwargs): 
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+
+        old_qty = instance.qty
+        new_qty = request.data['qty'] 
+        diff_qty = old_qty - new_qty 
+        
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+ 
+        try:
+            with transaction.atomic():
+                Product.objects.filter(id=cart_item.product.id).update(qty=F('qty')+diff_qty)
+                self.perform_update(serializer)
+        except:
+            raise
+        return Response(serializer.data)
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated():
+            cart = self.request.user.cart
+        else:
+           cart = Cart.objects.get(session_key=self.request.session.session_key) 
+        self.queryset = cart.cartitem_set.all()
+        return super(CartItemUpdateAPI, self).get_queryset()
+
     def post(self, request, *args, **kwargs):
-        return self.patch(reequest, *args, **kwargs)
+        return self.patch(request, *args, **kwargs)
