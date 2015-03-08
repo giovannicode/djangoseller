@@ -1,6 +1,6 @@
 from django.db import IntegrityError, transaction
 from django.db.models import F
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView, DeleteView
 from django.http import HttpResponse
@@ -136,8 +136,11 @@ class CartItemUpdateAPI(generics.UpdateAPIView):
  
         try:
             with transaction.atomic():
+                product = Product.objects.get(id=instance.product.id)
+                if product.qty < -diff_qty:
+                    return HttpResponseBadRequest("I'm sorry we only have " + str(product.qty) + "left", status_code=500)
                 Product.objects.filter(id=instance.product.id).update(qty=F('qty')+diff_qty)
-                self.perform_update(serializer)
+                self.perform_update(serializer) 
         except:
             raise
         return Response(diff_qty)

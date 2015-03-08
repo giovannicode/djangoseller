@@ -31,7 +31,7 @@ angular.module('cartitemsApp', [])
             );
 
             responsePromise.success(function(data, status, headers, config){
-                alert('success');
+                alert(data);
             });
 
             responsePromise.error(function(data, status, header, config){       
