@@ -11,7 +11,7 @@
         <div ng-repeat="cartitem in data">
             <p>{[{ cartitem.product.name }]}</p>
             <p>{[{ cartitem.product.price }]}</p>
-            <p>{[{ cartitem.qty }]}</p>
+            <div><input type="text" value="{[{ cartitem.qty }]}"/><button>Update Quantity</button></div>
             <button ng-click="removeitem(cartitem.id)">Remove</button>
         </div>
     </div>
@@ -22,7 +22,7 @@
 $('.rest_test').click(function(event){
    $.post(
       "/carts/api/update/79/",
-      { qty: 24}, 
+      { qty: 28}, 
       function(data){
           alert(data);
       }

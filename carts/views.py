@@ -6,6 +6,7 @@ from django.views.generic import TemplateView, DetailView, DeleteView
 from django.http import HttpResponse
 
 from rest_framework import generics
+from rest_framework.response import Response
 
 from .models import Cart, CartItem
 from products.models import Product
@@ -122,24 +123,24 @@ class CartItemListAPI(generics.ListAPIView):
 class CartItemUpdateAPI(generics.UpdateAPIView):
     serializer_class = CartItemSerializer
 
-    def update(self, request, *args, *kwargs): 
+    def update(self, request, *args, **kwargs): 
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
 
         old_qty = instance.qty
         new_qty = request.data['qty'] 
-        diff_qty = old_qty - new_qty 
+        diff_qty = old_qty - int(new_qty) 
         
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
  
         try:
             with transaction.atomic():
-                Product.objects.filter(id=cart_item.product.id).update(qty=F('qty')+diff_qty)
+                Product.objects.filter(id=instance.product.id).update(qty=F('qty')+diff_qty)
                 self.perform_update(serializer)
         except:
             raise
-        return Response(serializer.data)
+        return Response(diff_qty)
 
     def get_queryset(self):
         if self.request.user.is_authenticated():
