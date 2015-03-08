@@ -31,7 +31,8 @@ angular.module('cartitemsApp', [])
             );
 
             responsePromise.success(function(data, status, headers, config){
-                alert(data);
+                alert('Item qty update');
+                $scope.data = $scope.getcartitems(); 
             });
 
             responsePromise.error(function(data, status, header, config){       
