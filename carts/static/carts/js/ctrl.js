@@ -23,8 +23,8 @@ angular.module('cartitemsApp', [])
             });
         }
         
-        $scope.update_qty = function(qty){
-            url = '/carts/api/update/79/';
+        $scope.update_qty = function(cartitem_id, qty){
+            url = '/carts/api/update/' + cartitem_id + '/';
             var responsePromise = $http.post(
                 url,
                 { qty: qty }
