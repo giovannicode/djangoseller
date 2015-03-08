@@ -11,7 +11,7 @@
         <div ng-repeat="cartitem in data">
             <p>{[{ cartitem.product.name }]}</p>
             <p>{[{ cartitem.product.price }]}</p>
-            <div><input type="text" value="{[{ cartitem.qty }]}"/><button>Update Quantity</button></div>
+            <div><input id="rester" type="number" ng-model="qty" ng-init="qty=cartitem.qty"/><button ng-click="update_qty(qty)">Update Quantity to {[{ qty }]}</button></div>
             <button ng-click="removeitem(cartitem.id)">Remove</button>
         </div>
     </div>

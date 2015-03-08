@@ -22,6 +22,23 @@ angular.module('cartitemsApp', [])
                 alert("Ajax failed!")
             });
         }
+        
+        $scope.update_qty = function(qty){
+            url = '/carts/api/update/79/';
+            var responsePromise = $http.post(
+                url,
+                { qty: qty }
+            );
+
+            responsePromise.success(function(data, status, headers, config){
+                alert('success');
+            });
+
+            responsePromise.error(function(data, status, header, config){       
+                alert("Ajax failed!")
+            });
+        }
+
         $scope.removeitem = function(cartitem_id){
             url = '/carts/delete/' + cartitem_id
             var responsePromise = $http.get(url);
