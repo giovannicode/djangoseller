@@ -35,7 +35,7 @@ angular.module('cartitemsApp', [])
             });
 
             responsePromise.error(function(data, status, header, config){       
-                alert("Ajax failed!")
+                alert(data);
             });
         }
 

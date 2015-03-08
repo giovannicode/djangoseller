@@ -138,7 +138,7 @@ class CartItemUpdateAPI(generics.UpdateAPIView):
             with transaction.atomic():
                 product = Product.objects.get(id=instance.product.id)
                 if product.qty < -diff_qty:
-                    return HttpResponseBadRequest("I'm sorry we only have " + str(product.qty) + "left", status_code=500)
+                    return HttpResponseBadRequest("I'm sorry we only have " + str(product.qty) + "left")
                 Product.objects.filter(id=instance.product.id).update(qty=F('qty')+diff_qty)
                 self.perform_update(serializer) 
         except:
