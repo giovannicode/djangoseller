@@ -16,34 +16,4 @@
         </div>
     </div>
 </div>
-
-<button class="rest_test">Make it Ten</button>
-<script>
-$('.rest_test').click(function(event){
-   $.post(
-      "/carts/api/update/79/",
-      { qty: 28}, 
-      function(data){
-          alert(data);
-      }
-   )
-   .fail(function(){ 
-      alert("I'm sorry and error occured.");
-   });
-});
-</script>
-
-<script>
-$('.cart_remover').click(function(event){
-   $.get(
-      "/carts/delete/" + $(this).data('product_id'),
-      function(data){
-          alert(data);
-      }
-   )
-   .fail(function(){ 
-      alert("I'm sorry and error occured.");
-   });
-});
-</script>
 {% endblock content %}
