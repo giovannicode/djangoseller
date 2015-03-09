@@ -2,6 +2,9 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from categories.models import Category
 
+class Filter(models.Model):
+    tag = models.CharField(max_length='30')
+
 class Product(models.Model):
     name = models.CharField(max_length=60)
     description = models.CharField(max_length=255)
@@ -26,6 +29,7 @@ class Product(models.Model):
     )
     color = models.CharField(max_length=30, choices=COLOR_CHOICES) 
     categories = models.ManyToManyField(Category)
+    filters = models.ManyToManyField(Filter)
    
     class Meta:
         ordering = ['price']
