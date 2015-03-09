@@ -6,7 +6,7 @@ class Filter(models.Model):
     tag = models.CharField(max_length='30')
 
     def __unicode__(self):
-        return tag  
+        return self.tag  
 
 class Product(models.Model):
     name = models.CharField(max_length=60)

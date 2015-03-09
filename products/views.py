@@ -24,7 +24,7 @@ class ProductDetailView(DetailView):
 class ProductListAPI(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    filter_fields = ('name', 'price', 'categories', 'color')
+    filter_fields = ('name', 'price', 'categories', 'color', 'filter')
     filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter,)
     ordering_fields = ('price', 'color')
     #renderer_classes = [JSONRenderer]
