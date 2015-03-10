@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from categories.models import Category
 
 class Filter(models.Model):
-    tag = models.CharField(max_length='30')
+    name = models.CharField(max_length='30')
 
     def __unicode__(self):
         return self.tag  
