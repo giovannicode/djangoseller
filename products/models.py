@@ -32,6 +32,7 @@ class Product(models.Model):
     )
     color = models.CharField(max_length=30, choices=COLOR_CHOICES) 
     categories = models.ManyToManyField(Category)
+    tags = models.ManyToManyField(Tag)
    
     class Meta:
         ordering = ['price']
