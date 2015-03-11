@@ -27,7 +27,14 @@ class ProductListAPI(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-    filter_fields = ('name', 'price', 'categories', 'color', 'tag')
+    filter_fields = ('name', 'price', 'categories', 'color', 'tags')
     filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter,)
     ordering_fields = ('price', 'color')
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        tags = self.request.QUERY_PARAMS.getlist('tags')
+        queryset = queryset.objects.filter(pk__in=tags)
+        return queryset
+        
     #renderer_classes = [JSONRenderer]
