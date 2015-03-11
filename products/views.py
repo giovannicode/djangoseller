@@ -4,7 +4,7 @@ from rest_framework import generics, filters
 import django_filters
 
 from .models import Product
-from .forms import FilterForm
+from .forms import FilterForm, ShirtFilterForm
 from .serializers import ProductSerializer
 from categories.models import Category
 
@@ -15,6 +15,7 @@ class ProductListView(ListView):
         context = super(ProductListView, self).get_context_data(**kwargs)
         context['category_list'] = Category.objects.all()
         context['filter_form'] = FilterForm()
+        context['shirt_filter_form'] = ShirtFilterForm()
         return context
 
 
