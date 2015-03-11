@@ -10,5 +10,6 @@ class FilterForm(forms.Form):
     color = forms.ChoiceField(choices=Product.COLOR_CHOICES)
 
 class ShirtFilterForm(forms.Form):
+    color = TagChoiceField(queryset=Tag.objects.filter(name='color'))
     style = TagChoiceField(queryset=Tag.objects.filter(name='style'))
     fit = TagChoiceField(queryset=Tag.objects.filter(name='fit'))

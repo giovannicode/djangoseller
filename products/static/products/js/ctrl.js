@@ -32,8 +32,8 @@ angular.module('productsApp', [])
 
     $scope.update_tagurl = function(value)
     {
-        url = $location.path():
-        url += "&" + type + "=" value;
+        url = $location.path();
+        url += "&tags=" + value;
         $scope.$apply(function(){
             $location.path(url);
         });
