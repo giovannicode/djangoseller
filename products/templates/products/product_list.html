@@ -21,12 +21,15 @@
    {{ shirt_filter_form.as_p }}
    <script>
    window.onload = function(){
-     $('#id_color').change(function(){
-       angular.element('#productsController').scope().update_filterurl($(this).attr('name'), $(this).val());
-     })
-     $('#id_ordering').change(function(){
-       angular.element('#productsController').scope().update_filterurl($(this).attr('name'), $(this).val());
-     })
+       $('#id_style').change(function(){
+           angular.element('#productsController').scope().update_filterurl($(this).attr('name'), $(this).val());
+       })
+       $('#id_color').change(function(){
+           angular.element('#productsController').scope().update_filterurl($(this).attr('name'), $(this).val());
+       })
+       $('#id_ordering').change(function(){
+           angular.element('#productsController').scope().update_filterurl($(this).attr('name'), $(this).val());
+       })
    }
    </script>
 </div>
