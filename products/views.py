@@ -34,7 +34,10 @@ class ProductListAPI(generics.ListAPIView):
     def get_queryset(self):
         queryset = Product.objects.all()
         tags = self.request.QUERY_PARAMS.getlist('tags')
-        queryset = queryset.objects.filter(pk__in=tags)
+        #queryset = queryset.filter(tags__in=tags)
+
+        for tag in tags:
+            queryset = queryset.filter(tags=tag)
         return queryset
         
     #renderer_classes = [JSONRenderer]
