@@ -33,6 +33,9 @@ angular.module('productsApp', [])
     $scope.update_tagurl = function(value, oldvalue){
         
         url = $location.path();
+        if(url == '/products/list'){
+            url += '?'
+        }
         if(oldvalue == ""){
             url += '&tags=' + value;
         }
