@@ -20,8 +20,11 @@
    {{ shirt_filter_form.as_p }}
    <script>
    window.onload = function(){
-       $('#id_color').change(function(){
-           angular.element('#productsController').scope().update_tagurl($(this).val());
+       $('#id_color').on('focus', function(){
+           previous = this.value;
+           alert(previous);
+       }).change(function(){
+           angular.element('#productsController').scope().update_tagurl($(this).val(), previous);
        })
        $('#id_style').change(function(){
            angular.element('#productsController').scope().update_tagurl($(this).val());
