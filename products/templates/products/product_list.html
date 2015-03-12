@@ -13,25 +13,31 @@
       <select id="id_ordering" name="ordering">
          <option value="price">Low to High</option>
          <option value="-price">High to Low</option>
-      </select>
-      <button type="submit">Sort</button>
-   </form>
- 
+      </select> <button type="submit">Sort</button> </form> 
    {{ shirt_filter_form.as_p }}
    <script>
    window.onload = function(){
        $('#id_color').on('focus', function(){
-           previous = this.value;
-           alert(previous);
+           previous_color = this.value;
        }).change(function(){
-           angular.element('#productsController').scope().update_tagurl($(this).val(), previous);
+           angular.element('#productsController').scope().update_tagurl($(this).val(), previous_color);
+           previous_color = this.value;
        })
-       $('#id_style').change(function(){
-           angular.element('#productsController').scope().update_tagurl($(this).val());
+       
+       $('#id_style').on('focus', function(){
+           previous_style = this.value;
+       }).change(function(){
+           angular.element('#productsController').scope().update_tagurl($(this).val(), previous_style);
+           previous_style = this.value;
        })
-       $('#id_fit').change(function(){
-           angular.element('#productsController').scope().update_tagurl($(this).val());
+   
+       $('#id_fit').on('focus', function(){ 
+           previous_fit = this.value;
+       }).change(function(){
+           angular.element('#productsController').scope().update_tagurl($(this).val(), previous_fit);
+           previous_fit = this.value;
        })
+
        $('#id_ordering').change(function(){
            angular.element('#productsController').scope().update_filterurl($(this).attr('name'), $(this).val());
        })

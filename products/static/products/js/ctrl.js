@@ -30,12 +30,15 @@ angular.module('productsApp', [])
       $location.path(url);
     };
 
-    $scope.update_tagurl = function(value, oldvalue)
-    {
+    $scope.update_tagurl = function(value, oldvalue){
         
         url = $location.path();
-        var regex = new RegExp('tags=' + oldvalue)
-        url = url.replace(regex,'tags=' + value); 
+        if(oldvalue == ""){
+            url += '&tags=' + value;
+        }
+        else{
+            url = url.replace('tags=' + oldvalue,'tags=' + value); 
+        }
         $scope.$apply(function(){
             $location.path(url);
         });
