@@ -36,6 +36,9 @@ angular.module('productsApp', [])
         if(oldvalue == ""){
             url += '&tags=' + value;
         }
+        else if(value == ""){
+            url = url.replace('&tags=' + oldvalue, '');
+        }
         else{
             url = url.replace('tags=' + oldvalue,'tags=' + value); 
         }
