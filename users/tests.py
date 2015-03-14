@@ -1,6 +1,8 @@
-from django.test import TestCase, Client
+from django.test import TestCase, Client, RequestFactory
 from users.models import User
 from users.forms import UserCreateForm
+from carts.models import Cart
+from views import *
 
 class UserCreateFormTests(TestCase):
 
@@ -49,3 +51,24 @@ class UserCreateFormTests(TestCase):
         form = UserCreateForm(data=form_data)
         form.save()
         self.assertEqual(User.objects.filter(email='***REMOVED***').exists(), True)
+
+
+class UserViewTests(TestCase):
+    
+    def setUp(self):
+        self.factory = RequestFactory()
+        cart = Cart.objects.create()
+        self.user = User.objects.create_user(
+            first_name='Giovanni',
+            last_name='Arroyo',
+            email='***REMOVED***',
+            password='password',
+        )
+        self.user.cart = cart
+        self.user.save()
+
+    def test_authenticated_user_redirects_when_visitin_login_view(self):        
+        request = self.factory.get('/users/signin')
+        request.user = self.user
+        response = UserLoginView.as_view()(request)
+        self.assertEqual(response.status_code, 302)
