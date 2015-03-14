@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from users.models import Use:
+from users.models import User
 from users.forms import UserCreateForm
 
 class UserCreateFormTests(TestCase):
