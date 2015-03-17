@@ -26,9 +26,7 @@
     - name: Install postgresql-contrib 
       apt: pkg=postgresql-contrib 
     - name: Create postgresql database
-      postgresql_db: name=sellerdb
-    - name: Create postgresql user            
-      postgresql_user: db=sellerdb name=seller1 password=password priv=all
+      script: provision.sh
   handlers:
     - name: start nginx
       service: name=nginx state=started
