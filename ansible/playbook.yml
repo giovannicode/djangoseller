@@ -3,10 +3,8 @@
   tasks:
 #    - name: Updates a server 
 #      apt: update_cache=true
-    - name: Installs nginx web server
-      apt: pkg=nginx state=installed 
-      notify:
-        - start nginx
+    - name: Install libpq-dev
+      apt: pkg=libpq-dev state=installed
     - name: Install python-setuptools
       apt: pkg=python-setuptools state=installed
     - name: Install python-dev
@@ -17,9 +15,20 @@
       file: path=requirements state=directory
     - name: Copy the local pip requirements file
       copy: src=../requirements/requirements.txt dest=requirements/requirements.txt
-    - name: Install pip stuff
+    - name: Install python package requirements
       command: sudo pip install -r requirements/requirements.txt
-
+    - name: Installs nginx web server
+      apt: pkg=nginx state=installed 
+      notify:
+        - start nginx
+    - name: install postgresql
+      apt: pkg=postgresql state=installed
+    - name: Install postgresql-contrib 
+      apt: pkg=postgresql-contrib 
+    - name: Create postgresql database
+      postgresql_db: name=sellerdb
+    - name: Create postgresql user            
+      postgresql_user: db=sellerdb name=seller1 password=password priv=all
   handlers:
     - name: start nginx
       service: name=nginx state=started
