@@ -1,18 +1,20 @@
 ---
 - hosts: djangoseller.com
-  task:
+  tasks:
     - name: Updates a server 
       apt: update_cache=true
-    - name: Upgrades a server
-      apt: upgrade=full
     - name: Installs nginx web server
       apt: pkg=nginx state=installed 
       notify:
         - start nginx
     - name: Install pip
       apt: pkg=python-pip state=installed 
+    - name: Create requirements directory ifNotExists
+      file: path=requirements state=directory
+    - name: Copy the local pip requirements file
+      copy: src=../requirements/requirements.txt dest=requirements/requirements.txt
     - name: Install pip requirements
-      pip: 
+      pip: requirements=requirements/requirements.txt 
   handlers:
     - name: start nginx
       service: name=nginx state=started
