@@ -29,11 +29,14 @@
       script: config_postgres.sh
     - name: Configure nginx 
       copy: src=nginx/djangoseller dest=/etc/nginx/sites-available/djangoseller
-    
+    - name: Create gunicorn directories
+      file: path=/home/root/www/gunicorn state=directory
     - name: Configure gunicorn 
-      script: config_gunicorn.sh
+      copy: src=gunicorn/conf.py dest=/home/root/www/gunicorn/conf.py
+    - name: Create supervisor directories
+      file: path=/etc/supervisor/conf.d state=directory
     - name: Configure supervisor
-      script: config_supervisor.sh
+      copy: src=supervisor/gunicorn.conf dest=/etc/supervisor/conf.d/gunicorn.conf
     - name: start supervisor
       supervisorctl: name=gunicorn state=restarted config=/etc/supervisor/conf.d/gunicorn.conf
   handlers:
