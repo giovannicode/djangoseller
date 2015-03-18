@@ -7,3 +7,4 @@ autostart=true
 autorestart=true
 stderr_logfile=/var/log/supervisor/gunicorn/err.log
 stdout_logfile=/var/log/supervisor/gunicorn/out.log
+EOF

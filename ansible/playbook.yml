@@ -28,7 +28,8 @@
     - name: Congfigure postgresql
       script: config_postgres.sh
     - name: Configure nginx 
-      script: config_nginx.sh 
+      copy: src=nginx/djangoseller dest=/etc/nginx/sites-available/djangoseller
+    
     - name: Configure gunicorn 
       script: config_gunicorn.sh
     - name: Configure supervisor

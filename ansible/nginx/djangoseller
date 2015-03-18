@@ -1,5 +1,4 @@
 # Create nginx configuration file
-cat << EOF > /etc/nginx/sites-available/website
 server {
 
     listen 8080;    
@@ -23,9 +22,3 @@ server {
         add_header P3P 'CP="ALL DSP COR PSAa PSDa OUR NOR ONL UNI COM NAV"';
     }
 }
-EOF
-
-# Change nginx configuration file to new file
-sudo ln -s /etc/nginx/sites-available/website /etc/nginx/sites-enabled/website
-sudo rm /etc/nginx/sites-enabled/default
-
