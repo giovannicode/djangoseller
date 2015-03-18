@@ -25,10 +25,12 @@
       apt: pkg=postgresql state=installed
     - name: Install postgresql-contrib 
       apt: pkg=postgresql-contrib 
-    - name: Create postgresql database
+    - name: Congfigure postgresql
       script: config_postgres.sh
     - name: Configure nginx 
       script: config_nginx.sh 
+    - name: Configure gunicorn 
+      script: config_gunicorn.sh
   handlers:
     - name: start nginx
       service: name=nginx state=started
