@@ -29,6 +29,8 @@
       apt: pkg=postgresql-contrib 
     - name: Install supervisor
       apt: pkg=supervisor state=installed
+    - name: Install git 
+      apt: pkg=git state=installed
     - name: Congfigure postgresql
       script: config_postgres.sh
     - name: Configure nginx 
@@ -51,8 +53,16 @@
       file: path=/home/root/www/static state=directory
     - name: Create Django media directory
       file: path=/home/root/www/media/ state=directory
-    - name: Create Django project
-      command: django-admin.py startproject website chdir=/home/root/www/ 
+    #- name: Create Django project
+    #  command: django-admin.py startproject website chdir=/home/root/www/ 
+    - name: Create git repository path
+      file: /var/repo/site.git
+    - name: Create base git repository 
+      git: bare=yes
+    - name: Configure git
+      copy: src=git/post-receive dest=/var/repo/site.git/hooks/post-receive
+    - name: git pull latest project
+      command: git clone https://github.com/giovannicode/charity-shop.git chdir=/home/root/www/
       ignore_errors: yes
     - name: Restart nginx
       service: name=nginx state=restarted 
