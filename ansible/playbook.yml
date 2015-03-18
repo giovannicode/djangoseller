@@ -33,6 +33,8 @@
       script: config_gunicorn.sh
     - name: Configure supervisor
       script: config_supervisor.sh
+    - name: start supervisor
+      supervisorctl: name=gunicorn state=restarted config=/etc/supervisor/conf.d/gunicorn.conf
   handlers:
     - name: start nginx
       service: name=nginx state=started
