@@ -53,10 +53,11 @@
       file: path=/home/root/www/media/ state=directory
     - name: Create Django project
       command: django-admin.py startproject website chdir=/home/root/www/ 
+      ignore_errors: yes
     - name: Restart nginx
       service: name=nginx state=restarted 
-    - name: Restart supervisorctl
-      service: name=supervisor state=restarted
+    - name: Restart supervisor
+      command: service supervisor restart
     - name: Restart gunicorn
       supervisorctl: name=gunicorn state=restarted config=/etc/supervisor/conf.d/gunicorn.conf
   handlers:
