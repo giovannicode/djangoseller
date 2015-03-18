@@ -31,6 +31,8 @@
       script: config_nginx.sh 
     - name: Configure gunicorn 
       script: config_gunicorn.sh
+    - name: Configure supervisor
+      script: config_supervisor.sh
   handlers:
     - name: start nginx
       service: name=nginx state=started
