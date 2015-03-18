@@ -29,16 +29,24 @@
       script: config_postgres.sh
     - name: Configure nginx 
       copy: src=nginx/djangoseller dest=/etc/nginx/sites-available/djangoseller
+    - name: Create symlinks
+      file: src=/etc/nginx/sites-available/website dest=/etc/nginx/sites-enabled/website state=link
+    - name: Delete default nginx config file.
+      file: path=/etc/nginx/sites-enable/default state=absent
     - name: Create gunicorn directories
       file: path=/home/root/www/gunicorn state=directory
     - name: Configure gunicorn 
       copy: src=gunicorn/conf.py dest=/home/root/www/gunicorn/conf.py
     - name: Create supervisor directories
       file: path=/etc/supervisor/conf.d state=directory
+    - name: Create supervisor gunicorn log directories
+      file: path=/var/log/supervisor/gunicorn state=directory
     - name: Configure supervisor
       copy: src=supervisor/gunicorn.conf dest=/etc/supervisor/conf.d/gunicorn.conf
     - name: start supervisor
       supervisorctl: name=gunicorn state=restarted config=/etc/supervisor/conf.d/gunicorn.conf
+    - name: restart nginx
+      service: name=nginx state=restarted 
   handlers:
     - name: start nginx
       service: name=nginx state=started
