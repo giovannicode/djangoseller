@@ -75,6 +75,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+import socket
+
+if socket.gethostname() == 'djangoseller':
+    import production
+else:
+    import local
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
@@ -92,10 +99,3 @@ MEDIA_URL = '/media/'
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }
-
-import socket
-
-if socket.gethostname() == 'djangoseller':
-    import production
-else:
-    import local
