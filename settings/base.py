@@ -96,6 +96,6 @@ REST_FRAMEWORK = {
 import socket
 
 if socket.gethostname() == 'djangoseller':
-    import production.py
+    import production
 else:
-    import local.py
+    import local
