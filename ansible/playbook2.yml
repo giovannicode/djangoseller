@@ -3,3 +3,5 @@
   tasks:
   - name: Restart gunicorn
     supervisorctl: name=gunicorn state=restarted config=/etc/supervisor/conf.d/gunicorn.conf
+  - name: Apply django project migrations
+    command: python manage.py migrate chdir=/home/root/www/website
