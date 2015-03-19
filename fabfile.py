@@ -9,7 +9,11 @@ def prepare_server():
 def push():
     local("git push production master")
 
+def restart_gunicorn():
+    local("ansible-playbook -u root ansible/playbook2.yml")
+
 def deploy():
 #    test()
     prepare_server():
     push()
+    restart_gunicorn():
