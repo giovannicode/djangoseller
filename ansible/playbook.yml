@@ -61,9 +61,6 @@
       command: git init --bare chdir=/var/repo/site.git
     - name: Configure git
       copy: src=git/post-receive dest=/var/repo/site.git/hooks/post-receive mode=744
-    - name: git pull latest project
-      command: git clone https://github.com/giovannicode/charity-shop.git chdir=/home/root/www/
-      ignore_errors: yes
     - name: Restart nginx
       service: name=nginx state=restarted 
     - name: Restart supervisor
