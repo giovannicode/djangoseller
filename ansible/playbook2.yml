@@ -1,0 +1,5 @@
+---
+- hosts: djangoseller.com
+  tasks:
+  - name: Restart gunicorn
+    supervisorctl: name=gunicorn state=restarted config=/etc/supervisor/conf.d/gunicorn.conf
