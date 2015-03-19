@@ -78,9 +78,9 @@ USE_TZ = True
 import socket
 
 if socket.gethostname() == 'djangoseller':
-    import production
+    from production import *
 else:
-    import local
+    from local import *
 
 
 # Static files (CSS, JavaScript, Images)
