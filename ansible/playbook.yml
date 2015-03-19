@@ -1,10 +1,10 @@
 ---
 - hosts: djangoseller.com
   tasks:
-  #  - name: Updates a server 
-      #apt: update_cache=true
-   # - name: Upgrades server
-   #   apt: upgrade=yes
+    - name: Updates a server 
+      apt: update_cache=true
+    - name: Upgrades server
+      apt: upgrade=yes
     - name: Install libpq-dev
       apt: pkg=libpq-dev state=installed
     - name: Install python-setuptools
@@ -59,6 +59,8 @@
       file: path=/var/repo/site.git state=directory
     - name: Create base git repository 
       command: git init --bare chdir=/var/repo/site.git
+    - name: Create working tree directory
+      file: path=/home/root/www/website state=directory
     - name: Configure git
       copy: src=git/post-receive dest=/var/repo/site.git/hooks/post-receive mode=744
     - name: Restart nginx
@@ -67,6 +69,12 @@
       command: service supervisor restart
     - name: Restart gunicorn
       supervisorctl: name=gunicorn state=restarted config=/etc/supervisor/conf.d/gunicorn.conf
+    - name: Install nodejs
+      apt: pkg=nodejs state=installed
+    - name: Install npm
+      apt: pkg=npm state=installed
+    - name: Install bower
+      npm: name=bower global=yes 
   handlers:
     - name: start nginx
       service: name=nginx state=started

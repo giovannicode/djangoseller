@@ -14,6 +14,6 @@ def restart_gunicorn():
 
 def deploy():
 #    test()
-    prepare_server():
+    prepare_server()
     push()
-    restart_gunicorn():
+    restart_gunicorn()
