@@ -8,11 +8,11 @@ server {
     access_log off;
 
     location /static/ {
-        alias /home/vagrant/www/static/;
+        alias /home/root/www/static/;
     }
 
     location /media/ {
-        alias /home/vagrant/www/media/;
+        alias /home/root/www/media/;
     }
 
     location / {

@@ -6,4 +6,4 @@
   - name: Apply django project migrations
     command: python manage.py migrate chdir=/home/root/www/website
   - name: Apply django project collect static
-    command: python manage.py collecstatic --noinput chdir=/home/root/www/website
+    command: python manage.py collectstatic --noinput chdir=/home/root/www/website
