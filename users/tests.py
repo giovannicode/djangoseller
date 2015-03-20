@@ -22,7 +22,7 @@ class UserCreateFormTests(TestCase):
         form_data = {
             'first_name': 'Giovanni',
             'last_name': 'Arroyo',
-            'email': '***REMOVED***',
+            'email': 'campusgino@gmail.com',
             'password1': 'password',
             'password2': 'differentpassword'
         }
@@ -33,7 +33,7 @@ class UserCreateFormTests(TestCase):
         form_data = {
             'first_name': 'Giovanni', 
             'last_name': 'Arroyo',
-            'email': '***REMOVED***',
+            'email': 'campusgino@gmail.com',
             'password1': 'password',
             'password2': 'password',
         }
@@ -44,13 +44,13 @@ class UserCreateFormTests(TestCase):
         form_data = {
             'first_name': 'Giovanni',
             'last_name': 'Arroyo',
-            'email': '***REMOVED***',
+            'email': 'campusgino@gmail.com',
             'password1': 'password',
             'password2': 'password'
         }
         form = UserCreateForm(data=form_data)
         form.save()
-        self.assertEqual(User.objects.filter(email='***REMOVED***').exists(), True)
+        self.assertEqual(User.objects.filter(email='campusgino@gmail.com').exists(), True)
 
 
 class UserViewTests(TestCase):
@@ -61,7 +61,7 @@ class UserViewTests(TestCase):
         self.user = User.objects.create_user(
             first_name='Giovanni',
             last_name='Arroyo',
-            email='***REMOVED***',
+            email='campusgino@gmail.com',
             password='password',
         )
         self.user.cart = cart

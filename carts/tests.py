@@ -13,7 +13,7 @@ class CartTests(TestCase):
         self.user = User.objects.create_user(
             first_name='Giovanni',
             last_name='Arroyo', 
-            email='***REMOVED***',
+            email='campusgino@gmail.com',
             password='password',
         )
         self.user.cart = cart

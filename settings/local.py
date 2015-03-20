@@ -1,17 +1,19 @@
+import os
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'websitedb',
-        'USER': 'website1',
-        'PASSWORD': 'university023',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis' 
+        'NAME': os.environ['NAME'],
+        'USER': os.environ['USER'],
+        'PASSWORD': os.environ['password'],
         'HOST': 'localhost',
         'PORT': '',
         }
     }
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_HOST = os.environ['EMAIL_HOST']
+EMAIL_PORT = os.environ['EMAIL_PORT']
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = '***REMOVED***'
-EMAIL_HOST_PASSWORD = '***REMOVED***'
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = ['EMAIL_HOST_PASSWORD']

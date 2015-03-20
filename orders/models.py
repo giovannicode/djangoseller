@@ -41,7 +41,7 @@ class Order(models.Model):
                    'your stuff has been shipped',
                    'Hi Dude, we though you\'d like to know that you order has been shipped',
                    'gio@seller.org',
-                   ['***REMOVED***'],
+                   ['campusgino@gmail.com'],
                    fail_silently=False
                )
         super(Order, self).save(*args, **kwargs)
