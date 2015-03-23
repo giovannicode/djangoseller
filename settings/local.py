@@ -2,10 +2,10 @@ import os
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis' 
+        'ENGINE': 'django.contrib.gis.db.backends.postgis', 
         'NAME': os.environ['NAME'],
         'USER': os.environ['USER'],
-        'PASSWORD': os.environ['password'],
+        'PASSWORD': os.environ['PASSWORD'],
         'HOST': 'localhost',
         'PORT': '',
         }
