@@ -13,3 +13,9 @@ class ShirtFilterForm(forms.Form):
     color = TagChoiceField(queryset=Tag.objects.filter(name='color'))
     style = TagChoiceField(queryset=Tag.objects.filter(name='style'))
     fit = TagChoiceField(queryset=Tag.objects.filter(name='fit'))
+
+class LongSleeveFilterForm(forms.Form):
+    color = TagChoiceField(queryset=Tag.objects.filter(name='color'))
+    style = TagChoiceField(queryset=Tag.objects.filter(name='style'))
+    fit = TagChoiceField(queryset=Tag.objects.filter(name='fit'))
+    pattern = TagChoiceField(queryset=Tag.objects.filter(name='pattern'))
