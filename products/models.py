@@ -8,7 +8,8 @@ class Tag(models.Model):
     value = models.CharField(max_length='30')
 
     def __unicode__(self):
-        return self.name + ': ' + self.value 
+        return '[' + self.category.name + '] - ' + self.name + ': ' + self.value
+
 
 class Product(models.Model):
     name = models.CharField(max_length=60)
