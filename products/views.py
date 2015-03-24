@@ -10,12 +10,12 @@ from categories.models import Category
 
 class ProductListView(ListView):
     model = Product
+    filter_form_class = ShirtFilterForm
        
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
         context['category_list'] = Category.objects.all()
-        context['filter_form'] = FilterForm()
-        context['shirt_filter_form'] = ShirtFilterForm()
+        context['filter_form'] = self.filter_form_class() 
         return context
 
 
