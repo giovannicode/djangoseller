@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from categories.models import Category
 
 class Tag(models.Model):
+    category = models.ForeignKey(Category)
     name = models.CharField(max_length='30')
     value = models.CharField(max_length='30')
 
