@@ -14,7 +14,7 @@ class ProductListView(ListView):
        
     def get_context_data(self, **kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
-        context['category_list'] = Category.objects.all()
+        context['category_list'] = Category.objects.exclude(name='All')
         context['filter_form'] = self.filter_form_class() 
         return context
 

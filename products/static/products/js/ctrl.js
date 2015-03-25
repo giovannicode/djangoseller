@@ -21,7 +21,6 @@ angular.module('productsApp', [])
           url_array = newValue.split('/');
           url = newValue.replace(newValue, '/products/api/list?format=json&');
           url+='categories=' + url_array[2];
-          alert(url);
         }
         $scope.getproducts(url);
       }
