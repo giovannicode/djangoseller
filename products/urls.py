@@ -6,7 +6,7 @@ import views
 from .forms import *
 
 urlpatterns = patterns('',
-    url(r'^1/list', views.ProductListView.as_view(filter_form_class=ShirtFilterForm)),
+    url(r'^1/list', views.ProductListView.as_view(filter_form_class=ShirtFilterForm), name='shirts-list'),
     url(r'^2/list', views.ProductListView.as_view(filter_form_class=PantsFilterForm)),
     url(r'^4/list', views.ProductListView.as_view(filter_form_class=ShortsFilterForm)),
     url(r'^5/list', views.ProductListView.as_view(filter_form_class=LongSleeveFilterForm)),

@@ -38,7 +38,7 @@ angular.module('productsApp', [])
         
         url = $location.path();
         if(url == '/products/list'){
-            url += '?'
+            url += '?tags=' +value;
         }
         if(oldvalue == ""){
             url += '&tags=' + value;
@@ -47,7 +47,7 @@ angular.module('productsApp', [])
             url = url.replace('&tags=' + oldvalue, '');
         }
         else{
-            url = url.replace('&tags=' + oldvalue,'&tags=' + value); 
+            url = url.replace('tags=' + oldvalue,'tags=' + value); 
         }
         $scope.$apply(function(){
             $location.path(url);
