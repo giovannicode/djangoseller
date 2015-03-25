@@ -30,7 +30,18 @@ class ShortsFilterForm(forms.Form):
     length = TagChoiceField(queryset=Tag.objects.filter(category__name='shorts', name='length'))
     pattern = TagChoiceField(queryset=Tag.objects.filter(category__name='shorts', name='pattern'))
 
-class Pants(forms.Form):
+
+class PantsFilterForm(forms.Form):
     color = TagChoiceField(queryset=Tag.objects.filter(name='color'))
     use_type = TagChoiceField(queryset=Tag.objects.filter(category__name='pants', name='type')) 
     fit = TagChoiceField(queryset=Tag.objects.filter(category__name='pants', name='fit'))
+
+
+class ShoesFilterForm(forms.Form):
+    color = TagChoiceField(queryset=Tag.objects.filter(name='color'))
+    use_type = TagChoiceField(queryset=Tag.objects.filter(name='color'))
+    
+
+class HatsFilterForm(forms.Form):
+    color = TagChoiceField(queryset=Tag.objects.filter(name='color'))
+    style = TagChoiceField(queryset=Tag.objects.filter(name='style'))
