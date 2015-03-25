@@ -19,8 +19,10 @@ angular.module('productsApp', [])
         else
         {
           url_array = newValue.split('/');
-          url = newValue.replace(newValue, '/products/api/list?format=json&');
-          url+='categories=' + url_array[2];
+          url = newValue.replace(
+              '/products/' + url_array[2] +  '/list', 
+              '/products/api/list?format=json&categories=' + url_array[2]);
+          alert(url);
         }
         $scope.getproducts(url);
       }
@@ -45,7 +47,7 @@ angular.module('productsApp', [])
             url = url.replace('&tags=' + oldvalue, '');
         }
         else{
-            url = url.replace('tags=' + oldvalue,'tags=' + value); 
+            url = url.replace('&tags=' + oldvalue,'&tags=' + value); 
         }
         $scope.$apply(function(){
             $location.path(url);
