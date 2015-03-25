@@ -18,7 +18,10 @@ angular.module('productsApp', [])
         }
         else
         {
-          url = newValue.replace('products/list?', 'products/api/list?format=json&');
+          url_array = newValue.split('/');
+          url = newValue.replace(newValue, '/products/api/list?format=json&');
+          url+='categories=' + url_array[2];
+          alert(url);
         }
         $scope.getproducts(url);
       }

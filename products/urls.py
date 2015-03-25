@@ -6,7 +6,13 @@ import views
 from .forms import *
 
 urlpatterns = patterns('',
-    url(r'^long-sleeve/list', views.ProductListView.as_view(filter_form_class=LongSleeveFilterForm), name='list'),
+    url(r'^1/list', views.ProductListView.as_view(filter_form_class=ShirtFilterForm)),
+    url(r'^2/list', views.ProductListView.as_view(filter_form_class=LongSleeveFilterForm)),
+    url(r'^4/list', views.ProductListView.as_view(filter_form_class=LongSleeveFilterForm)),
+    url(r'^5/list', views.ProductListView.as_view(filter_form_class=LongSleeveFilterForm)),
+    url(r'^6/list', views.ProductListView.as_view(filter_form_class=LongSleeveFilterForm)),
+    url(r'^7/list', views.ProductListView.as_view(filter_form_class=LongSleeveFilterForm)),
+    url(r'^8/list', views.ProductListView.as_view(filter_form_class=LongSleeveFilterForm)),
     url(r'^list', views.ProductListView.as_view(), name='list'),
     url(r'^detail/(?P<pk>[0-9]+)$', views.ProductDetailView.as_view(), name='detail'),
     url(r'^api/list', views.ProductListAPI.as_view(), name='api_list')
