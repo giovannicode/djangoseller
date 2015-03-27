@@ -38,10 +38,10 @@ class Order(models.Model):
            orig = Order.objects.get(pk=self.pk)
            if orig.shipped == False and self.shipped == True:
                send_mail(
-                   'your stuff has been shipped',
-                   'Hi Dude, we though you\'d like to know that you order has been shipped',
-                   'gio@seller.org',
-                   ['campusgino@gmail.com'],
+                   'Your order has been shipped',
+                   'Hi ' + self.user.first_name + ', we though you\'d like to know that you order has been shipped',
+                   'sales@djangoseller.com',
+                   [order.email],
                    fail_silently=False
                )
         super(Order, self).save(*args, **kwargs)
