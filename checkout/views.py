@@ -122,7 +122,7 @@ class CheckoutView(UserPassesTestMixin, FormView):
 	    'Order Information',
 	    html_mssg,
 	    'support@seller.org',
-	    recipient_list=['campusgino@gmail.com'],
+	    recipient_list=[email],
 	    fail_silently=False,
             html_message=html_mssg
 	)
@@ -130,7 +130,7 @@ class CheckoutView(UserPassesTestMixin, FormView):
 	    self.request, 
 	    messages.INFO, 
 	    'Your Payment was processed successfully. A confirmation email has been sent to \
-            campusgino@gmail.com'
+            ' + email
         )
 
         return redirect('main:index')
