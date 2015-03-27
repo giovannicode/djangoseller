@@ -39,6 +39,14 @@
            previous_fit = this.value;
        })
 
+       $('#id_use_type').on('focus', function(){ 
+           previous_use_type = this.value;
+       }).change(function(){ 
+           angular.element('#productsController').scope().update_tagurl($(this).val(), previous_use_type);
+           previous_use_type = this.value;
+           
+       })
+
        $('#id_ordering').change(function(){
            angular.element('#productsController').scope().update_filterurl($(this).attr('name'), $(this).val());
        })

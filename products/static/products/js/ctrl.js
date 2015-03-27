@@ -22,7 +22,6 @@ angular.module('productsApp', [])
           url = newValue.replace(
               '/products/' + url_array[2] +  '/list', 
               '/products/api/list?format=json&categories=' + url_array[2]);
-          alert(url);
         }
         $scope.getproducts(url);
       }

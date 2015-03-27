@@ -12,8 +12,9 @@ class FilterForm(forms.Form):
 
 class ShirtFilterForm(forms.Form):
     color = TagChoiceField(queryset=Tag.objects.filter(name='color'))
-    style = TagChoiceField(queryset=Tag.objects.filter(category__name='shirts', name='style'))
-    fit = TagChoiceField(queryset=Tag.objects.filter(category__name='shirts', name='fit'))
+    use_type = TagChoiceField(queryset=Tag.objects.filter(category__name='t-shirts', name='type'))
+    style = TagChoiceField(queryset=Tag.objects.filter(category__name='t-shirts', name='style'))
+    fit = TagChoiceField(queryset=Tag.objects.filter(category__name='t-shirts', name='fit'))
 
 
 class LongSleeveFilterForm(forms.Form):
@@ -39,9 +40,9 @@ class PantsFilterForm(forms.Form):
 
 class ShoesFilterForm(forms.Form):
     color = TagChoiceField(queryset=Tag.objects.filter(name='color'))
-    use_type = TagChoiceField(queryset=Tag.objects.filter(name='color'))
+    use_type = TagChoiceField(queryset=Tag.objects.filter(category__name='shoes', name='type'))
     
 
 class HatsFilterForm(forms.Form):
     color = TagChoiceField(queryset=Tag.objects.filter(name='color'))
-    style = TagChoiceField(queryset=Tag.objects.filter(name='style'))
+    style = TagChoiceField(queryset=Tag.objects.filter(category__name='hats', name='style'))
