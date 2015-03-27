@@ -41,7 +41,7 @@ class Order(models.Model):
                    'Your order has been shipped',
                    'Hi ' + self.user.first_name + ', we though you\'d like to know that you order has been shipped',
                    'sales@djangoseller.com',
-                   [order.email],
+                   [self.email],
                    fail_silently=False
                )
         super(Order, self).save(*args, **kwargs)

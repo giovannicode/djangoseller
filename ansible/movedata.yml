@@ -1,0 +1,5 @@
+---
+- hosts: djangoseller.com
+  tasks:
+    - name: Move Data
+      copy: src=data.json dest=/home/root/www/website/data.json
