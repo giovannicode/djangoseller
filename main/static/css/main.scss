@@ -1,5 +1,20 @@
-$main: hsl(0, 0%, 90%);
+$background: hsl(0, 0%, 95%);
+$base-main: hsl(173, 90%, 35%);
+$navigation: hsl(0, 0%, 80%);
 
 * {
-   background-color: $main;
+   background-color: $background;
+}
+
+ul {
+  background-color: $navigation;
+  li a {
+    &:hover {
+      background-color: hsl(0, 0%, 90%);
+    }
+  }
+}
+
+.product_box {
+  background-color: $base-main;
 }

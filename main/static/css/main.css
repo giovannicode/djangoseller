@@ -1,4 +1,12 @@
 * {
-  background-color: #e6e6e6; }
+  background-color: #f2f2f2; }
+
+ul {
+  background-color: #cccccc; }
+  ul li a:hover {
+    background-color: #e6e6e6; }
+
+.product_box {
+  background-color: #09aa97; }
 
 /*# sourceMappingURL=main.css.map */
