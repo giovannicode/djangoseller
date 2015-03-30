@@ -24,4 +24,5 @@ def deploy():
 def movecss():
     with lcd('./main/static/css'):
         local('sass main.scss main.css')
+        local('sass mango.scss mango.css')
     local('python manage.py collectstatic --noinput')

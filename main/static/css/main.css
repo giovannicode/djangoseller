@@ -7,7 +7,10 @@ ul {
     background-color: #0bdac2; }
 
 .product_box {
+  float: left;
   width: 300px;
-  background-color: #09aa97; }
+  height: 400px;
+  border: 5px solid #09aa97;
+  background-color: #fafafa; }
 
 /*# sourceMappingURL=main.css.map */
