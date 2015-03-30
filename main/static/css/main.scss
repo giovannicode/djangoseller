@@ -1,5 +1,6 @@
-$background: hsl(0, 0%, 95%);
-$base-main: hsl(173, 90%, 35%);
+$background: hsl(0, 0%, 98%);
+$color-base: hsl(173, 90%, 35%);
+$color-base-light: hsl(173, 90%, 45%);
 $navigation: hsl(0, 0%, 80%);
 
 * {
@@ -7,14 +8,15 @@ $navigation: hsl(0, 0%, 80%);
 }
 
 ul {
-  background-color: $navigation;
+  background-color: $color-base;
   li a {
     &:hover {
-      background-color: hsl(0, 0%, 90%);
+      background-color: $color-base-light;
     }
   }
 }
 
 .product_box {
-  background-color: $base-main;
+  width: 300px;
+  background-color: $color-base;
 }

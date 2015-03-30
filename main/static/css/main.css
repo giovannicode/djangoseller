@@ -1,12 +1,13 @@
 * {
-  background-color: #f2f2f2; }
+  background-color: #fafafa; }
 
 ul {
-  background-color: #cccccc; }
+  background-color: #09aa97; }
   ul li a:hover {
-    background-color: #e6e6e6; }
+    background-color: #0bdac2; }
 
 .product_box {
+  width: 300px;
   background-color: #09aa97; }
 
 /*# sourceMappingURL=main.css.map */
