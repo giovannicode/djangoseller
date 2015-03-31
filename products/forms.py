@@ -3,6 +3,11 @@ from django import forms
 from .models import Product, Tag
 
 class TagChoiceField(forms.ModelChoiceField):
+
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('empty_label', 'Any')
+        super(TagChoiceField, self).__init__(*args, **kwargs)
+
     def label_from_instance(self, obj):
         return obj.value
 
