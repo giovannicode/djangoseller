@@ -1,9 +1,28 @@
+@mixin textbox_attr {
+  border: 1px solid hsl(0, 0%, 70%);
+  border-radius: 5px;
+}
+
 form {
+  label {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: hsl(0, 0%, 20%);
+    font-weight: bold;
+  }
   p {
     box-sizing: border-box;
     width: inherit;
     input {
       float: right;
+      &[type="text"] {
+        @include textbox_attr;
+      }
+      &[type="password"] {
+        @include textbox_attr;
+      }
+      &[type="email"] {
+        @include textbox_attr;
+      }
     }
   }
 }

@@ -7,6 +7,10 @@ class UserCreateForm(forms.ModelForm):
     password1 = forms.CharField(label="password", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Password confirmation", widget=forms.PasswordInput)
 
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('label_suffix', '') 
+        super(UserCreateForm, self).__init__(*args, **kwargs)
+
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
