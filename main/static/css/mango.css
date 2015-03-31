@@ -1,26 +1,46 @@
 form {
-  border: 1px solid #bfbfbf; }
-  form label {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    color: #333333;
-    font-weight: bold; }
+  border: 1px solid #b3b3b3;
+  border-radius: 2px;
+  padding: 20px;
+  font-size: 14px; }
   form p {
-    box-sizing: border-box;
-    width: inherit; }
+    display: block;
+    margin-bottom: 25px; }
+    form p label {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #333333;
+      font-weight: bold; }
     form p input {
       float: right; }
       form p input[type="text"] {
-        border: 1px solid #bfbfbf;
+        border: 1px solid #b3b3b3;
         border-radius: 5px;
-        height: 25px; }
+        height: 25px;
+        color: #474747;
+        padding-left: 10px;
+        padding-right: 10px; }
       form p input[type="password"] {
-        border: 1px solid #bfbfbf;
+        border: 1px solid #b3b3b3;
         border-radius: 5px;
-        height: 25px; }
+        height: 25px;
+        color: #474747;
+        padding-left: 10px;
+        padding-right: 10px; }
       form p input[type="email"] {
-        border: 1px solid #bfbfbf;
+        border: 1px solid #b3b3b3;
         border-radius: 5px;
-        height: 25px; }
+        height: 25px;
+        color: #474747;
+        padding-left: 10px;
+        padding-right: 10px; }
+  form button[type="submit"] {
+    float: right;
+    background-color: #09aa97;
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold; }
 
 /*# sourceMappingURL=mango.css.map */
