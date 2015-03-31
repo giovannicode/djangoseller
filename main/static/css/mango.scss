@@ -37,12 +37,12 @@ form {
 
   }
   button[type="submit"] {
-    float: right;
+    display: block;
     background-color: hsl(173, 90%, 35%);
     border: none;
     width: 100px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 5px;
     color: white;
     font-weight: bold;
   }

@@ -34,12 +34,12 @@ form {
         padding-left: 10px;
         padding-right: 10px; }
   form button[type="submit"] {
-    float: right;
+    display: block;
     background-color: #09aa97;
     border: none;
     width: 100px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 5px;
     color: white;
     font-weight: bold; }
 
