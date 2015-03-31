@@ -4,7 +4,7 @@ from .models import User
 
 class UserCreateForm(forms.ModelForm):
     
-    password1 = forms.CharField(label="password", widget=forms.PasswordInput)
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Password confirmation", widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):

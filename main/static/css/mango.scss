@@ -1,11 +1,14 @@
 @mixin textbox_attr {
-  border: 1px solid hsl(0, 0%, 70%);
+  border: 1px solid hsl(0, 0%, 75%);
   border-radius: 5px;
+  height: 25px;
 }
 
 form {
+  border: 1px solid hsl(0, 0%, 75%);
   label {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
     color: hsl(0, 0%, 20%);
     font-weight: bold;
   }
