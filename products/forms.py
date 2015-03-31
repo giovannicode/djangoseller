@@ -11,6 +11,11 @@ class FilterForm(forms.Form):
 
 
 class ShirtFilterForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('label_suffix', '')
+        super(ShirtFilterForm, self).__init__(*args, **kwargs)
+
     color = TagChoiceField(queryset=Tag.objects.filter(name='color'))
     use_type = TagChoiceField(queryset=Tag.objects.filter(category__name='t-shirts', name='type'))
     style = TagChoiceField(queryset=Tag.objects.filter(category__name='t-shirts', name='style'))

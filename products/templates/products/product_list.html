@@ -9,13 +9,15 @@
 <div ng-app="productsApp">
 <div id="productsController" ng-controller="productsController">
 <div>
-   <form>
-      <label for="q">Sort By</label>
+   <form class="horizontal">
+     <p><label for="q">Sort By</label>
       <select id="id_ordering" name="ordering">
          <option value="price">Low to High</option>
          <option value="-price">High to Low</option>
-      </select> <button type="submit">Sort</button> </form> 
+      </select>
+     </p>
    {{ filter_form.as_p }}
+   </form>
    <script>
    window.onload = function(){
        $('#id_color').on('focus', function(){
@@ -53,7 +55,9 @@
    }
    </script>
 </div>
+  <div>
    {% include 'products/includes/main.html' %}
+  </div>
 </div>
 </div>
 <script>

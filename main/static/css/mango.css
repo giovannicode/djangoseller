@@ -3,6 +3,11 @@ form {
   border-radius: 2px;
   padding: 20px;
   font-size: 14px; }
+  form.horizontal {
+    width: auto; }
+  form.horizontal p {
+    display: inline;
+    margin-right: 10px; }
   form p {
     display: block;
     margin-bottom: 25px; }
