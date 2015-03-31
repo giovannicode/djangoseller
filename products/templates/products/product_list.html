@@ -1,24 +1,25 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+
 {% block head_tags %}
 <script src="{% static 'products/js/ctrl.js' %}"></script>
 {% endblock head_tags %}
-{% block content %}
 
-   {% include 'products/includes/sidebar_categories.html' %}
-<div ng-app="productsApp">
-<div id="productsController" ng-controller="productsController">
-<div>
-   <form class="horizontal">
-     <p><label for="q">Sort By</label>
-      <select id="id_ordering" name="ordering">
-         <option value="price">Low to High</option>
-         <option value="-price">High to Low</option>
-      </select>
-     </p>
-   {{ filter_form.as_p }}
-   </form>
-   <script>
+{% block content %}
+    {% include 'products/includes/sidebar_categories.html' %}
+    <div ng-app="productsApp">
+        <div id="productsController" ng-controller="productsController">
+            <form class="horizontal">
+                <p>
+                    <label for="q">Sort By</label>
+                    <select id="id_ordering" name="ordering">
+                        <option value="price">Low to High</option>
+                        <option value="-price">High to Low</option>
+                    </select>
+                </p>
+                {{ filter_form.as_p }}
+            </form>
+            <script>
    window.onload = function(){
        $('#id_color').on('focus', function(){
            previous_color = this.value;
@@ -53,13 +54,13 @@
            angular.element('#productsController').scope().update_filterurl($(this).attr('name'), $(this).val());
        })
    }
-   </script>
-</div>
-  <div>
-   {% include 'products/includes/main.html' %}
-  </div>
-</div>
-</div>
+            </script>
+            <div>
+                {% include 'products/includes/main.html' %}
+            </div>
+        </div>
+    </div>
+
 <script>
 $('.cart_adder').click(function(event){
    $.post(
