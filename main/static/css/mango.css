@@ -15,7 +15,7 @@
     list-style-type: none; }
     .horinav ul li {
       width: 100px;
-      border-right: 1px solid #06796c; }
+      border-right: 1px solid #089181; }
       .horinav ul li a {
         text-decoration: none;
         text-align: center;
@@ -24,6 +24,32 @@
         line-height: 30px;
         background-color: #09aa97;
         color: white; }
+        .horinav ul li a:hover {
+          background-color: #0ac2ac; }
+      .horinav ul li ul {
+        box-shadow: 0px 1px 3px 0px #333333; }
+        .horinav ul li ul li a {
+          background-color: white;
+          border-top: #089181;
+          color: #089181; }
+          .horinav ul li ul li a:hover {
+            background-color: #09aa97;
+            color: white; }
+
+.vertinav ul {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  list-style-type: none; }
+  .vertinav ul li a {
+    width: 200px;
+    text-align: center;
+    line-height: 30px;
+    display: block;
+    background-color: white;
+    text-decoration: none;
+    color: #089181; }
+    .vertinav ul li a:hover {
+      background-color: #09aa97;
+      color: white; }
 
 form.mango-form.vertical p input[type="text"], form.mango-form.vertical p input[type="password"], form.mango-form.vertical p input[type="email"] {
   border: 1px solid #b3b3b3;
@@ -32,6 +58,10 @@ form.mango-form.vertical p input[type="text"], form.mango-form.vertical p input[
   color: #474747;
   padding-left: 10px;
   padding-right: 10px; }
+  form.mango-form.vertical p input[type="text"]:focus, form.mango-form.vertical p input[type="password"]:focus, form.mango-form.vertical p input[type="email"]:focus {
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #09aa97; }
 
 form.mango-form.vertical p {
   display: block; }
