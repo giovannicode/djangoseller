@@ -23,7 +23,18 @@ $navigation: hsl(0, 0%, 80%);
   width: 1100px;
 }
 
+#category_nav {
+  float: left;
+}
+
+#products_app {
+  width: 900px;
+  height: auto;
+  float: right;
+}
+
 .product_box { 
+  box-sizing: border-box;
   float: left;
   width: 300px;
   height: 400px;

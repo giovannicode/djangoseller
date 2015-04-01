@@ -6,14 +6,14 @@
 {% endblock head_tags %}
 
 {% block content %}
-    <div class="vertinav">
+    <div id="category_nav" class="vertinav">
         <ul>
         {% for category in category_list %}
             <li><a href="/products/{{category.id}}/list">{{ category.name|capfirst }}</a></li>
         {% endfor %}
         </ul>
     </div>
-    <div ng-app="productsApp">
+    <div id="products_app" ng-app="productsApp">
         <div id="productsController" ng-controller="productsController">
             <form class="mango-form horizontal">
                 <p>
