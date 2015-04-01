@@ -1,8 +1,45 @@
+.horinav ul {
+  list-style-type: none; }
+  .horinav ul li {
+    float: left;
+    position: relative;
+    width: 100px; }
+    .horinav ul li a {
+      display: block;
+      text-decoration: none;
+      text-align: center; }
+    .horinav ul li ul {
+      display: none; }
+    .horinav ul li:hover ul {
+      display: block;
+      position: absolute; }
+
+.horinav {
+  box-shadow: 0px 2px 3px 0px black;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .horinav ul li {
+    border-right: 1px solid #06796c; }
+    .horinav ul li a {
+      padding-top: 4px;
+      padding-bottom: 4px;
+      line-height: 30px;
+      background-color: #09aa97;
+      color: white; }
+
+form p input[type="text"], form p input[type="password"], form p input[type="email"] {
+  border: 1px solid #b3b3b3;
+  border-radius: 5px;
+  height: 25px;
+  color: #474747;
+  padding-left: 10px;
+  padding-right: 10px; }
+
 form {
   border: 1px solid #b3b3b3;
   border-radius: 2px;
   padding: 20px;
-  font-size: 14px; }
+  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
   form.horizontal {
     width: auto; }
   form.horizontal p {
@@ -12,32 +49,10 @@ form {
     display: block;
     margin-bottom: 25px; }
     form p label {
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: #333333;
       font-weight: bold; }
     form p input {
       float: right; }
-      form p input[type="text"] {
-        border: 1px solid #b3b3b3;
-        border-radius: 5px;
-        height: 25px;
-        color: #474747;
-        padding-left: 10px;
-        padding-right: 10px; }
-      form p input[type="password"] {
-        border: 1px solid #b3b3b3;
-        border-radius: 5px;
-        height: 25px;
-        color: #474747;
-        padding-left: 10px;
-        padding-right: 10px; }
-      form p input[type="email"] {
-        border: 1px solid #b3b3b3;
-        border-radius: 5px;
-        height: 25px;
-        color: #474747;
-        padding-left: 10px;
-        padding-right: 10px; }
   form button[type="submit"] {
     display: block;
     background-color: #09aa97;

@@ -6,45 +6,6 @@
   margin-right: auto;
   width: 1100px; }
 
-ul {
-  background-color: #09aa97; }
-  ul li a:hover {
-    background-color: #0bdac2; }
-
-#horinav {
-  width: inherit;
-  position: relative;
-  float: left; }
-
-/******************************************************************************
-  FIRST TIER NAVIGATION
-/*****************************************************************************/
-#horinav ul {
-  list-style-type: none; }
-
-#horinav > ul > li {
-  float: left;
-  position: relative;
-  width: 194px; }
-
-#horinav > ul > li > a {
-  display: block;
-  text-decoration: none;
-  text-align: center;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  line-height: 35px; }
-
-/*********************************************
-  SECOND TIER NAVIGATION
-**********************************************/
-#horinav > ul > li > ul {
-  display: none; }
-
-#horinav > ul > li:hover > ul {
-  display: block;
-  position: absolute; }
-
 .product_box {
   float: left;
   width: 300px;

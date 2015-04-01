@@ -1,4 +1,69 @@
-@mixin textbox_attr {
+// SETTINGS
+
+// Base settings
+$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-color: hsl(173, 90%, 35%);
+$base-color-light: hsl(173, 90%, 45%);
+
+// Horizontal navigation settings.
+$horinav-font-family: $base-font-family; 
+$horinav-li-width: 100px;
+$horinav-a-padding-top: 4px;
+$horinav-a-padding-bottom: 4px;
+$horinav-a-line-height: 30px;
+$horinav-a-background-color: $base-color;
+
+// Form settings
+$form-padding: 20px;
+$form-font-size: 14px;
+$form-font-family: $base-font-family;
+
+
+
+// Horinav Layout
+.horinav {
+
+  ul {
+    list-style-type: none; 
+    li {
+      float: left;
+      position: relative;
+      width: $horinav-li-width; 
+      a {
+        display: block;
+        text-decoration: none;
+        text-align: center;
+      }
+      ul {
+        display: none; 
+      }
+      &:hover ul {
+        display: block;
+        position: absolute;
+      }
+    }
+  }
+}
+
+// Horinav Styling
+.horinav {
+  box-shadow: 0px 2px 3px 0px hsl(0, 0%, 0%);
+  font-family: $horinav-font-family; 
+  ul li {
+    border-right: 1px solid hsl(173, 90%, 25%);
+    a {
+      padding-top: $horinav-a-padding-top;
+      padding-bottom: $horinav-a-padding-bottom;
+      line-height: $horinav-a-line-height;
+      background-color: $horinav-a-background-color;
+      color: white;
+    }
+  }
+}
+
+// Form extenders.
+
+%textbox {
   border: 1px solid hsl(0, 0%, 70%);
   border-radius: 5px;
   height: 25px;
@@ -12,7 +77,8 @@ form {
   border: 1px solid hsl(0, 0%, 70%);
   border-radius: 2px;
   padding: 20px;
-  font-size: 14px;
+  font-size: $form-font-size;
+  font-family: $form-font-family;
 
   &.horizontal {
     width: auto;
@@ -28,20 +94,18 @@ form {
     margin-bottom: 25px;
      
     label {
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      color: hsl(0, 0%, 20%);
-      font-weight: bold;
+      color: hsl(0, 0%, 20%); font-weight: bold;
     }
     input {
       float: right;
       &[type="text"] {
-        @include textbox_attr;
+        @extend %textbox;
       }
       &[type="password"] {
-        @include textbox_attr;
+        @extend %textbox;
       }
       &[type="email"] {
-        @include textbox_attr;
+        @extend %textbox;
       }
     }
 

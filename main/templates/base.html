@@ -11,24 +11,25 @@
 {% endblock head_tags %}
 </head>
 <body>
-<div class="base_div">
 <p>Author's site (needs updating): <a href="http://giovannicode.com">giovannicode.com</a><p>
 <p>Source code for djangoseller: <a href="https://github.com/giovannicode/djangoseller">github.com/giovannicode/djangoseller</a><p>
-   <nav id="horinav">
+   <div class="horinav">
    <ul>
       <li><a href="{% url 'main:index' %}">Home</a></li>
       <li><a href="{% url 'products:shirts-list' %}">Shop</a></li>
       <li><a href="{% url 'carts:detail' %}">Cart</a></li>
       <li><a href="{% url 'checkout:index' %}">Checkout</a></li>
-      <li><a href="{% url 'account:index' %}">Account</a><ul>
-                                                           <li><a href="#">test</a></li>
-                                                         </ul>
+      <li><a href="{% url 'account:index' %}">Account</a>
+          <ul>
+            <li><a href="#">test</a></li>
+          </ul>
       </li>
-      <li><a href="{% url 'users:signup' %}">Create Account</a></li>
+      <li><a href="{% url 'users:signup' %}">Sign up</a></li>
       <li><a href="{% url 'users:signin' %}">Sign in</a></li>
       <li><a href="{% url 'users:signout' %}">Sign out</a></li>
    </ul>
-   </nav>
+   </div>
+<div class="base_div">
 {% block content %}
 {% endblock content %}
 </div>
