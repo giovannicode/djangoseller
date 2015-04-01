@@ -11,7 +11,7 @@
       {% endfor %}
    {% endif %}
 
-   <form id="payment-form" method="POST">
+   <form id="payment-form" class="mango-form vertical" method="POST">
       {% csrf_token %}
       <h2>Total: &#36;{{ total }}</h2>
       <h3>Shipping Address</h3>

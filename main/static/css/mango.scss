@@ -4,35 +4,43 @@
 $base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $base-color: hsl(173, 90%, 35%);
 $base-color-light: hsl(173, 90%, 45%);
+$base-color-dark: hsl(173, 90%, 25%);
 
 // Horizontal navigation settings.
 $horinav-font-family: $base-font-family; 
+$horinav-ul-list-style-type: none;
 $horinav-li-width: 100px;
+$horinav-li-border-right: 1px solid $base-color-dark;
+$horinav-li-a-text-align: center; 
 $horinav-a-padding-top: 4px;
 $horinav-a-padding-bottom: 4px;
 $horinav-a-line-height: 30px;
 $horinav-a-background-color: $base-color;
+$horinav-li-a-color: white;
+$horinav-li-a-text-decoration: none;
 
 // Form settings
+$form-border: 1px solid hsl(0, 0%, 70%);
+$form-border-radius: 2px;
 $form-padding: 20px;
 $form-font-size: 14px;
 $form-font-family: $base-font-family;
+$form-vertical-p-margin-bottom: 25px;
+$form-vertical-label-color: hsl(0, 0%, 20%);
+$form-vertical-label-font-weight: bold;
+$form-horizontal-width: auto;
+$form-horizontal-p-margin-right: 10px;
 
 
 
 // Horinav Layout
 .horinav {
-
   ul {
-    list-style-type: none; 
     li {
       float: left;
       position: relative;
-      width: $horinav-li-width; 
       a {
         display: block;
-        text-decoration: none;
-        text-align: center;
       }
       ul {
         display: none; 
@@ -47,16 +55,21 @@ $form-font-family: $base-font-family;
 
 // Horinav Styling
 .horinav {
-  box-shadow: 0px 2px 3px 0px hsl(0, 0%, 0%);
   font-family: $horinav-font-family; 
-  ul li {
-    border-right: 1px solid hsl(173, 90%, 25%);
-    a {
-      padding-top: $horinav-a-padding-top;
-      padding-bottom: $horinav-a-padding-bottom;
-      line-height: $horinav-a-line-height;
-      background-color: $horinav-a-background-color;
-      color: white;
+  ul {
+    list-style-type: $horinav-ul-list-style-type; 
+    li {
+      width: $horinav-li-width;
+      border-right: $horinav-li-border-right;
+      a {
+        text-decoration: $horinav-li-a-text-decoration;
+        text-align: $horinav-li-a-text-align;
+        padding-top: $horinav-a-padding-top;
+        padding-bottom: $horinav-a-padding-bottom;
+        line-height: $horinav-a-line-height;
+        background-color: $horinav-a-background-color;
+        color: $horinav-li-a-color;
+      }
     }
   }
 }
@@ -72,32 +85,43 @@ $form-font-family: $base-font-family;
   padding-right: 10px;
 }
 
-form {
 
-  border: 1px solid hsl(0, 0%, 70%);
-  border-radius: 2px;
-  padding: 20px;
+// mango-form Layout.
+form.mango-form
+{
+  &.vertical {
+    p {
+      display: block;
+      input {
+        float: right;
+      }
+    }
+  }
+
+  &.horizontal {
+    p {
+      display: inline;
+    }
+  }
+}
+
+// mango-form styling.
+form.mango-form {
+
+  border: $form-border;
+  border-radius: $form-border-radius;
+  padding: $form-padding;
   font-size: $form-font-size;
   font-family: $form-font-family;
 
-  &.horizontal {
-    width: auto;
-  }
- 
-  &.horizontal p {
-    display: inline;
-    margin-right: 10px;
-  }
-  
-  p {
-    display: block;
-    margin-bottom: 25px;
+  &.vertical p {
+    margin-bottom: $form-vertical-p-margin-bottom;
      
     label {
-      color: hsl(0, 0%, 20%); font-weight: bold;
+      color: $form-vertical-label-color; 
+      font-weight: $form-vertical-label-font-weight;
     }
     input {
-      float: right;
       &[type="text"] {
         @extend %textbox;
       }
@@ -112,12 +136,20 @@ form {
   }
   button[type="submit"] {
     display: block;
-    background-color: hsl(173, 90%, 35%);
+    background-color: $base-color;
     border: none;
     width: 100px;
     height: 40px;
     border-radius: 5px;
     color: white;
     font-weight: bold;
+  }
+
+  &.horizontal {
+    width: $form-horizontal-width;
+  }
+ 
+  &.horizontal p {
+    margin-right: $form-horizontal-p-margin-right;
   }
 }

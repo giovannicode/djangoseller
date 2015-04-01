@@ -7,9 +7,17 @@ $navigation: hsl(0, 0%, 80%);
 
 * {
    background-color: $color-background;
+   margin: 0px;
+   padding: 0px;
+}
+
+#main_navigation {
+  position: absolute;
+  top: 0px;
 }
 
 .base_div {
+  margin-top: 70px;
   margin-left: auto;
   margin-right: auto;
   width: 1100px;
@@ -25,7 +33,4 @@ $navigation: hsl(0, 0%, 80%);
 
 form {
   width: 400px;
-}
-
-form.horizontal {
 }
