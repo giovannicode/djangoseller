@@ -46,7 +46,7 @@ form {
   width: 400px;
 }
 
-@media (min-width: 700px) {
+@media (min-device-width: 400px) {
   .header {
     background-color: black;
     height: 200px;
