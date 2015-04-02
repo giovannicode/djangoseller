@@ -45,3 +45,11 @@ $navigation: hsl(0, 0%, 80%);
 form {
   width: 400px;
 }
+
+@media (min-width: 700px) {
+  .header {
+    background-color: black;
+    height: 200px;
+    width: 100%;
+  }
+}
