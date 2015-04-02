@@ -36,13 +36,14 @@ $form-vertical-label-font-weight: bold;
 $form-horizontal-width: auto;
 $form-horizontal-p-margin-right: 10px;
 
-
-
 // Horinav Layout
 .horinav {
   ul {
     li {
       float: left;
+      @media (max-width: 500px){
+        float: none;
+      }
       position: relative;
       a {
         display: block;
@@ -65,6 +66,9 @@ $form-horizontal-p-margin-right: 10px;
     list-style-type: $horinav-ul-list-style-type; 
     li {
       width: $horinav-li-width;
+      @media (max-width: 500px){
+        width: 100%;
+      }
       border-right: $horinav-li-border-right;
       a {
         text-decoration: $horinav-li-a-text-decoration;
@@ -94,6 +98,8 @@ $form-horizontal-p-margin-right: 10px;
     }
   }
 }
+
+// Vertinav styling
 
 .vertinav {
   ul {

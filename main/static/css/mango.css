@@ -1,6 +1,9 @@
 .horinav ul li {
   float: left;
   position: relative; }
+  @media (max-width: 500px) {
+    .horinav ul li {
+      float: none; } }
   .horinav ul li a {
     display: block; }
   .horinav ul li ul {
@@ -16,6 +19,9 @@
     .horinav ul li {
       width: 100px;
       border-right: 1px solid #089181; }
+      @media (max-width: 500px) {
+        .horinav ul li {
+          width: 100%; } }
       .horinav ul li a {
         text-decoration: none;
         text-align: center;
