@@ -46,9 +46,18 @@ form {
   width: 400px;
 }
 
-@media (min-device-width: 400px) {
+
+@media (min-width: 700px) {
   .header {
-    background-color: black;
+    background-color: green;
+    height: 200px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 400px) {
+  .header {
+    background-color: blue;
     height: 200px;
     width: 100%;
   }
