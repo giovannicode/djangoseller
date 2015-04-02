@@ -22,6 +22,9 @@
       @media (max-width: 500px) {
         .horinav ul li {
           width: 100%; } }
+      @media (max-device-width: 500px) {
+        .horinav ul li {
+          width: 100%; } }
       .horinav ul li a {
         text-decoration: none;
         text-align: center;
