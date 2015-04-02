@@ -47,7 +47,7 @@ form {
 }
 
 
-@media (min-width: 700px) {
+@media (min-device-width: 500px) {
   .header {
     background-color: green;
     height: 200px;
@@ -55,7 +55,7 @@ form {
   }
 }
 
-@media (min-width: 400px) {
+@media (max-device-width: 499px) {
   .header {
     background-color: blue;
     height: 200px;
