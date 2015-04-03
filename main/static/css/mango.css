@@ -105,7 +105,7 @@ form.mango-form {
   border: 1px solid #b3b3b3;
   border-radius: 2px;
   padding: 20px;
-  font-size: 14px;
+  font-size: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
   form.mango-form.vertical p {
     margin-bottom: 25px; }
