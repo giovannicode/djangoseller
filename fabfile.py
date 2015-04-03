@@ -4,6 +4,8 @@ from fabric.context_managers import lcd
 #def test():
 #    local("python manage.py test")
 
+env.hosts =['djangoseller.com']
+
 def prepare_server():
     local("ansible-playbook -u root ansible/playbook.yml")
 
@@ -26,3 +28,8 @@ def movecss():
         local('sass main.scss main.css')
         local('sass mango.scss mango.css')
     local('python manage.py collectstatic --noinput')
+
+def quickdeploy():
+    local('git push production master')
+    with cd('/home/root/www/website'):
+        run('python manage.py collectstatic --noinput')
