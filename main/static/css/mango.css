@@ -20,6 +20,7 @@ form.mango-form {
     display: inline; }
 
 form.mango-form {
+  box-sizing: border-box;
   border: 1px solid #b3b3b3;
   border-radius: 2px;
   padding: 20px;
@@ -46,19 +47,19 @@ form.mango-form {
 
 @media (max-width: 500px) {
   form.mango-form {
-    width: 100%; } }
-@media (max-width: 500px) {
-  form.mango-form.vertical p {
-    width: 98%;
-    margin-left: auto;
-    margin-right: auto; }
-    form.mango-form.vertical p label {
-      display: block; }
-    form.mango-form.vertical p input {
-      box-sizing: border-box;
-      display: block;
-      float: none;
-      width: 100%; } }
+    width: 100%;
+    padding: 0px; }
+    form.mango-form.vertical p {
+      width: 94%;
+      margin-left: auto;
+      margin-right: auto; }
+      form.mango-form.vertical p label {
+        display: block; }
+      form.mango-form.vertical p input {
+        box-sizing: border-box;
+        display: block;
+        float: none;
+        width: 100%; } }
 
 .horinav {
   width: 100%; }

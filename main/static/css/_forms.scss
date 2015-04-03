@@ -55,7 +55,7 @@ form.mango-form
 
 // mango-form styling.
 form.mango-form {
-
+  box-sizing: border-box;
   border: $form-border;
   border-radius: $form-border-radius;
   padding: $form-padding;
@@ -102,16 +102,16 @@ form.mango-form {
   }
 }
 
-// RESPONSIVE/ADAPTIVE SETTINGS
+// RESPONSIVE/ADAPTIVE(mobile-large-width) Layout
 form.mango-form
 {
   @media (max-width: $mobile-large-width){
     width: 100%;
-  }
-  &.vertical {
-    p {
-      @media (max-width: $mobile-large-width){
-        width: 98%;
+    padding: 0px;
+
+    &.vertical {
+      p {
+        width: 94%;
         margin-left: auto;
         margin-right: auto;
         label {
