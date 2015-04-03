@@ -95,7 +95,7 @@ form.mango-form {
     @media (max-width: 500px) {
       form.mango-form.vertical p {
         display: block;
-        width: 95%;
+        width: 98%;
         margin-left: auto;
         margin-right: auto; }
         form.mango-form.vertical p label {
