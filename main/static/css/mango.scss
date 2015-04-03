@@ -36,13 +36,16 @@ $form-vertical-label-font-weight: bold;
 $form-horizontal-width: auto;
 $form-horizontal-p-margin-right: 10px;
 
+// @media settings;
+$galaxy-width: 500px;
+
 // Horinav Layout
 .horinav {
   width: 100%;
   ul {
     li {
       float: left;
-      @media (max-width: 500px){
+      @media (max-width: $galaxy-width){
         float: none;
       }
       position: relative;
@@ -68,10 +71,10 @@ $form-horizontal-p-margin-right: 10px;
     list-style-type: $horinav-ul-list-style-type; 
     li {
       width: $horinav-li-width;
-      @media (max-width: 500px) {
+      @media (max-width: $galaxy-width) {
         width: 100%;
       }
-      @media (max-device-width: 500px) {
+      @media (max-device-width: $galaxy-width) {
         width: 100%;
       }
       border-right: $horinav-li-border-right;
@@ -146,7 +149,9 @@ $form-horizontal-p-margin-right: 10px;
 // mango-form Layout.
 form.mango-form
 {
-  width: 100%;
+  @media (max-device-width: $galaxy-width){
+    width: 100%;
+  }
   box-sizing: border-box;
   &.vertical {
     p {
@@ -154,7 +159,7 @@ form.mango-form
       input {
         float: right;
       }
-      @media (max-device-width: 500px){
+      @media (max-device-width: $galaxy-width){
         display: block;
         label {
           display: block;
@@ -164,14 +169,19 @@ form.mango-form
           float: none;
         }
       }
-      @media (max-width: 500px){
+      @media (max-width: $galaxy-width){
         display: block;
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
         label {
           display: block;
         }
         input {
+          box-sizing: border-box;
           display: block;
           float: none;
+          width: 100%;
         }
       }
     }
