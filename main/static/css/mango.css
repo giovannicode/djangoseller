@@ -1,19 +1,22 @@
-.horinav ul li {
-  float: left;
-  position: relative; }
-  @media (max-width: 500px) {
-    .horinav ul li {
-      float: none; } }
-  .horinav ul li a {
-    display: block; }
-  .horinav ul li ul {
-    display: none; }
-  .horinav ul li:hover ul {
-    display: block;
-    position: absolute; }
+.horinav {
+  width: 100%; }
+  .horinav ul li {
+    float: left;
+    position: relative; }
+    @media (max-width: 500px) {
+      .horinav ul li {
+        float: none; } }
+    .horinav ul li a {
+      display: block; }
+    .horinav ul li ul {
+      display: none; }
+    .horinav ul li:hover ul {
+      display: block;
+      position: absolute; }
 
 .horinav {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #09aa97; }
   .horinav ul {
     list-style-type: none; }
     .horinav ul li {
@@ -72,12 +75,31 @@ form.mango-form.vertical p input[type="text"], form.mango-form.vertical p input[
     border-radius: 5px;
     border: 2px solid #09aa97; }
 
-form.mango-form.vertical p {
-  display: block; }
-  form.mango-form.vertical p input {
-    float: right; }
-form.mango-form.horizontal p {
-  display: inline; }
+form.mango-form {
+  width: 100%;
+  box-sizing: border-box; }
+  form.mango-form.vertical p {
+    display: block; }
+    form.mango-form.vertical p input {
+      float: right; }
+    @media (max-device-width: 500px) {
+      form.mango-form.vertical p {
+        display: block; }
+        form.mango-form.vertical p label {
+          display: block; }
+        form.mango-form.vertical p input {
+          display: block;
+          float: none; } }
+    @media (max-width: 500px) {
+      form.mango-form.vertical p {
+        display: block; }
+        form.mango-form.vertical p label {
+          display: block; }
+        form.mango-form.vertical p input {
+          display: block;
+          float: none; } }
+  form.mango-form.horizontal p {
+    display: inline; }
 
 form.mango-form {
   border: 1px solid #b3b3b3;

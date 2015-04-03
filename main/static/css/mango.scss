@@ -38,6 +38,7 @@ $form-horizontal-p-margin-right: 10px;
 
 // Horinav Layout
 .horinav {
+  width: 100%;
   ul {
     li {
       float: left;
@@ -62,6 +63,7 @@ $form-horizontal-p-margin-right: 10px;
 // Horinav Styling
 .horinav {
   font-family: $horinav-font-family; 
+  background-color: $base-color;
   ul {
     list-style-type: $horinav-ul-list-style-type; 
     li {
@@ -144,11 +146,33 @@ $form-horizontal-p-margin-right: 10px;
 // mango-form Layout.
 form.mango-form
 {
+  width: 100%;
+  box-sizing: border-box;
   &.vertical {
     p {
       display: block;
       input {
         float: right;
+      }
+      @media (max-device-width: 500px){
+        display: block;
+        label {
+          display: block;
+        }
+        input {
+          display: block;
+          float: none;
+        }
+      }
+      @media (max-width: 500px){
+        display: block;
+        label {
+          display: block;
+        }
+        input {
+          display: block;
+          float: none;
+        }
       }
     }
   }

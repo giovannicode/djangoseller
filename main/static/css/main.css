@@ -3,16 +3,12 @@
   margin: 0px;
   padding: 0px; }
 
-#main_navigation {
-  position: absolute;
-  top: 0px;
-  width: 100%; }
-
 .base_div {
-  margin-top: 70px;
+  margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 1100px; }
+  width: 80%;
+  background-color: gray; }
 
 #category_nav {
   float: left; }
@@ -29,8 +25,5 @@
   height: 400px;
   border: 5px solid #09aa97;
   background-color: white; }
-
-form {
-  width: 400px; }
 
 /*# sourceMappingURL=main.css.map */
