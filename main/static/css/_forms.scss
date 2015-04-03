@@ -1,0 +1,129 @@
+// FORM SETTINGS
+$form-border: 1px solid hsl(0, 0%, 70%);
+$form-border-radius: 2px;
+$form-padding: 20px;
+$form-font-size: 100%;
+$form-font-family: $base-font-family;
+
+$form-vertical-p-margin-bottom: 25px;
+$form-vertical-label-color: hsl(0, 0%, 20%);
+$form-vertical-label-font-weight: bold;
+
+$form-horizontal-width: auto;
+$form-horizontal-p-margin-right: 10px;
+
+
+// RESPONSIVE/ADAPTIVE SETTINGS;
+$mobile-large-width: 500px;
+
+// Form extenders.
+%textbox {
+  border: 1px solid hsl(0, 0%, 70%);
+  border-radius: 5px;
+  height: 25px;
+  color: hsl(0, 0%, 28%);
+  padding-left: 10px;
+  padding-right: 10px;
+  &:focus {
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid $base-color;
+  }
+}
+
+
+// mango-form Layout.
+form.mango-form
+{
+  box-sizing: border-box;
+  &.vertical {
+    p {
+      display: block;
+      input {
+        float: right;
+      }
+    }
+  }
+
+  &.horizontal {
+    p {
+      display: inline;
+    }
+  }
+}
+
+
+// mango-form styling.
+form.mango-form {
+
+  border: $form-border;
+  border-radius: $form-border-radius;
+  padding: $form-padding;
+  font-size: $form-font-size;
+  font-family: $form-font-family;
+
+  &.vertical p {
+    margin-bottom: $form-vertical-p-margin-bottom;
+     
+    label {
+      color: $form-vertical-label-color; 
+      font-weight: $form-vertical-label-font-weight;
+    }
+    input {
+      &[type="text"] {
+        @extend %textbox;
+      }
+      &[type="password"] {
+        @extend %textbox;
+      }
+      &[type="email"] {
+        @extend %textbox;
+      }
+    }
+
+  }
+  button[type="submit"] {
+    display: block;
+    background-color: $base-color;
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+  }
+
+  &.horizontal {
+    width: $form-horizontal-width;
+  }
+ 
+  &.horizontal p {
+    margin-right: $form-horizontal-p-margin-right;
+  }
+}
+
+// RESPONSIVE/ADAPTIVE SETTINGS
+form.mango-form
+{
+  @media (max-width: $mobile-large-width){
+    width: 100%;
+  }
+  &.vertical {
+    p {
+      @media (max-width: $mobile-large-width){
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+        label {
+          display: block;
+        }
+        input {
+          box-sizing: border-box;
+          display: block;
+          float: none;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

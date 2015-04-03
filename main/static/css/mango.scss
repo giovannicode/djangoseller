@@ -24,20 +24,7 @@ $horinav-ul-ul-a-hover-background-color: $base-color;
 $horinav-ul-ul-a-color: $base-color-dark;
 $horinav-ul-ul-a-hover-color: white;
 
-// Form settings
-$form-border: 1px solid hsl(0, 0%, 70%);
-$form-border-radius: 2px;
-$form-padding: 20px;
-$form-font-size: 100%;
-$form-font-family: $base-font-family;
-$form-vertical-p-margin-bottom: 25px;
-$form-vertical-label-color: hsl(0, 0%, 20%);
-$form-vertical-label-font-weight: bold;
-$form-horizontal-width: auto;
-$form-horizontal-p-margin-right: 10px;
-
-// @media settings;
-$galaxy-width: 500px;
+@import '_forms'; 
 
 // Horinav Layout
 .horinav {
@@ -45,7 +32,7 @@ $galaxy-width: 500px;
   ul {
     li {
       float: left;
-      @media (max-width: $galaxy-width){
+      @media (max-width: $mobile-large-width){
         float: none;
       }
       position: relative;
@@ -71,10 +58,10 @@ $galaxy-width: 500px;
     list-style-type: $horinav-ul-list-style-type; 
     li {
       width: $horinav-li-width;
-      @media (max-width: $galaxy-width) {
+      @media (max-width: $mobile-large-width) {
         width: 100%;
       }
-      @media (max-device-width: $galaxy-width) {
+      @media (max-device-width: $mobile-large-width) {
         width: 100%;
       }
       border-right: $horinav-li-border-right;
@@ -126,119 +113,5 @@ $galaxy-width: 500px;
         color: white;
       }
     }
-  }
-}
-
-// Form extenders.
-
-%textbox {
-  border: 1px solid hsl(0, 0%, 70%);
-  border-radius: 5px;
-  height: 25px;
-  color: hsl(0, 0%, 28%);
-  padding-left: 10px;
-  padding-right: 10px;
-  &:focus {
-    outline: none;
-    border-radius: 5px;
-    border: 2px solid $base-color;
-  }
-}
-
-
-// mango-form Layout.
-form.mango-form
-{
-  @media (max-device-width: $galaxy-width){
-    width: 100%;
-  }
-  box-sizing: border-box;
-  &.vertical {
-    p {
-      display: block;
-      input {
-        float: right;
-      }
-      @media (max-device-width: $galaxy-width){
-        display: block;
-        label {
-          display: block;
-        }
-        input {
-          display: block;
-          float: none;
-        }
-      }
-      @media (max-width: $galaxy-width){
-        display: block;
-        width: 98%;
-        margin-left: auto;
-        margin-right: auto;
-        label {
-          display: block;
-        }
-        input {
-          box-sizing: border-box;
-          display: block;
-          float: none;
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  &.horizontal {
-    p {
-      display: inline;
-    }
-  }
-}
-
-// mango-form styling.
-form.mango-form {
-
-  border: $form-border;
-  border-radius: $form-border-radius;
-  padding: $form-padding;
-  font-size: $form-font-size;
-  font-family: $form-font-family;
-
-  &.vertical p {
-    margin-bottom: $form-vertical-p-margin-bottom;
-     
-    label {
-      color: $form-vertical-label-color; 
-      font-weight: $form-vertical-label-font-weight;
-    }
-    input {
-      &[type="text"] {
-        @extend %textbox;
-      }
-      &[type="password"] {
-        @extend %textbox;
-      }
-      &[type="email"] {
-        @extend %textbox;
-      }
-    }
-
-  }
-  button[type="submit"] {
-    display: block;
-    background-color: $base-color;
-    border: none;
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-  }
-
-  &.horizontal {
-    width: $form-horizontal-width;
-  }
- 
-  &.horizontal p {
-    margin-right: $form-horizontal-p-margin-right;
   }
 }

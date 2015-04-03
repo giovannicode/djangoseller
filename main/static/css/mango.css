@@ -1,3 +1,65 @@
+form.mango-form.vertical p input[type="text"], form.mango-form.vertical p input[type="password"], form.mango-form.vertical p input[type="email"] {
+  border: 1px solid #b3b3b3;
+  border-radius: 5px;
+  height: 25px;
+  color: #474747;
+  padding-left: 10px;
+  padding-right: 10px; }
+  form.mango-form.vertical p input[type="text"]:focus, form.mango-form.vertical p input[type="password"]:focus, form.mango-form.vertical p input[type="email"]:focus {
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #09aa97; }
+
+form.mango-form {
+  box-sizing: border-box; }
+  form.mango-form.vertical p {
+    display: block; }
+    form.mango-form.vertical p input {
+      float: right; }
+  form.mango-form.horizontal p {
+    display: inline; }
+
+form.mango-form {
+  border: 1px solid #b3b3b3;
+  border-radius: 2px;
+  padding: 20px;
+  font-size: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  form.mango-form.vertical p {
+    margin-bottom: 25px; }
+    form.mango-form.vertical p label {
+      color: #333333;
+      font-weight: bold; }
+  form.mango-form button[type="submit"] {
+    display: block;
+    background-color: #09aa97;
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold; }
+  form.mango-form.horizontal {
+    width: auto; }
+  form.mango-form.horizontal p {
+    margin-right: 10px; }
+
+@media (max-width: 500px) {
+  form.mango-form {
+    width: 100%; } }
+@media (max-width: 500px) {
+  form.mango-form.vertical p {
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto; }
+    form.mango-form.vertical p label {
+      display: block; }
+    form.mango-form.vertical p input {
+      box-sizing: border-box;
+      display: block;
+      float: none;
+      width: 100%; } }
+
 .horinav {
   width: 100%; }
   .horinav ul li {
@@ -62,75 +124,5 @@
     .vertinav ul li a:hover {
       background-color: #09aa97;
       color: white; }
-
-form.mango-form.vertical p input[type="text"], form.mango-form.vertical p input[type="password"], form.mango-form.vertical p input[type="email"] {
-  border: 1px solid #b3b3b3;
-  border-radius: 5px;
-  height: 25px;
-  color: #474747;
-  padding-left: 10px;
-  padding-right: 10px; }
-  form.mango-form.vertical p input[type="text"]:focus, form.mango-form.vertical p input[type="password"]:focus, form.mango-form.vertical p input[type="email"]:focus {
-    outline: none;
-    border-radius: 5px;
-    border: 2px solid #09aa97; }
-
-form.mango-form {
-  box-sizing: border-box; }
-  @media (max-device-width: 500px) {
-    form.mango-form {
-      width: 100%; } }
-  form.mango-form.vertical p {
-    display: block; }
-    form.mango-form.vertical p input {
-      float: right; }
-    @media (max-device-width: 500px) {
-      form.mango-form.vertical p {
-        display: block; }
-        form.mango-form.vertical p label {
-          display: block; }
-        form.mango-form.vertical p input {
-          display: block;
-          float: none; } }
-    @media (max-width: 500px) {
-      form.mango-form.vertical p {
-        display: block;
-        width: 98%;
-        margin-left: auto;
-        margin-right: auto; }
-        form.mango-form.vertical p label {
-          display: block; }
-        form.mango-form.vertical p input {
-          box-sizing: border-box;
-          display: block;
-          float: none;
-          width: 100%; } }
-  form.mango-form.horizontal p {
-    display: inline; }
-
-form.mango-form {
-  border: 1px solid #b3b3b3;
-  border-radius: 2px;
-  padding: 20px;
-  font-size: 100%;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-  form.mango-form.vertical p {
-    margin-bottom: 25px; }
-    form.mango-form.vertical p label {
-      color: #333333;
-      font-weight: bold; }
-  form.mango-form button[type="submit"] {
-    display: block;
-    background-color: #09aa97;
-    border: none;
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold; }
-  form.mango-form.horizontal {
-    width: auto; }
-  form.mango-form.horizontal p {
-    margin-right: 10px; }
 
 /*# sourceMappingURL=mango.css.map */
