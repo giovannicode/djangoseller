@@ -1,0 +1,118 @@
+// Horizontal navigation settings.
+$horinav-font-family: $base-font-family; 
+$horinav-ul-list-style-type: none;
+$horinav-li-width: 100px;
+$horinav-li-border-right: 1px solid $base-color-dark;
+$horinav-li-a-text-align: center; 
+$horinav-a-padding-top: 4px;
+$horinav-a-padding-bottom: 4px;
+$horinav-a-line-height: 30px;
+$horinav-a-background-color: $base-color;
+$horinav-li-a-color: white;
+$horinav-li-a-text-decoration: none;
+$horinav-ul-ul-box-shadow: 0px 1px 3px 0px #333333;
+$horinav-ul-ul-a-background-color: white;
+$horinav-ul-ul-a-hover-background-color: $base-color;
+$horinav-ul-ul-a-color: $base-color-dark;
+$horinav-ul-ul-a-hover-color: white;
+
+
+// Horinav Layout
+.horinav {
+  width: 100%;
+  ul {
+    li {
+      float: left;
+      position: relative;
+      a {
+        display: block;
+      }
+      ul {
+        display: none; 
+      }
+      &:hover ul {
+        display: block;
+        position: absolute;
+      }
+    }
+  }
+}
+
+// Horinav Styling
+.horinav {
+  font-family: $horinav-font-family; 
+  background-color: $base-color;
+  ul {
+    list-style-type: $horinav-ul-list-style-type; 
+    li {
+      width: $horinav-li-width;
+      border-right: $horinav-li-border-right;
+      a {
+        text-decoration: $horinav-li-a-text-decoration;
+        text-align: $horinav-li-a-text-align;
+        padding-top: $horinav-a-padding-top;
+        padding-bottom: $horinav-a-padding-bottom;
+        line-height: $horinav-a-line-height;
+        background-color: $horinav-a-background-color;
+        color: $horinav-li-a-color;
+          
+        &:hover {
+          background-color: $base-color-light;
+        }
+      }
+      ul {
+        box-shadow: $horinav-ul-ul-box-shadow; 
+        li a {
+          background-color: $horinav-ul-ul-a-background-color;
+          border-top: $base-color-dark;
+          color: $horinav-ul-ul-a-color;
+          &:hover {
+            background-color: $horinav-ul-ul-a-hover-background-color;
+            color: $horinav-ul-ul-a-hover-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Horinav Adaptive/Responsive Layout
+.horinav {
+  .mango-menu-label {
+    display: none;
+  }
+  input[type=checkbox] {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  @media (max-width: $mobile-large-width) {
+    .mango-menu-label {
+      display: block;
+    }
+    ul {
+      display: none;
+    }
+    input[type=checkbox]:checked ~ ul {
+      display: block;
+      li {
+        float: none;
+      }
+    }
+  }
+}
+
+// Horinav Adaptive/Responsive Styling
+.horinav {
+  @media (max-width: $mobile-large-width) {
+    label {
+      text-align: center;
+      line-height: $horinav-a-line-height;
+      background-color: $horinav-a-background-color;
+      color: $horinav-li-a-color; 
+    } 
+    ul li {
+      width: 100%;
+    } 
+  }
+}

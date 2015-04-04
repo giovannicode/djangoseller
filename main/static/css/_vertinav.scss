@@ -1,0 +1,21 @@
+// Vertinav styling
+
+.vertinav {
+  ul {
+    font-family: $base-font-family;
+    list-style-type: none;  
+    li a {
+      width: 200px;
+      text-align: center;
+      line-height: 30px;
+      display: block;
+      background-color: white; 
+      text-decoration: none;
+      color: $base-color-dark;
+      &:hover {
+        background-color: $base-color; 
+        color: white;
+      }
+    }
+  }
+}

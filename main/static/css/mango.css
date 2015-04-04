@@ -1,3 +1,4 @@
+/**** SETTINGS ***/
 form.mango-form.vertical p input[type="text"], form.mango-form.vertical p input[type="password"], form.mango-form.vertical p input[type="email"] {
   border: 1px solid #b3b3b3;
   border-radius: 5px;
@@ -63,30 +64,9 @@ form.mango-form {
 
 .horinav {
   width: 100%; }
-  .horinav .mango-menu-label {
-    display: none; }
-  .horinav input[type=checkbox] {
-    display: none;
-    -webkit-appearance: none; }
-  .horinav input[type=checkbox]:checked ~ ul {
-    display: block; }
-  @media (max-width: 500px) {
-    .horinav {
-      /*  input[type=checkbox] {
-          &:checked ~ ul {
-              display: block; 
-          }
-        }*/ }
-      .horinav .mango-menu-label {
-        display: block; }
-      .horinav ul {
-        display: none; } }
   .horinav ul li {
     float: left;
     position: relative; }
-    @media (max-width: 500px) {
-      .horinav ul li {
-        float: none; } }
     .horinav ul li a {
       display: block; }
     .horinav ul li ul {
@@ -103,12 +83,6 @@ form.mango-form {
     .horinav ul li {
       width: 100px;
       border-right: 1px solid #089181; }
-      @media (max-width: 500px) {
-        .horinav ul li {
-          width: 100%; } }
-      @media (max-device-width: 500px) {
-        .horinav ul li {
-          width: 100%; } }
       .horinav ul li a {
         text-decoration: none;
         text-align: center;
@@ -128,6 +102,30 @@ form.mango-form {
           .horinav ul li ul li a:hover {
             background-color: #09aa97;
             color: white; }
+
+.horinav .mango-menu-label {
+  display: none; }
+.horinav input[type=checkbox] {
+  display: none;
+  -webkit-appearance: none; }
+@media (max-width: 500px) {
+  .horinav .mango-menu-label {
+    display: block; }
+  .horinav ul {
+    display: none; }
+  .horinav input[type=checkbox]:checked ~ ul {
+    display: block; }
+    .horinav input[type=checkbox]:checked ~ ul li {
+      float: none; } }
+
+@media (max-width: 500px) {
+  .horinav label {
+    text-align: center;
+    line-height: 30px;
+    background-color: #09aa97;
+    color: white; }
+  .horinav ul li {
+    width: 100%; } }
 
 .vertinav ul {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
