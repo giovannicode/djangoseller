@@ -9,6 +9,9 @@
   margin-right: auto;
   background-color: gray;
   width: 90%; }
+  @media (max-width: 500px) {
+    .base_div {
+      width: 96%; } }
 
 #category_nav {
   float: left; }

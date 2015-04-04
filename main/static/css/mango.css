@@ -50,7 +50,7 @@ form.mango-form {
     width: 100%;
     padding: 0px; }
     form.mango-form.vertical p {
-      width: 94%;
+      width: 96%;
       margin-left: auto;
       margin-right: auto; }
       form.mango-form.vertical p label {
@@ -63,6 +63,15 @@ form.mango-form {
 
 .horinav {
   width: 100%; }
+  .horinav a {
+    display: none; }
+  @media (max-width: 500px) {
+    .horinav a {
+      display: block; }
+      .horinav a:hover ~ ul {
+        display: block; }
+    .horinav ul {
+      display: none; } }
   .horinav ul li {
     float: left;
     position: relative; }
