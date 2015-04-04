@@ -63,15 +63,24 @@ form.mango-form {
 
 .horinav {
   width: 100%; }
-  .horinav a {
+  .horinav .mango-menu-label {
     display: none; }
+  .horinav input[type=checkbox] {
+    display: none;
+    -webkit-appearance: none; }
+  .horinav input[type=checkbox]:checked ~ ul {
+    display: block; }
   @media (max-width: 500px) {
-    .horinav a {
-      display: block; }
-      .horinav a:hover ~ ul {
+    .horinav {
+      /*  input[type=checkbox] {
+          &:checked ~ ul {
+              display: block; 
+          }
+        }*/ }
+      .horinav .mango-menu-label {
         display: block; }
-    .horinav ul {
-      display: none; } }
+      .horinav ul {
+        display: none; } }
   .horinav ul li {
     float: left;
     position: relative; }

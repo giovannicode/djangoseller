@@ -28,16 +28,27 @@ $horinav-ul-ul-a-hover-color: white;
 
 // Horinav Layout
 .horinav {
-  a {
+  .mango-menu-label {
     display: none;
   }
+  input[type=checkbox] {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  input[type=checkbox]:checked ~ ul {
+    display: block;
+  }
+
   @media (max-width: $mobile-large-width) {
-    a {
+    .mango-menu-label {
       display: block;
-      &:hover ~ ul {
+    }
+  /*  input[type=checkbox] {
+      &:checked ~ ul {
           display: block; 
       }
-    }
+    }*/
     ul {
       display: none;
     }
