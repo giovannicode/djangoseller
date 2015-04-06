@@ -8,6 +8,8 @@ from django.http import HttpResponse
 from rest_framework import generics
 from rest_framework.response import Response
 
+from main.functions import *
+
 from .models import Cart, CartItem
 from products.models import Product
 
@@ -18,6 +20,7 @@ class CartCreateRest(TemplateView):
 
     def get(self, request, *args, **kwargs):
         product = Product.objects.get(pk=request.GET.get('product_id'))
+        cart = get_cart(self)
         if request.user.is_authenticated():
             return self.auth_cart_add(request, product)
         else:

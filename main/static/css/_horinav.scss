@@ -1,5 +1,7 @@
 // Horizontal navigation settings.
 $horinav-font-family: $base-font-family; 
+$horinav-width: 100%;
+$horinav-height: 40px;
 $horinav-ul-list-style-type: none;
 $horinav-li-width: 100px;
 $horinav-li-border-right: 1px solid $base-color-dark;
@@ -19,7 +21,6 @@ $horinav-ul-ul-a-hover-color: white;
 
 // Horinav Layout
 .horinav {
-  width: 100%;
   ul {
     li {
       float: left;
@@ -42,6 +43,8 @@ $horinav-ul-ul-a-hover-color: white;
 .horinav {
   font-family: $horinav-font-family; 
   background-color: $base-color;
+  width: $horinav-width;
+  height: $horinav-height;
   ul {
     list-style-type: $horinav-ul-list-style-type; 
     li {
