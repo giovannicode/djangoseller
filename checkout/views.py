@@ -11,6 +11,8 @@ from django.views.generic import FormView
 
 from braces.views import UserPassesTestMixin
 
+from main.functions import *
+
 from carts.models import Cart
 from orders.models import Address, Order, OrderItem
 from payments.models import Payment
@@ -22,27 +24,19 @@ class CheckoutView(UserPassesTestMixin, FormView):
     template_name = 'checkout/index.html'
     form_class = CheckoutForm
     login_url = '/'
-     
+    
+    # This test function is for the UserPassesTestMixin. 
     def test_func(self, user):
-        if user.is_authenticated():
-            return user.cart.cartitem_set.exists()
-        else:
-            try:
-                self.request.session.modified = True
-                cart = Cart.objects.get(session_key=self.request.session.session_key)
-            except Cart.DoesNotExist:
-                cart = Cart.objects.create(session_key=self.request.session.session_key)
-            return cart.cartitem_set.exists()       
+        # If the cart is empty, the user will be redirected to the home page.
+        cart = get_cart(self) 
+        cart.cartitem_set.exists()       
 
     def get_form(self, form_class):
         return form_class(self.request.user, **self.get_form_kwargs())
 
     def get_context_data(self, **kwargs):
         context = super(CheckoutView, self).get_context_data(**kwargs)
-        if self.request.user.is_authenticated():
-            cart = self.request.user.cart
-        else:
-           cart = Cart.objects.get(session_key=self.request.session.session_key) 
+        cart = get_cart(self) 
         total = 0
         for item in cart.cartitem_set.all():
             total += item.product.price * item.qty 
@@ -61,7 +55,6 @@ class CheckoutView(UserPassesTestMixin, FormView):
 		    email = user.email
                     first_name = user.first_name
                     last_name = user.last_name
-                    cart = user.cart
                 else:
                     user = None
                     email = form.cleaned_data.get('email')
@@ -77,10 +70,8 @@ class CheckoutView(UserPassesTestMixin, FormView):
                     payment=payment, 
                     address=address
                 )
-                if self.request.user.is_authenticated(): 
-                    cart = self.request.user.cart
-                else:
-                    cart = Cart.objects.get(session_key=self.request.session.session_key)
+                cart = get_cart(self) 
+
                 for cartitem in cart.cartitem_set.all():
                     orderitem = OrderItem.objects.create(
                         order=order,
