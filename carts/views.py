@@ -21,13 +21,8 @@ class CartCreateRest(TemplateView):
     def get(self, request, *args, **kwargs):
         product = Product.objects.get(pk=request.GET.get('product_id'))
         cart = get_cart(self)
-        if request.user.is_authenticated():
-            return self.auth_cart_add(request, product)
-        else:
-            return self.anom_cart_add(request, product)
 
-    def auth_cart_add(self, request, product): 
-        cart = request.user.cart
+        # Check to make sure the item is not already in the cart. 
         if not cart.cartitem_set.filter(product=product).exists():
             try:
                 with transaction.atomic():
@@ -35,6 +30,7 @@ class CartCreateRest(TemplateView):
                     Product.objects.filter(id=product.id).update(qty=F('qty')-1)
             except IntegrityError:
                 raise IntegrityError 
+        # If the item is already in the cart, update the quantity instead. 
         else:
             try:
                 with transaction.atomic():
@@ -43,31 +39,6 @@ class CartCreateRest(TemplateView):
             except IntegrityError:
                 raise IntegrityError
         return HttpResponse('Item added')
-
-    def anom_cart_add(self, request, product):
-        # May update try-catch later, as I think it is an ugly implementation
-        try: 
-            # Setting modified to True will make sure that session_key is not None
-            request.session.modified = True
-            cart = Cart.objects.get(session_key=request.session.session_key)
-        except Cart.DoesNotExist:
-            cart = Cart.objects.create(session_key=request.session.session_key)
-
-        if not cart.cartitem_set.filter(product=product).exists():
-            try:
-                with transaction.atomic():
-                    cart.cartitem_set.create(cart=cart, product=product, qty=1)
-                    Product.objects.filter(id=product.id).update(qty=F('qty')-1)
-            except IntegrityError:
-                raise IntegrityError 
-        else:
-            try:
-                with transaction.atomic():
-                    cart.cartitem_set.filter(product=product).update(qty=F('qty')+1) 
-                    Product.objects.filter(id=product.id).update(qty=F('qty')-1)
-            except IntegrityError:
-                raise IntegrityError
-        return HttpResponse('Item added')       
 
 
 class CartItemDeleteView(DeleteView):
@@ -78,10 +49,7 @@ class CartItemDeleteView(DeleteView):
         self.object = self.get_object()
         try:
             with transaction.atomic():
-                if self.request.user.is_authenticated(): 
-                    cart = self.request.user.cart
-                else:
-                    cart = Cart.objects.get(session_key=self.request.session.session_key)
+                cart = get_cart(self) 
                 cart_item = cart.cartitem_set.get(id=self.object.id)
                 Product.objects.filter(id=cart_item.product.id).update(qty=F('qty')+cart_item.qty)
                 cart_item.delete()
@@ -98,27 +66,14 @@ class CartDetailView(DetailView):
     model = Cart
 
     def get_object(self): 
-        if self.request.user.is_authenticated():
-            return Cart.objects.get(pk=self.request.user.cart.id)
-        else: 
-            # May update try-catch later, as I think it is an ugly implementation
-            try: 
-                # Setting modified to True will make sure that session_key is not None
-		self.request.session.modified = True
-		cart = Cart.objects.get(session_key=self.request.session.session_key)
-	    except Cart.DoesNotExist:
-		cart = Cart.objects.create(session_key=self.request.session.session_key)
-            return cart
-
+        cart = get_cart(self)
+        return cart
 
 class CartItemListAPI(generics.ListAPIView):  
     serializer_class = CartItemSerializer
 
     def get_queryset(self):
-        if self.request.user.is_authenticated():
-            cart = self.request.user.cart
-        else:
-           cart = Cart.objects.get(session_key=self.request.session.session_key) 
+        cart = get_cart(self) 
         self.queryset = cart.cartitem_set.all()
         return super(CartItemListAPI, self).get_queryset()
 
@@ -149,10 +104,7 @@ class CartItemUpdateAPI(generics.UpdateAPIView):
         return Response(diff_qty)
 
     def get_queryset(self):
-        if self.request.user.is_authenticated():
-            cart = self.request.user.cart
-        else:
-           cart = Cart.objects.get(session_key=self.request.session.session_key) 
+        cart = get_cart(self) 
         self.queryset = cart.cartitem_set.all()
         return super(CartItemUpdateAPI, self).get_queryset()
 
