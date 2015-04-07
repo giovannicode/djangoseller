@@ -9,12 +9,8 @@
     </div>
 <script>
 $('.cart_adder').click(function(event){
-   $.post(
-      "/carts/add",
-      {
-         product_id: $(this).data('product_id'),
-         csrfmiddlewaretoken: 'F79VzEYnintZEPAVh4BRKfjocbn2hH0y'
-      },
+   $.get(
+      "/carts/add?product_id=" + $(this).data('product_id'),
       function(data){
           alert(data);
       }
