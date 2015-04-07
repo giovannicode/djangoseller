@@ -46,7 +46,6 @@ class Order(models.Model):
                )
         super(Order, self).save(*args, **kwargs)
                     
-    
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order)

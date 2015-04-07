@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<a href="{% url 'orders:index' %}">Previous Orders</a>
     {% for order in orders %}
         <div>
             <p>{{ order.id }}</p>

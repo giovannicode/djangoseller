@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for order in order_list %}
+  <div>
+    <p>{{ order.id }}</p>
+    <p>{{ order.date }}</p>
+    <p>{{ order.payment.total }}</p>
+    <a href="{{ order.get_absolute_url }}">View Order</a>
+  </div>
+  {% endfor %}
+{% endblock content %}

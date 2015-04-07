@@ -1,5 +1,5 @@
 angular.module('productsApp', [])
-  .controller('productsController', function($scope, $http, $location){
+  .controller('productsController', function($scope, $window, $http, $location){
     /*/angular.element(document).ready(function(){
       $scope.getproducts($location.path());
     })*/
@@ -7,6 +7,9 @@ angular.module('productsApp', [])
     $scope.alert = function(mssg){
       alert(mssg);
     };
+    $scope.goto = function(url){
+      $window.location.href = url;
+    }
     $scope.$watch(
       function(){
         return $location.path(); 

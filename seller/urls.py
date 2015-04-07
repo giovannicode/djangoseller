@@ -8,5 +8,6 @@ urlpatterns = patterns('',
     url(r'^carts/', include('carts.urls', namespace='carts')),
     url(r'^checkout/', include('checkout.urls', namespace='checkout')),
     url(r'^users/', include('users.urls', namespace='users')),
-    url(r'^account/', include('account.urls', namespace='account'))
+    url(r'^account/', include('account.urls', namespace='account')),
+    url(r'^orders/', include('orders.urls', namespace='orders'))
 )

@@ -29,7 +29,7 @@ class CheckoutView(UserPassesTestMixin, FormView):
     def test_func(self, user):
         # If the cart is empty, the user will be redirected to the home page.
         cart = get_cart(self) 
-        cart.cartitem_set.exists()       
+        return cart.cartitem_set.exists()       
 
     def get_form(self, form_class):
         return form_class(self.request.user, **self.get_form_kwargs())

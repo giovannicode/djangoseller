@@ -6,3 +6,4 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
 
     picture = serializers.ImageField(use_url=False)
+    absolute_url = serializers.URLField(source='get_absolute_url')
