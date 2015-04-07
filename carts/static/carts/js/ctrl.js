@@ -23,11 +23,19 @@ angular.module('cartitemsApp', [])
             });
         }
         
-        $scope.update_qty = function(cartitem_id, qty){
+        $scope.update_qty = function(cartitem_id, qty, token){
             url = '/carts/api/update/' + cartitem_id + '/';
             var responsePromise = $http.post(
                 url,
-                { qty: qty }
+                { 
+                  qty: qty,
+                  csrfmiddlewaretoken: token
+                },
+                {
+                  headers : {
+                      "x-csrftoken" : token
+                  }
+                }
             );
 
             responsePromise.success(function(data, status, headers, config){
@@ -53,7 +61,9 @@ angular.module('cartitemsApp', [])
              });
         }
     })
-    .config(function($interpolateProvider){
+    .config(function($interpolateProvider, $httpProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+        $httpProvider.defaults.xsrfCookieName = 'csrfmiddlerwaretoken';
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     })
 ;
