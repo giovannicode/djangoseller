@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+   
+<div>
+    <p><b>Order ID: </b>{{ order.id }}</p>
+    <p><b>Order Date: </b>{{ order.date }}</p>
+<table>
+    <tr><th><b>Items Ordered</b></th></tr>
+{% for order_item in order.orderitem_set.all %}
+    <tr><td>{{ order_item.title }}</td><td>{{ order_item.price }}</td><td>{{ order_item.qty }}</td></tr>
+{% endfor %}
+</table>
+<p><b>Order Total: </b>{{ order.payment.total }}</p>
+<p><b>Ship Items to: </b>{{ order.address }}</p>
+</div>
+{% endblock content %}
