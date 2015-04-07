@@ -29,6 +29,9 @@ class Order(models.Model):
     address = models.OneToOneField(Address)
     shipped = models.BooleanField(default=False)
 
+    def get_absolute_url(self):
+        return reverse('orders:detail', args=[str(self.id)])
+
     def __unicode__(self):
         return "Order ID: {id}, Email: {email}, Shipped: {shipped}"\
                .format(id=self.id, email=self.email, shipped=self.shipped)
