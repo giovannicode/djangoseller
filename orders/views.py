@@ -9,7 +9,7 @@ class OrderListView(ListView):
 
     def get_queryset(self):
         user = self.request.user
-        return user.order_set.all()
+        return user.order_set.all().order_by('-date')
 
 class OrderDetailView(DetailView):
     model = Order
