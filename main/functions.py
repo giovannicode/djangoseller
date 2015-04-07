@@ -10,6 +10,7 @@ def get_cart(view):
         # Settin modified to True will make sure that session_key is not None
         try: 
             request.session.modified = True
+            request.session.save()
             cart = Cart.objects.get(session_key=request.session.session_key)
         except Cart.DoesNotExist:
             cart = Cart.objects.create(session_key=request.session.session_key)
