@@ -1,9 +1,10 @@
 ---
-- hosts: djangoseller.com
-  tasks:
-    - name: Updates a server 
+- hosts: all
+  sudo: true
+  tasks: 
+    - name: Update Ubuntu Server 
       apt: update_cache=true
-    - name: Upgrades server
+    - name: Upgrade Ubuntu Server
       apt: upgrade=yes
     - name: Install libpq-dev
       apt: pkg=libpq-dev state=installed
@@ -21,20 +22,16 @@
       command: sudo pip install -r requirements/requirements.txt
     - name: Installs nginx web server
       apt: pkg=nginx state=installed 
-      notify:
-        - start nginx
     - name: install postgresql
       apt: pkg=postgresql state=installed
     - name: Install postgresql-contrib 
       apt: pkg=postgresql-contrib 
     - name: Install supervisor
       apt: pkg=supervisor state=installed
-    - name: Install git 
-      apt: pkg=git state=installed
     - name: Congfigure postgresql
-      script: config_postgres.sh
+      script: vagrant_setup/config_postgres.sh
     - name: Configure nginx 
-      copy: src=nginx/djangoseller dest=/etc/nginx/sites-available/djangoseller
+      copy: src=vagrant_setup/nginx/djangoseller dest=/etc/nginx/sites-available/djangoseller
     - name: Create symlinks
       file: src=/etc/nginx/sites-available/djangoseller dest=/etc/nginx/sites-enabled/djangoseller state=link
     - name: Delete default nginx config file.
@@ -53,22 +50,11 @@
       file: path=/home/root/www/static state=directory
     - name: Create Django media directory
       file: path=/home/root/www/media/ state=directory
-    #- name: Create Django project
-    #  command: django-admin.py startproject website chdir=/home/root/www/ 
-    - name: Create git repository path
-      file: path=/var/repo/site.git state=directory
-    - name: Create base git repository 
-      command: git init --bare chdir=/var/repo/site.git
     - name: Create working tree directory
       file: path=/home/root/www/website state=directory
-    - name: Configure git
-      copy: src=git/post-receive dest=/var/repo/site.git/hooks/post-receive mode=744
     - name: Restart nginx
       service: name=nginx state=restarted 
     - name: Restart supervisor
       command: service supervisor restart
     - name: Restart gunicorn
       supervisorctl: name=gunicorn state=restarted config=/etc/supervisor/conf.d/gunicorn.conf
-  handlers:
-    - name: start nginx
-      service: name=nginx state=started
