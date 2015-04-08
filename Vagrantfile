@@ -3,6 +3,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, path: "provision.sh"
   config.vm.provision :shell, path: "provision2.sh"
   config.vm.network "forwarded_port", guest: 8080, host: 8080
-  config.vm.synced_folder "../", "/home/vagrant/www/website"
+  config.vm.synced_folder "./", "/home/vagrant/www/website"
 end
 
