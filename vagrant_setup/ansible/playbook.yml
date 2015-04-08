@@ -1,0 +1,74 @@
+---
+- hosts: djangoseller.com
+  tasks:
+    - name: Updates a server 
+      apt: update_cache=true
+    - name: Upgrades server
+      apt: upgrade=yes
+    - name: Install libpq-dev
+      apt: pkg=libpq-dev state=installed
+    - name: Install python-setuptools
+      apt: pkg=python-setuptools state=installed
+    - name: Install python-dev
+      apt: pkg=python-dev state=installed
+    - name: Install pip
+      apt: pkg=python-pip state=installed 
+    - name: Create requirements directory ifNotExists
+      file: path=requirements state=directory
+    - name: Copy the local pip requirements file
+      copy: src=../requirements/requirements.txt dest=requirements/requirements.txt
+    - name: Install python package requirements
+      command: sudo pip install -r requirements/requirements.txt
+    - name: Installs nginx web server
+      apt: pkg=nginx state=installed 
+      notify:
+        - start nginx
+    - name: install postgresql
+      apt: pkg=postgresql state=installed
+    - name: Install postgresql-contrib 
+      apt: pkg=postgresql-contrib 
+    - name: Install supervisor
+      apt: pkg=supervisor state=installed
+    - name: Install git 
+      apt: pkg=git state=installed
+    - name: Congfigure postgresql
+      script: config_postgres.sh
+    - name: Configure nginx 
+      copy: src=nginx/djangoseller dest=/etc/nginx/sites-available/djangoseller
+    - name: Create symlinks
+      file: src=/etc/nginx/sites-available/djangoseller dest=/etc/nginx/sites-enabled/djangoseller state=link
+    - name: Delete default nginx config file.
+      file: path=/etc/nginx/sites-enabled/default state=absent
+    - name: Create gunicorn directories
+      file: path=/home/root/www/gunicorn state=directory
+    - name: Configure gunicorn 
+      copy: src=gunicorn/conf.py dest=/home/root/www/gunicorn/conf.py
+    - name: Create supervisor directories
+      file: path=/etc/supervisor/conf.d state=directory
+    - name: Create supervisor gunicorn log directories
+      file: path=/var/log/supervisor/gunicorn state=directory
+    - name: Configure supervisor
+      copy: src=supervisor/gunicorn.conf dest=/etc/supervisor/conf.d/gunicorn.conf
+    - name: Create Django static directory
+      file: path=/home/root/www/static state=directory
+    - name: Create Django media directory
+      file: path=/home/root/www/media/ state=directory
+    #- name: Create Django project
+    #  command: django-admin.py startproject website chdir=/home/root/www/ 
+    - name: Create git repository path
+      file: path=/var/repo/site.git state=directory
+    - name: Create base git repository 
+      command: git init --bare chdir=/var/repo/site.git
+    - name: Create working tree directory
+      file: path=/home/root/www/website state=directory
+    - name: Configure git
+      copy: src=git/post-receive dest=/var/repo/site.git/hooks/post-receive mode=744
+    - name: Restart nginx
+      service: name=nginx state=restarted 
+    - name: Restart supervisor
+      command: service supervisor restart
+    - name: Restart gunicorn
+      supervisorctl: name=gunicorn state=restarted config=/etc/supervisor/conf.d/gunicorn.conf
+  handlers:
+    - name: start nginx
+      service: name=nginx state=started
