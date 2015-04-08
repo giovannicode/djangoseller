@@ -61,3 +61,17 @@
       command: service supervisor restart
     - name: Restart gunicorn
       supervisorctl: name=gunicorn state=restarted config=/etc/supervisor/conf.d/gunicorn.conf
+    - name: Copy the local env_vars file
+      copy: src=environment/env_vars dest=env_vars
+    - name: configure .bashrc
+      script: shell_script.sh 
+    - name: Run migrations
+      shell: source /home/vagrant/.bashrc && python manage.py migrate 
+      args:
+        chdir: /home/vagrant/www/website
+        executable: /bin/bash
+    - name: Collect static files
+      shell: source /home/vagrant/.bashrc && python manage.py collectstatic --noinput
+      args:
+        chdir: /home/vagrant/www/website
+        executable: /bin/bash

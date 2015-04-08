@@ -1,0 +1,9 @@
+alias tosell='cd /home/vagrant/www/website'
+export SECRET_KEY="spaghvprf#2rgbho_jo^0n(2(tv3w@lxxp9mf#j+k2q^@+3x5k"
+export NAME='sellerdb'
+export USER='seller1'
+export PASSWORD='sellerpassword'
+export EMAIL_HOST='smtp.gmail.com'
+export EMAIL_PORT='587'
+export EMAIL_HOST_USER='testemailecom@gmail.com'
+export EMAIL_HOST_PASSWORD='djangomonster8'
