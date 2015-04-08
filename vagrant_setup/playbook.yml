@@ -1,6 +1,7 @@
 ---
 - hosts: all
-  sudo: true
+  user: vagrant
+  sudo: yes
   tasks: 
     - name: Update Ubuntu Server 
       apt: update_cache=true
@@ -36,10 +37,12 @@
       file: src=/etc/nginx/sites-available/djangoseller dest=/etc/nginx/sites-enabled/djangoseller state=link
     - name: Delete default nginx config file.
       file: path=/etc/nginx/sites-enabled/default state=absent
+    - name: Create www directory
+      file: path=/home/vagrant/www state=directory owner=vagrant group=vagrant recurse=yes
     - name: Create gunicorn directories
-      file: path=/home/root/www/gunicorn state=directory
+      file: path=/home/vagrant/www/gunicorn state=directory
     - name: Configure gunicorn 
-      copy: src=gunicorn/conf.py dest=/home/root/www/gunicorn/conf.py
+      copy: src=gunicorn/conf.py dest=/home/vagrant/www/gunicorn/conf.py
     - name: Create supervisor directories
       file: path=/etc/supervisor/conf.d state=directory
     - name: Create supervisor gunicorn log directories
@@ -47,11 +50,11 @@
     - name: Configure supervisor
       copy: src=supervisor/gunicorn.conf dest=/etc/supervisor/conf.d/gunicorn.conf
     - name: Create Django static directory
-      file: path=/home/root/www/static state=directory
+      file: path=/home/vagrant/www/static state=directory
     - name: Create Django media directory
-      file: path=/home/root/www/media/ state=directory
+      file: path=/home/vagrant/www/media/ state=directory
     - name: Create working tree directory
-      file: path=/home/root/www/website state=directory
+      file: path=/home/vagrant/www/website state=directory
     - name: Restart nginx
       service: name=nginx state=restarted 
     - name: Restart supervisor
