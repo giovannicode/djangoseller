@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/www/website":{"guestpath":"/home/vagrant/www/website","hostpath":"/home/drone-xb81/code/python/django/seller","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/drone-xb81/code/python/django/seller","disabled":false}}}

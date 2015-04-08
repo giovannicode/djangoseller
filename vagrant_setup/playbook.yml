@@ -4,8 +4,8 @@
   tasks: 
     - name: Update Ubuntu Server 
       apt: update_cache=true
-    - name: Upgrade Ubuntu Server
-      apt: upgrade=yes
+  #  - name: Upgrade Ubuntu Server
+  #    apt: upgrade=yes
     - name: Install libpq-dev
       apt: pkg=libpq-dev state=installed
     - name: Install python-setuptools
@@ -29,9 +29,9 @@
     - name: Install supervisor
       apt: pkg=supervisor state=installed
     - name: Congfigure postgresql
-      script: vagrant_setup/config_postgres.sh
+      script: postgres/config_postgres.sh
     - name: Configure nginx 
-      copy: src=vagrant_setup/nginx/djangoseller dest=/etc/nginx/sites-available/djangoseller
+      copy: src=nginx/djangoseller dest=/etc/nginx/sites-available/djangoseller
     - name: Create symlinks
       file: src=/etc/nginx/sites-available/djangoseller dest=/etc/nginx/sites-enabled/djangoseller state=link
     - name: Delete default nginx config file.
