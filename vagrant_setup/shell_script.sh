@@ -13,3 +13,4 @@ export EMAIL_HOST_PASSWORD='djangomonster8'
 
 python /home/vagrant/www/website/manage.py migrate
 python /home/vagrant/www/website/manage.py collectstatic --noinput
+python /home/vagrant/www/website/manage.py loaddata /home/vagrant/www/website/initial_data.json
