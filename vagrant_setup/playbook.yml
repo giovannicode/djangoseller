@@ -62,9 +62,15 @@
     - name: Restart gunicorn
       supervisorctl: name=gunicorn state=restarted config=/etc/supervisor/conf.d/gunicorn.conf
     - name: Copy the local env_vars file
-      copy: src=environment/env_vars dest=env_vars
-    - name: Setup Django project
-      script: shell_script.sh 
+      copy: src=environment/env_vars.txt dest=/home/vagrant/env_vars.txt
+#    - name: Setup environment variables
+#      script: shell_script.sh 
+#    - name: Setup Django project
+#      sudo: no
+#      shell: . /home/vagrant/.bashrc && python /home/vagrant/www/website/manage.py migrate
+#    - name: Setup Django project
+#      sudo: no
+#      shell: . /home/vagrant/.bashrc && python /home/vagrant/www/website/manage.py collectstatic --noinput
 #    - name: Run migrations
 #      shell: source /home/vagrant/.bashrc && python manage.py migrate 
 #      args:
