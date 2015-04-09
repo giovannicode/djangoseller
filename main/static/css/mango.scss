@@ -10,6 +10,9 @@ $base-color-dark: darken($base-color, 5%);
 $mobile-large-width: 500px;
 
 // Set Global Defaults
+body .mango-body {
+    font-family: $base-font-family
+}
 
 // Mango-Container Layout
 .mango-container {
