@@ -50,9 +50,9 @@
     - name: Configure supervisor
       copy: src=supervisor/gunicorn.conf dest=/etc/supervisor/conf.d/gunicorn.conf
     - name: Create Django static directory
-      file: path=/home/vagrant/www/static state=directory
+      file: path=/home/vagrant/www/static state=directory owner=vagrant group=vagrant recurse=yes
     - name: Create Django media directory
-      file: path=/home/vagrant/www/media/ state=directory
+      file: path=/home/vagrant/www/media/ state=directory owner=vagrant group=vagrant recurse=yes
     - name: Create working tree directory
       file: path=/home/vagrant/www/website state=directory
     - name: Restart nginx
