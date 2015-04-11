@@ -104,6 +104,7 @@ form.mango-form
   @media (max-width: $mobile-large-width){
     width: 100%;
     padding: 0px;
+    padding-top: 20px;
 
     &.vertical {
       p {
@@ -131,6 +132,13 @@ form.mango-form
             height: 40px
           }
         }
+      }
+      button[type="submit"]{
+        font-size: 19px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 96%;  
+        margin-bottom: 20px;
       }
     }
   }

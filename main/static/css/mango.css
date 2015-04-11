@@ -63,7 +63,8 @@ form.mango-form {
 @media (max-width: 500px) {
   form.mango-form {
     width: 100%;
-    padding: 0px; }
+    padding: 0px;
+    padding-top: 20px; }
     form.mango-form.vertical p {
       width: 96%;
       margin-left: auto;
@@ -82,7 +83,13 @@ form.mango-form {
         form.mango-form.vertical p input[type="password"] {
           height: 40px; }
         form.mango-form.vertical p input[type="email"] {
-          height: 40px; } }
+          height: 40px; }
+    form.mango-form.vertical button[type="submit"] {
+      font-size: 19px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 96%;
+      margin-bottom: 20px; } }
 
 .horinav ul li {
   float: left;
