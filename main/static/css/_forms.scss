@@ -110,7 +110,7 @@ form.mango-form
         width: 96%;
         margin-left: auto;
         margin-right: auto;
-        font-size: 16px;
+        font-size: 19px;
         label {
           display: block;
           
@@ -122,6 +122,7 @@ form.mango-form
           width: 100%;
           &[type="text"] {
             height: 40px; 
+            font-size: 17px;
           }
           &[type="password"] {
             height: 40px;
