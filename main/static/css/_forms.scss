@@ -118,6 +118,15 @@ form.mango-form
           display: block;
           float: none;
           width: 100%;
+          &[type="text"] {
+            height: 40px; 
+          }
+          &[type="password"] {
+            height: 40px;
+          }
+          &[type="email"] {
+            height: 40px
+          }
         }
       }
     }

@@ -1,6 +1,7 @@
 /**** SETTINGS ***/
-body .mango-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.mango-body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #1a1a1a; }
 
 .mango-container {
   width: 90%;
@@ -73,7 +74,13 @@ form.mango-form {
         box-sizing: border-box;
         display: block;
         float: none;
-        width: 100%; } }
+        width: 100%; }
+        form.mango-form.vertical p input[type="text"] {
+          height: 40px; }
+        form.mango-form.vertical p input[type="password"] {
+          height: 40px; }
+        form.mango-form.vertical p input[type="email"] {
+          height: 40px; } }
 
 .horinav ul li {
   float: left;
