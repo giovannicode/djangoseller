@@ -154,7 +154,8 @@ form.mango-form {
     background-color: #09aa97;
     color: white;
     font-size: 19px;
-    font-weight: bold; }
+    font-weight: bold;
+    height: 50px; }
   .horinav ul li {
     width: 100%;
     font-size: 17px;
