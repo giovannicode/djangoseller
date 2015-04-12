@@ -113,9 +113,12 @@ $horinav-ul-ul-a-hover-color: white;
       line-height: $horinav-a-line-height;
       background-color: $horinav-a-background-color;
       color: $horinav-li-a-color; 
+      font-size: 19px;
+      font-weight: bold;
     } 
     ul li {
       width: 100%;
+      font-size: 17px;
     } 
   }
 }
