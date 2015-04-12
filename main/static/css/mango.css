@@ -158,7 +158,9 @@ form.mango-form {
   .horinav ul li {
     width: 100%;
     font-size: 17px;
-    border-top: 1px solid #089181; } }
+    border-top: 1px solid #089181; }
+    .horinav ul li a {
+      line-height: 50px; } }
 
 .vertinav ul {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

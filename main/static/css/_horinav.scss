@@ -120,6 +120,9 @@ $horinav-ul-ul-a-hover-color: white;
       width: 100%;
       font-size: 17px;
       border-top: 1px solid $base-color-dark; 
+      a {
+        line-height: 50px; 
+      }
     } 
   }
 }
