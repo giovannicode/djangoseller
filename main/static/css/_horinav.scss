@@ -119,6 +119,7 @@ $horinav-ul-ul-a-hover-color: white;
     ul li {
       width: 100%;
       font-size: 17px;
+      border-top: 1px solid $base-color-dark; 
     } 
   }
 }
