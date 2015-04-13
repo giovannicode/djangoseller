@@ -13,7 +13,7 @@
         {% endfor %}
         </ul>
     </div>
-    <div id="products_app" ng-app="productsApp">
+    <div class="mango-grid" id="products_app" ng-app="productsApp">
         <div id="productsController" ng-controller="productsController">
             <form class="mango-form horizontal">
                 <p>
@@ -65,7 +65,7 @@ var anchor = function(url){
 }
             </script>
             <div class="products_box">
-                <div class="product_box" ng-repeat="product in data track by $index">
+                <div class="mango-grid-box product_box" ng-repeat="product in data track by $index">
                     <a href="" ng-click="goto(product.absolute_url)">
                       <div style="height:200px; width:200px; background-color: {[{product.color}]}"></div>
                       <!--<img width="200px" height="200px" id="{[{product.pk}]}" src="/media/{[{product.picture}]}"/>-->

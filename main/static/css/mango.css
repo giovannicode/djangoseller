@@ -13,6 +13,18 @@
   .mango-container {
     width: 96%; } }
 
+.mango-grid {
+  width: 100%;
+  background-color: gray;
+  overflow: auto; }
+
+.mango-grid-box {
+  float: left;
+  width: 200px;
+  height: 200px;
+  width: 240px;
+  height: 300px; }
+
 form.mango-form.vertical p input[type="text"], form.mango-form.vertical p input[type="password"], form.mango-form.vertical p input[type="email"] {
   border: 1px solid #b3b3b3;
   border-radius: 5px;

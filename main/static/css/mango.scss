@@ -30,8 +30,20 @@ $mobile-large-width: 500px;
   }
 }
 
+.mango-grid {
+  width: 100%;
+  background-color: gray;
+  overflow: auto;
+} 
+
+.mango-grid-box {
+    float: left;
+    width: 200px;
+    height: 200px;
+    width: 240px;
+    height: 300px;
+}
+
 @import '_forms'; 
 @import '_horinav';
 @import '_vertinav';
-
-
