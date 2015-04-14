@@ -2,6 +2,26 @@
 .mango-body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #1a1a1a; }
+  .mango-body h1 {
+    color: #09aa97; }
+  .mango-body a {
+    text-decoration: none;
+    color: #4183c4; }
+    .mango-body a:hover {
+      text-decoration: underline; }
+  .mango-body footer {
+    width: 100%;
+    background-color: #dddddd;
+    height: 100px;
+    padding: 15px;
+    box-sizing: border-box; }
+    .mango-body footer h4 {
+      background-color: inherit; }
+    .mango-body footer p {
+      background-color: inherit; }
+    .mango-body footer a {
+      background-color: inherit;
+      color: #089181; }
   .mango-body button {
     background-color: #09aa97;
     border: none;

@@ -13,6 +13,37 @@ $mobile-large-width: 500px;
 .mango-body {
   font-family: $base-font-family;
   color: hsl(0, 0%, 10%);  
+  
+  h1 {
+    color: $base-color;
+  }
+
+  a {
+    text-decoration: none;
+    color: #4183c4;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  footer {
+    width: 100%;
+    background-color: #dddddd;
+    height: 100px;
+    padding: 15px;
+    box-sizing: border-box;
+    h4 {
+      background-color: inherit;
+    }
+    p {
+      background-color: inherit;
+    }
+    a {
+      background-color: inherit;
+      color: $base-color-dark;
+    }
+  }
     
   button {
     background-color: $base-color;  
