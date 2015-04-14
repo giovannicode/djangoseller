@@ -43,8 +43,7 @@ form.mango-form-vertical
 form.mango-form-horizontal
 {
   p {
-    display: block;
-    float: left;
+    display: inline;
   }
 }
 
@@ -152,5 +151,12 @@ form.mango-form-vertical
 form.mango-form-horizontal
 {
   @media (max-width: $mobile-large-width) {
+    width: 100%;
+    padding: 0px;
+    padding-top: 20px;
+    p {
+      display: block;
+      float: none;
+    }
   }
 }

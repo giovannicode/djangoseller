@@ -32,41 +32,41 @@
   width: 240px;
   height: 350px; }
 
-form.mango-form.vertical p input[type="text"], form.mango-form.vertical p input[type="password"], form.mango-form.vertical p input[type="email"] {
+form.mango-form-vertical p input[type="text"], form.mango-form-vertical p input[type="password"], form.mango-form-vertical p input[type="email"] {
   border: 1px solid #b3b3b3;
   border-radius: 5px;
   height: 25px;
   color: #474747;
   padding-left: 10px;
   padding-right: 10px; }
-  form.mango-form.vertical p input[type="text"]:focus, form.mango-form.vertical p input[type="password"]:focus, form.mango-form.vertical p input[type="email"]:focus {
+  form.mango-form-vertical p input[type="text"]:focus, form.mango-form-vertical p input[type="password"]:focus, form.mango-form-vertical p input[type="email"]:focus {
     outline: none;
     border-radius: 5px;
     border: 2px solid #09aa97; }
 
-form.mango-form {
+form.mango-form-vertical {
   box-sizing: border-box; }
-  form.mango-form.vertical p {
+  form.mango-form-vertical p {
     display: block; }
-    form.mango-form.vertical p input {
+    form.mango-form-vertical p input {
       float: right; }
-  form.mango-form.horizontal p {
-    display: block;
-    float: left; }
 
-form.mango-form {
+form.mango-form-horizontal p {
+  display: inline; }
+
+form.mango-form-vertical {
   box-sizing: border-box;
   border: 1px solid #b3b3b3;
   border-radius: 2px;
   padding: 20px;
   font-size: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-  form.mango-form.vertical p {
+  form.mango-form-vertical p {
     margin-bottom: 25px; }
-    form.mango-form.vertical p label {
+    form.mango-form-vertical p label {
       color: #333333;
       font-weight: bold; }
-  form.mango-form button[type="submit"] {
+  form.mango-form-vertical button[type="submit"] {
     display: block;
     background-color: #09aa97;
     border: none;
@@ -75,41 +75,57 @@ form.mango-form {
     border-radius: 5px;
     color: white;
     font-weight: bold; }
-  form.mango-form.horizontal {
-    width: auto; }
-  form.mango-form.horizontal p {
+
+form.mango-form-horizontal {
+  box-sizing: border-box;
+  border: 1px solid #b3b3b3;
+  border-radius: 2px;
+  padding: 20px;
+  font-size: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: auto; }
+  form.mango-form-horizontal p {
     margin-right: 10px; }
 
 @media (max-width: 500px) {
-  form.mango-form {
+  form.mango-form-vertical {
     width: 100%;
     padding: 0px;
     padding-top: 20px; }
-    form.mango-form.vertical p {
+    form.mango-form-vertical p {
       width: 96%;
       margin-left: auto;
       margin-right: auto;
       font-size: 19px; }
-      form.mango-form.vertical p label {
+      form.mango-form-vertical p label {
         display: block; }
-      form.mango-form.vertical p input {
+      form.mango-form-vertical p input {
         box-sizing: border-box;
         display: block;
         float: none;
         width: 100%; }
-        form.mango-form.vertical p input[type="text"] {
+        form.mango-form-vertical p input[type="text"] {
           height: 40px;
           font-size: 17px; }
-        form.mango-form.vertical p input[type="password"] {
+        form.mango-form-vertical p input[type="password"] {
           height: 40px; }
-        form.mango-form.vertical p input[type="email"] {
+        form.mango-form-vertical p input[type="email"] {
           height: 40px; }
-    form.mango-form.vertical button[type="submit"] {
+    form.mango-form-vertical button[type="submit"] {
       font-size: 19px;
       margin-left: auto;
       margin-right: auto;
       width: 96%;
       margin-bottom: 20px; } }
+
+@media (max-width: 500px) {
+  form.mango-form-horizontal {
+    width: 100%;
+    padding: 0px;
+    padding-top: 20px; }
+    form.mango-form-horizontal p {
+      display: block;
+      float: none; } }
 
 .horinav ul li {
   float: left;
