@@ -29,28 +29,28 @@ $form-horizontal-p-margin-right: 10px;
 
 
 // mango-form Layout.
-form.mango-form
+form.mango-form-vertical
 {
   box-sizing: border-box;
-  &.vertical {
-    p {
-      display: block;
-      input {
-        float: right;
-      }
+  p {
+    display: block;
+    input {
+      float: right;
     }
   }
+}
 
-  &.horizontal {
-    p {
-      display: inline;
-    }
+form.mango-form-horizontal
+{
+  p {
+    display: block;
+    float: left;
   }
 }
 
 
 // mango-form styling.
-form.mango-form {
+form.mango-form-vertical {
   box-sizing: border-box;
   border: $form-border;
   border-radius: $form-border-radius;
@@ -58,26 +58,26 @@ form.mango-form {
   font-size: $form-font-size;
   font-family: $form-font-family;
 
-  &.vertical p {
-    margin-bottom: $form-vertical-p-margin-bottom;
-     
+  p {
+  margin-bottom: $form-vertical-p-margin-bottom;
+   
     label {
       color: $form-vertical-label-color; 
       font-weight: $form-vertical-label-font-weight;
     }
     input {
       &[type="text"] {
-        @extend %textbox;
+	@extend %textbox;
       }
       &[type="password"] {
-        @extend %textbox;
+	@extend %textbox;
       }
       &[type="email"] {
-        @extend %textbox;
+	@extend %textbox;
       }
     }
-
   }
+
   button[type="submit"] {
     display: block;
     background-color: $base-color;
@@ -88,58 +88,69 @@ form.mango-form {
     color: white;
     font-weight: bold;
   }
+}
 
-  &.horizontal {
-    width: $form-horizontal-width;
-  }
- 
-  &.horizontal p {
+form.mango-form-horizontal 
+{
+  box-sizing: border-box;
+  border: $form-border;
+  border-radius: $form-border-radius;
+  padding: $form-padding;
+  font-size: $form-font-size;
+  font-family: $form-font-family;
+  width: $form-horizontal-width;
+
+  p {
     margin-right: $form-horizontal-p-margin-right;
   }
 }
 
 // RESPONSIVE/ADAPTIVE(mobile-large-width) Layout
-form.mango-form
+form.mango-form-vertical
 {
   @media (max-width: $mobile-large-width){
     width: 100%;
     padding: 0px;
     padding-top: 20px;
 
-    &.vertical {
-      p {
-        width: 96%;
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 19px;
-        label {
-          display: block;
+    p {
+      width: 96%;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 19px;
+      label {
+      display: block;
           
-        }
-        input {
-          box-sizing: border-box;
-          display: block;
-          float: none;
-          width: 100%;
-          &[type="text"] {
-            height: 40px; 
-            font-size: 17px;
-          }
-          &[type="password"] {
-            height: 40px;
-          }
-          &[type="email"] {
-            height: 40px
-          }
-        }
       }
-      button[type="submit"]{
-        font-size: 19px;
-        margin-left: auto;
-        margin-right: auto;
-        width: 96%;  
-        margin-bottom: 20px;
+      input {
+        box-sizing: border-box;
+        display: block;
+        float: none;
+        width: 100%;
+        &[type="text"] {
+	  height: 40px; 
+	  font-size: 17px;
+	}
+	&[type="password"] {
+	  height: 40px;
+	}
+	&[type="email"] {
+	  height: 40px
+	}
       }
     }
+    button[type="submit"]{
+      font-size: 19px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 96%;  
+      margin-bottom: 20px;
+    }
+  }
+}
+
+form.mango-form-horizontal
+{
+  @media (max-width: $mobile-large-width) {
   }
 }

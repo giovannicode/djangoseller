@@ -2,6 +2,13 @@
 .mango-body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #1a1a1a; }
+  .mango-body button {
+    background-color: #09aa97;
+    border: none;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    color: white; }
 
 .mango-container {
   width: 90%;
@@ -23,7 +30,7 @@
   width: 200px;
   height: 200px;
   width: 240px;
-  height: 300px; }
+  height: 350px; }
 
 form.mango-form.vertical p input[type="text"], form.mango-form.vertical p input[type="password"], form.mango-form.vertical p input[type="email"] {
   border: 1px solid #b3b3b3;
@@ -44,7 +51,8 @@ form.mango-form {
     form.mango-form.vertical p input {
       float: right; }
   form.mango-form.horizontal p {
-    display: inline; }
+    display: block;
+    float: left; }
 
 form.mango-form {
   box-sizing: border-box;

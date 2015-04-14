@@ -11,8 +11,17 @@ $mobile-large-width: 500px;
 
 // Set Global Defaults
 .mango-body {
-    font-family: $base-font-family;
-    color: hsl(0, 0%, 10%);  
+  font-family: $base-font-family;
+  color: hsl(0, 0%, 10%);  
+    
+  button {
+    background-color: $base-color;  
+    border: none;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    color: white;
+  }
 }
 
 // Mango-Container Layout
@@ -41,7 +50,7 @@ $mobile-large-width: 500px;
     width: 200px;
     height: 200px;
     width: 240px;
-    height: 300px;
+    height: 350px;
 }
 
 @import '_forms'; 
