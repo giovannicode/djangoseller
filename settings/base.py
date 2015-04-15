@@ -45,7 +45,8 @@ INSTALLED_APPS = (
     'payments',
     'checkout',
     'categories',
-    'account'
+    'account',
+    'reviews',
 )
 
 MIDDLEWARE_CLASSES = (
