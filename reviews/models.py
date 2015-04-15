@@ -13,7 +13,7 @@ class Review(models.Model):
 	(4, 4),
     )
     rating = models.IntegerField(choices=RATING_CHOICES)
-    comments = models.TextField()   
+    comment = models.TextField()   
 
     def __unicode__(self):
         return self.product.name + ", " + str(self.user) + ", " + str(self.rating)
