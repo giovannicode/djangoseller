@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views.generic import CreateView
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView, ListView
 
 from .models import Review
 from .forms import ReviewForm
@@ -21,3 +21,11 @@ class ReviewCreateView(CreateView):
         review.product = Product.objects.get(pk=self.kwargs['product_id']) 
         review.save() 
         return redirect('account:index')
+
+
+class ReviewListView(ListView):
+    model = Review
+
+    def get_queryset(self):
+        product = Proudct.objects.get(pk=self.kwargs['product_id'])
+        return Review.objects.filter(product=product)
