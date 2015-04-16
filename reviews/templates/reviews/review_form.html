@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <form class="mango-form-vertical">
+  <form class="mango-form-vertical" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ product_id }}"/>
     {{ form.as_p }}
+    {{ product_id }}
   <button type="submit">Post Review</button>
   </form>
 {% endblock content %}

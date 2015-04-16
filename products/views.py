@@ -21,7 +21,7 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Product
-
+    
 
 # API Views.
 class ProductListAPI(generics.ListAPIView):
