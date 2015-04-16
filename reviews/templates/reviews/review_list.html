@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+   {% for review in review_list %}
+     <div>
+       <p><i>{{ review.user.first_name }} {{ review.user.last_name }}</i></p>
+       <p>Rating: <span>{{ review.rating }}</span></p>
+       <p>
+         {{ review.comment }}
+       </p>
+     </div>
+   {% endfor %}
+{% endblock content %}

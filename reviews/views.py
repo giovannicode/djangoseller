@@ -27,5 +27,5 @@ class ReviewListView(ListView):
     model = Review
 
     def get_queryset(self):
-        product = Prouduct.objects.get(pk=self.kwargs['product_id'])
+        product = Product.objects.get(pk=self.kwargs['product_id'])
         return Review.objects.filter(product=product)
