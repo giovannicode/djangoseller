@@ -5,10 +5,10 @@ from orders.models import Address
 class CheckoutForm(forms.Form):
     
     # These fields correspond to the address model
-    street = forms.CharField(max_length=60)
-    city = forms.CharField(max_length=60)
-    state = forms.CharField(max_length=2)
-    zipcode = forms.CharField(max_length=5)
+    street = forms.CharField(max_length=60, initial='1234 First st')
+    city = forms.CharField(max_length=60, initial='nowhere')
+    state = forms.CharField(max_length=2, initial='ks')
+    zipcode = forms.CharField(max_length=5, initial='60101')
 
     def __init__(self, user, *args, **kwargs): 
         super(CheckoutForm, self).__init__(*args, **kwargs)

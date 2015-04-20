@@ -1,4 +1,4 @@
 class CartIntegrityError(Exception):
 
-    def __init__(self, message):
+    def __init__(self, mssg):
         self.mssg = mssg

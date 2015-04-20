@@ -6,6 +6,12 @@
 {% endblock head_tags %}
 
 {% block content %}
+
+{% if messages %}
+  {% for message in messages %}
+    <p class="{{ message.tags }}">{{ message }}</p>
+  {% endfor %}
+{% endif %}
 <div ng-app="cartitemsApp">
     <div ng-init="init()" ng-controller="cartitemsController">
         <div ng-repeat="cartitem in data">

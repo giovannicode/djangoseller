@@ -18,7 +18,7 @@ from orders.models import Address, Order, OrderItem
 from payments.models import Payment
 from .forms import CheckoutForm
 
-from main.exception import CartIntegrityError
+from main.exceptions import CartIntegrityError
 
 stripe.api_key = "sk_test_w96KeQLCTh23810DSE2ykwIt"
 
@@ -112,11 +112,11 @@ class CheckoutView(UserPassesTestMixin, FormView):
         except CartIntegrityError, e:
             messages.add_message(
                 self.request,
-                message.ERROR,
+                messages.ERROR,
                 "I'm sorry, an error occured while processing your cart. Please double-check your \
                  items and make sure everything is in order" 
             )
-            return redirect('cart:detail')
+            return redirect('carts:detail')
 
         html_mssg = render_to_string(
             'emails/order_confirmation.html', 
