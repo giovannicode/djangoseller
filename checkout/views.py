@@ -18,6 +18,8 @@ from orders.models import Address, Order, OrderItem
 from payments.models import Payment
 from .forms import CheckoutForm
 
+from main.exception import CartIntegrityError
+
 stripe.api_key = "sk_test_w96KeQLCTh23810DSE2ykwIt"
 
 class CheckoutView(UserPassesTestMixin, FormView):
@@ -72,7 +74,9 @@ class CheckoutView(UserPassesTestMixin, FormView):
                 )
                 cart = get_cart(self) 
 
+                checkout_total = 0
                 for cartitem in cart.cartitem_set.all():
+                    checkout_total += cartitem.qty * cartitem.product.price
                     orderitem = OrderItem.objects.create(
                         order=order,
                         product=cartitem.product,
@@ -80,6 +84,10 @@ class CheckoutView(UserPassesTestMixin, FormView):
                         price=cartitem.product.price,
                         qty=cartitem.qty
                     )
+                if checkout_total != total: 
+                    raise CartIntegrityError("CartIntegrityError")
+                 
+
                 cart.cartitem_set.all().delete()
        
 		charge = stripe.Charge.create(
@@ -100,6 +108,15 @@ class CheckoutView(UserPassesTestMixin, FormView):
                 err
             )
             return redirect('billing:index') 
+ 
+        except CartIntegrityError, e:
+            messages.add_message(
+                self.request,
+                message.ERROR,
+                "I'm sorry, an error occured while processing your cart. Please double-check your \
+                 items and make sure everything is in order" 
+            )
+            return redirect('cart:detail')
 
         html_mssg = render_to_string(
             'emails/order_confirmation.html', 
