@@ -124,4 +124,4 @@ class CheckoutView(UserPassesTestMixin, FormView):
             ' + email
         )
 
-        return redirect('main:index')
+        return redirect('account:index')

@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a href="{% url 'orders:index' %}">Previous Orders</a>
- 
+
+  {% if messages %}
+    {% for message in messages %}
+      <p class="{{ message.tags }}">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+
+<p class="">Your Payment was processed successfully. A confirmation email has been sent to testemailecom+2@gmail.com</p>
+
+
+  <a href="{% url 'orders:index' %}">Previous Orders</a>
 {% endblock content %}
