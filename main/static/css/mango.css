@@ -6,6 +6,7 @@
     color: #09aa97; }
   .mango-body a {
     text-decoration: none;
+    background-color: inherit;
     color: #4183c4; }
     .mango-body a:hover {
       text-decoration: underline; }
