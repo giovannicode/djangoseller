@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^account/', include('account.urls', namespace='account')),
     url(r'^orders/', include('orders.urls', namespace='orders')),
     url(r'^reviews/', include('reviews.urls', namespace='reviews')),
+    url(r'^office/', include('office.urls', namespace='office')),
 )
