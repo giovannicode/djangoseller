@@ -1,0 +1,16 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<head>
+   <title>{% block title %}Seller{% endblock title %}</title>
+   <link rel="stylesheet" href="{% static 'css/mango.css' %}"/>
+   <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   {% block head_tags %}
+   {% endblock head_tags %}
+</head>
+<body>
+   {% block content %}
+   {% endblock content %}
+</body>
+</html>

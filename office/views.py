@@ -3,11 +3,12 @@ from rest_framework import generics, serializers
 
 from orders.models import Order
 
-class OrderSerializer(serializers.OrderSerializer):
+class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
 
 
-class OrderOffice(RetriveAPIView): 
+class OrderOffice(generics.ListAPIView): 
     model = Order
     serializer_class = OrderSerializer
+    queryset = Order.objects.all()
