@@ -1,3 +1,11 @@
-{% for order in order_list %}
-  <div>{{ order.id }}</div>
-{% endfor %}
+{% extends 'office/base.html' %}
+
+{% block head_tags %}
+
+{% endblock head_tags %}
+
+{% block content %}
+   {% for order in order_list %}
+      <div>{{ order.payment.total }}</div>
+   {% endfor %}
+{% endblock content %}
