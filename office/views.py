@@ -1,6 +1,10 @@
-from django.shortcuts import render
-from django.views.generic import ListView 
-from django.contrib.admin import forms
+from django.contrib.auth import login
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, FormView
+from django.contrib.admin.forms import AdminAuthenticationForm
+
+from braces.views import AnonymousRequiredMixin, StaffuserRequiredMixin
+
 from rest_framework import generics, serializers
 
 from orders.models import Order
@@ -10,9 +14,18 @@ class AdminLoginView(AnonymousRequiredMixin, FormView):
     template_name = 'office/login.html'
     form_class = AdminAuthenticationForm
 
+    def form_valid(self, form):
+        login(self.request, form.get_user())
+        return redirect('office:order')
+
+class DashboardView(StaffuserRequiredMixin, TemplateView):
+    template_name = u"office/index.html"
+
+
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
+
 
 class OrderListView(ListView):
     model = Order
