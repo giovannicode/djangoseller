@@ -50,7 +50,7 @@ class CheckoutView(UserPassesTestMixin, FormView):
         try:
             with transaction.atomic():
 	        token = self.request.POST["stripeToken"]
-		total = self.request.session['total']
+		total = Decimal(self.request.session['total'])
 		user = self.request.user
 
                 if user.is_authenticated():
@@ -114,7 +114,7 @@ class CheckoutView(UserPassesTestMixin, FormView):
                 self.request,
                 messages.ERROR,
                 "I'm sorry, an error occured while processing your cart. Please double-check your \
-                 items and make sure everything is in order" 
+                 items and make sure everything is in order."
             )
             return redirect('carts:detail')
 

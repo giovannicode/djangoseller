@@ -1,2 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'office/base.html' %}
+
+{% block content %}
+   <a href="{% url 'office:order_list' %}">Manage Orders</a>
+{% endblock content %}
 
